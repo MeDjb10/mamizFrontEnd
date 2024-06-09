@@ -7,13 +7,15 @@ import { NavbarComponent } from './components/static/navbar/navbar.component';
 import { FooterComponent } from './components/static/footer/footer.component';
 
 import { HomeComponent } from './components/static/home/home.component';
-import { AteliersComponent } from './components/dynamic/ateliers/ateliers.component';
-import { CarouselComponent } from './components/dynamic/carousel/carousel.component';
-import { SocialmediaComponent } from './components/dynamic/socialmedia/socialmedia.component';
-import { AcceuilComponent } from './components/dynamic/acceuil/acceuil.component';
-import { ArticlesComponent } from './components/dynamic/articles/articles.component';
-import { EventsComponent } from './components/dynamic/events/events.component';
-import { DepotComponent } from './components/dynamic/depot/depot.component';
+import { AteliersComponent } from './components/dynamic/home/ateliers/ateliers.component';
+import { CarouselComponent } from './components/dynamic/home/carousel/carousel.component';
+import { SocialmediaComponent } from './components/dynamic/home/socialmedia/socialmedia.component';
+import { AcceuilComponent } from './components/dynamic/home/acceuil/acceuil.component';
+import { ArticlesComponent } from './components/dynamic/home/article/articles/articles.component';
+import { EventsComponent } from './components/dynamic/home/events/events.component';
+import { DepotComponent } from './components/dynamic/home/depot/depot.component';
+import { ArticleBigCardComponent } from './components/dynamic/home/article/article-big-card/article-big-card.component';
+import { ArticleSmallCardComponent } from './components/dynamic/home/article/article-small-card/article-small-card.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,13 @@ import { DepotComponent } from './components/dynamic/depot/depot.component';
     SocialmediaComponent,
     ArticlesComponent,
     EventsComponent,
-    DepotComponent
+    DepotComponent,
+    ArticleBigCardComponent,
+    ArticleSmallCardComponent,
+    ArticlesComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
