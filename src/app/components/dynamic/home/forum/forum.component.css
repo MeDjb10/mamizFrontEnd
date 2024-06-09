@@ -1,0 +1,19 @@
+.c2 {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #a5f2ff;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4e8b95;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #3aa6b9;
+}
