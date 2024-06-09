@@ -2,15 +2,12 @@
 <div
   class="flex flex-col md:flex-row items-center justify-center px-4 gap-x-80 my-10"
 >
-  <app-article-big-card></app-article-big-card>
+  <app-article-big-card [theme]="latestArticle?.theme" [title]="latestArticle?.title"></app-article-big-card>
   <div class="max-w-2xl">
     <ul class="flex flex-col items-center gap-8">
-      <!-- Item 1 -->
-      <app-article-small-card></app-article-small-card>
-      <!-- Item 2 -->
-       <app-article-small-card></app-article-small-card>
-      <!-- Item 3 -->
-      <app-article-small-card></app-article-small-card>
+      <ng-container *ngFor="let article of articles | slice:0:3">
+        <app-article-small-card [theme]="article?.theme" [title]="article?.title"></app-article-small-card>
+      </ng-container>
     </ul>
   </div>
 </div>

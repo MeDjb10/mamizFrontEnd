@@ -16,6 +16,7 @@ import { EventsComponent } from './components/dynamic/home/events/events.compone
 import { DepotComponent } from './components/dynamic/home/depot/depot.component';
 import { ArticleBigCardComponent } from './components/dynamic/home/article/article-big-card/article-big-card.component';
 import { ArticleSmallCardComponent } from './components/dynamic/home/article/article-small-card/article-small-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ArticleSmallCardComponent } from './components/dynamic/home/article/art
     ArticleSmallCardComponent,
     ArticlesComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
