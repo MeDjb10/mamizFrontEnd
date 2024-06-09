@@ -7,4 +7,23 @@ import { Component } from '@angular/core';
 })
 export class DepotComponent {
 
+  scrollLeft() {
+    const scrollContainer = document.getElementById('scrollContainer');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: -300,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  scrollRight() {
+    const scrollContainer = document.getElementById('scrollContainer');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: 300,
+        behavior: 'smooth'
+      });
+    }
+  }
 }

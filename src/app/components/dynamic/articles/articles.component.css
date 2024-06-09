@@ -1,0 +1,19 @@
+
+.imgCont::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; /* Adjust this value for the height of the gradient */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.881), transparent);
+    pointer-events: none;
+}
+  p{
+    font-family: "helBold";
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+  .title{
+    font-size: x-large;
+  }

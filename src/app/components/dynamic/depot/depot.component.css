@@ -1,0 +1,20 @@
+/* .c1 {
+    transition: transform .4s ease-in-out;
+}
+
+.c1:hover {
+    transform: scale(1.03);
+} */
+
+::-webkit-scrollbar {
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a5f2ff; 
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
