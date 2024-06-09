@@ -12,6 +12,10 @@
     font-family: "hel";
     src: url("assets\fonts\Helvetica.ttf");
 }
+@font-face {
+    font-family: "Cairo";
+    src: url("assets\fonts\Cairo-Regular.ttf");
+}
 
 *{
     font-family:  'hel';

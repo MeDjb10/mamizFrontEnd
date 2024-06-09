@@ -35,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     ArticleSmallCardComponent,
     ArticlesComponent
   ],
+  
   imports: [BrowserModule, AppRoutingModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

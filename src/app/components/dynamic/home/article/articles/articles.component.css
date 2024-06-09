@@ -1,4 +1,3 @@
-
 .imgCont::after {
     content: '';
     position: absolute;
@@ -8,12 +7,72 @@
     height: 30%; /* Adjust this value for the height of the gradient */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.881), transparent);
     pointer-events: none;
-}
-  p{
+  }
+  
+  p {
     font-family: "helBold";
     letter-spacing: -0.025em;
     line-height: 1.25;
   }
-  .title{
+  
+  .title {
     font-size: x-large;
   }
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 100px;
+    gap: 10px;
+  }
+  
+  .box1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .box1 img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .box2, .box3, .box4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .box2 {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+  
+  .box3 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+  }
+  
+  .box4 {
+    grid-column-start: 2;
+    grid-row-start: 3;
+  }
+  
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .imgCont img {
+    border-radius: 8px;
+  }
+  
