@@ -15,8 +15,9 @@ export class ArticlesComponent {
   ngOnInit(): void {
     this.articleService.getAll().subscribe((data) => {
       this.articles = data;
+      console.log(this.articles);
       this.latestArticle = this.getLatestArticle();
-      console.log(this.articles); // Move this line inside the callback
+       // Move this line inside the callback
     });
   }
   getLatestArticle(): Article {
