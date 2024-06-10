@@ -18,6 +18,10 @@ import { ArticleBigCardComponent } from './components/dynamic/home/article/artic
 import { ArticleSmallCardComponent } from './components/dynamic/home/article/article-small-card/article-small-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ForumComponent } from './components/dynamic/home/forum/forum.component';
+import { FilterAtelierComponent } from './components/dynamic/Atelier/filter-atelier/filter-atelier.component';
+import { AllAteliersComponent } from './components/dynamic/Atelier/all-ateliers/all-ateliers.component';
+import { AtelierDetailsComponent } from './components/dynamic/Atelier/atelier-details/atelier-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,10 +39,13 @@ import { ForumComponent } from './components/dynamic/home/forum/forum.component'
     ArticleBigCardComponent,
     ArticleSmallCardComponent,
     ArticlesComponent,
-    ForumComponent
+    ForumComponent,
+    FilterAtelierComponent,
+    AllAteliersComponent,
+    AtelierDetailsComponent,
   ],
   
-  imports: [BrowserModule, AppRoutingModule,HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

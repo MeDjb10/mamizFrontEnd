@@ -1,0 +1,23 @@
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-filter-atelier',
+  templateUrl: './filter-atelier.component.html',
+  styleUrls: ['./filter-atelier.component.css']
+})
+export class FilterAtelierComponent {
+  @Output() filterChange = new EventEmitter<any>();
+  filterForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.filterForm = this.fb.group({
+      artist: [''],
+      album: ['']
+    });
+  }
+
+  onFilterChange() {
+    this.filterChange.emit(this.filterForm.value);
+  }
+}

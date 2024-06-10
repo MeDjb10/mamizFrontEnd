@@ -1,0 +1,38 @@
+<form [formGroup]="filterForm" (ngSubmit)="onFilterChange()" class="w-64 bg-bg p-8 bg-lightblue rounded-lg shadow-lg sticky">
+    <div class="mb-4">
+      <label for="artist" class="block font-bold tracking-tighter text-xl mb-2" style="font-family: helBold;">Recherche</label>
+      <input type="text" formControlName="artist" id="artist" name="artist" placeholder="exp: atelier pour enfant"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+        (input)="onFilterChange()">
+    </div>
+    <div class="mb-4">
+      <label for="date" class="block font-bold tracking-tighter text-xl mb-2" style="font-family: helBold;">Date</label>
+      <input type="date" formControlName="date" id="date" name="date"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+        (change)="onFilterChange()">
+    </div>
+    <div class="mb-4">
+      <label for="priceSort" class="block font-bold tracking-tighter text-xl mb-2" style="font-family: helBold;">Trier par Prix</label>
+      <select formControlName="priceSort" id="priceSort" name="priceSort"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+        (change)="onFilterChange()">
+        <option value="">Sélectionnez</option>
+        <option value="asc">Ascendant</option>
+        <option value="desc">Descendant</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="block font-bold mb-2">Prix</label>
+      <div class="flex justify-between mb-2">
+        <span id="price-min-value">{{ filterForm.value.priceMin }} dt</span>
+        <span id="price-max-value">{{ filterForm.value.priceMax }} dt</span>
+      </div>
+      <input type="range" formControlName="priceMin" id="price-min" name="priceMin" min="50" max="100" class="w-full mb-2"
+        (change)="onFilterChange()">
+      <input type="range" formControlName="priceMax" id="price-max" name="priceMax" min="50" max="100" class="w-full mb-2"
+        (change)="onFilterChange()">
+    </div>
+    
+    
+  </form>
+  
