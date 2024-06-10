@@ -1,0 +1,11 @@
+.c2 {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.c1 {
+    transition: transform .4s ease-in-out;
+}
+
+.c1:hover {
+    transform: scale(1.03);
+}
