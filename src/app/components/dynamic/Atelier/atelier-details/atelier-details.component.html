@@ -10,7 +10,7 @@
     ></div>
     <div class="absolute bottom-4 left-4 text-white">
       <h1 class="text-4xl font-bold">
-        Atelier: whetever the bamamn fuck Atelier
+        Atelier: {{atelier?.title}}
       </h1>
     </div>
   </div>
@@ -20,16 +20,7 @@
       <p
         class="text-gray-700 text-lg leading-relaxed hover:text-gray-900 transition-colors duration-200"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-        suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-        lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing
-        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
-        accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-        viverra maecenas accumsan lacus vel facilisis.
+        {{atelier?.description}}
       </p>
     </div>
     <div
@@ -38,14 +29,14 @@
       <div
         class="text-center border border-sky-400 rounded-lg hover:border-sky-600 transition-colors duration-200"
       >
-        <p class="text-2xl font-bold">10</p>
-        <p class="text-lg text-gray-500">Apr, 2024</p>
+        <p class="text-2xl font-bold">{{atelier?.date | date:'d' }}</p>
+        <p class="text-lg text-gray-500">{{atelier?.date | date:'MMM, y'}}</p>
       </div>
       <div
         class="mt-4 border p-5 border-sky-400 rounded-lg hover:border-sky-600 transition-colors duration-200"
       >
-        <p>- Nombre de place: 100 Personnes</p>
-        <p>- Prix: 100dt</p>
+        <p>- Nombre de place: {{atelier?.maxPlaces}}</p>
+        <p>- Prix: {{atelier?.price}}</p>
       </div>
       <div class="text-center mt-6">
         <a

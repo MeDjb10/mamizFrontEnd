@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ArticleSmallCardComponent {
   @Input() theme?: string;
   @Input() title?: string;
+  @Input() pic?: string;
 }
