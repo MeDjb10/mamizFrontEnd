@@ -7,7 +7,7 @@
 } */
 
 ::-webkit-scrollbar {
-    height: 1px;
+    height: 3px;
 }
 
 ::-webkit-scrollbar-thumb {

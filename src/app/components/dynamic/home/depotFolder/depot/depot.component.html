@@ -1,0 +1,25 @@
+<section class="py-8 bg-white">
+  <h2 class="text-7xl tracking-tighter font-bold mb-4 text-center" style="font-family: helBold;">Depot Maman</h2>
+  <div class="relative">
+
+    <div id="scrollContainer" class="overflow-x-auto whitespace-nowrap scroll-smooth pb-5">
+      <button class="absolute left-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
+        (click)="scrollLeft()">
+        <i class="fa-solid fa-chevron-left fa-xl"></i>
+      </button>
+     
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <app-depot-card></app-depot-card>
+      <button class="absolute right-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
+        (click)="scrollRight()">
+        <i class="fa-solid fa-chevron-right fa-xl"></i>
+      </button>
+    </div>
+  </div>
+  
+</section>
