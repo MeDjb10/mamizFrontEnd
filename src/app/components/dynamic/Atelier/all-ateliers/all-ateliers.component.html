@@ -1,7 +1,7 @@
-<div class="flex justify-center py-16">
-    <div class="flex w-11/12 justify-between gap-7">
+<div class="flex justify-center py-16 px-2">
+    <div class="flex md:w-11/12 md:justify-between md:gap-7 flex-col md:flex-row">
         <app-filter-atelier (filterChange)="onFilterChange($event)"></app-filter-atelier>
-        <div class="mb-12 grid gap-y-4 gap-x-4 lg:grid-cols-2 w-11/12">
+        <div class="mb-12 grid gap-y-4 gap-x-4 lg:grid-cols-2 md:w-11/12">
             <app-atelier-card></app-atelier-card>
             <app-atelier-card></app-atelier-card>
             <app-atelier-card></app-atelier-card>
