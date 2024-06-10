@@ -24,8 +24,8 @@
     <div class="mb-4">
       <label class="block font-bold mb-2">Prix</label>
       <div class="flex justify-between mb-2">
-        <span id="price-min-value">{{ filterForm.value.priceMin }} dt</span>
-        <span id="price-max-value">{{ filterForm.value.priceMax }} dt</span>
+        <span id="price-min-value">{{ filterForm.value.priceMin }} 50dt</span>
+        <span id="price-max-value">{{ filterForm.value.priceMax }} 100dt</span>
       </div>
       <input type="range" formControlName="priceMin" id="price-min" name="priceMin" min="50" max="100" class="w-full mb-2"
         (change)="onFilterChange()">
