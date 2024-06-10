@@ -6,13 +6,13 @@
   />
   <div class="flex flex-col justify-between">
     <h3 class="text-lg md:text-xl font-semibold mt-2 md:mt-0">
-      Effective Classroom Management Techniques
+      {{title}}
     </h3>
     <hr class="broder-0 h-0.5 bg-lightblue" />
     <div class="flex flex-row items-center gap-2 md:text-base mt-2 text-xs">
-      <p>10 Apr, 2023</p>
+      <p>{{date | date:'d MMM, y' }}</p>
       <p class="text-lightblue font-bold">|</p>
-      <p>Price: $45.00</p>
+      <p>Price: {{price | currency:'TND':'symbol':'1.2-2'}}</p>
     </div>
   </div>
 </div>

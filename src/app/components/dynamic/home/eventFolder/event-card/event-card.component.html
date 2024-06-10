@@ -5,9 +5,9 @@
         class="text-xl md:text-4xl tracking-tighter font-semibold"
         style="font-family: helBold"
       >
-        10
+        {{date | date:'d'}}
       </p>
-      <p class="text-sm md:text-4xl">Apr, 2023</p>
+      <p class="text-sm md:text-4xl">{{date | date:'MMM, y'}}</p>
     </div>
     <div class="flex items-center">
       <div class="h-16 w-px bg-lightblue"></div>
@@ -15,11 +15,10 @@
 
     <div class="flex-grow overflow-hidden">
       <h3 class="md:text-3xl font-semibold truncate" style="font-family: helBold">
-        Lorem ipsum dolor sit amet
+        {{title}}
       </h3>
       <p class="mt-2 truncate">
-        Lorem ipsum dolor sit amet, consectetur adipiscing
-        elitzefggzfezfrezfefzeffezezvf.
+       {{desc}}
       </p>
     </div>
 

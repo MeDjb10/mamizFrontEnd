@@ -2,10 +2,11 @@
   <div>
     <h2 class="text-3xl md:text-7xl font-bold mb-4 text-left">Evenements</h2>
     <div class="flex flex-col items-left space-y-4">
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
+      <ng-container *ngFor="let event of events | slice:0:4" >
+        <app-event-card [title]="event?.title" [date]="event?.date" [desc]="event?.description"></app-event-card>
+      </ng-container>
+      
+     
     </div>
   </div>
   <div class="lg:border-l-2 border-pink  sm:mt-0 mt-5 md:mt-4 md:pt-2">

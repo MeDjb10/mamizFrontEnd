@@ -1,13 +1,10 @@
 <section class="py-8 bgGRDT">
   <h2 class="text-7xl font-bold mb-4 text-center tracking-tighter" style="font-family: 'helBold';">Ateliers à Venir</h2>
-  <div class="flex justify-center md:space-x-4 flex-col gap-4 md:flex-row ">
-    
-    <app-atelier-card></app-atelier-card>
-    <app-atelier-card></app-atelier-card>
-  </div>
-  <div class="flex justify-center md:space-x-4 flex-col gap-4 md:flex-row  mt-4">
-    <app-atelier-card></app-atelier-card>
-    <app-atelier-card></app-atelier-card>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4" >
+    <ng-container  *ngFor="let atelier of ateliers | slice:0:4">
+          <app-atelier-card [title]="atelier?.title" [date]="atelier?.date" [price]="atelier?.price"></app-atelier-card>
+    </ng-container>
+
   </div>
   <div class="text-center mt-6 c1">
   <a href="/ateliers" class="bg-darkpink rounded-full text-white py-2 px-4 tracking-tight text-3xl font-bold ">
