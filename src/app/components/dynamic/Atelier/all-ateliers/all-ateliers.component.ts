@@ -23,23 +23,22 @@ export class AllAteliersComponent {
   loadAteliers() {
     this.atelierService.getAll().subscribe((data) => {
       this.ateliers = data;
-      this.filteredAteliers = data; // Initialize filteredPosters with all posters
+      this.filteredAteliers = data; // Initialize filteredAteliers with all ateliers
     });
   }
 
   onFilterChange(filter: any) {
-    this.filteredAteliers = this.ateliers.filter((data) => {
-      const matchesArtist = filter.artist
-        ? data.artist.toLowerCase().includes(filter.artist.toLowerCase())
+    this.filteredAteliers = this.ateliers.filter((atelier) => {
+      const matchesTitle = filter.title
+        ? atelier.title.toLowerCase().includes(filter.title.toLowerCase())
         : true;
       const matchesPrice =
-        data.price >= filter.priceMin && data.price <= filter.priceMax;
+        atelier.price >= filter.priceMin && atelier.price <= filter.priceMax;
       const matchesDate = filter.date
-        ? new Date(data.date).toDateString() ===
+        ? new Date(atelier.date).toDateString() ===
           new Date(filter.date).toDateString()
         : true;
-
-      return matchesArtist && matchesPrice && matchesDate;
+      return matchesTitle && matchesPrice && matchesDate;
     });
 
     if (filter.priceSort === 'asc') {

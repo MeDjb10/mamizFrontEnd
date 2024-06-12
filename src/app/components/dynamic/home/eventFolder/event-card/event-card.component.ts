@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 export class EventCardComponent {
   @Input() title?: string;
   @Input() desc?: string;
-  @Input() date?: Date;
+  @Input() date?: string;
 }

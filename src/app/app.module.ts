@@ -17,7 +17,7 @@ import { DepotComponent } from './components/dynamic/home/depotFolder/depot/depo
 import { ArticleBigCardComponent } from './components/dynamic/home/article/article-big-card/article-big-card.component';
 import { ArticleSmallCardComponent } from './components/dynamic/home/article/article-small-card/article-small-card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ForumComponent } from './components/dynamic/home/forum/forum.component';
+import { ForumComponent } from './components/dynamic/home/forumFolder/forum/forum.component';
 import { FilterAtelierComponent } from './components/dynamic/Atelier/filter-atelier/filter-atelier.component';
 import { AllAteliersComponent } from './components/dynamic/Atelier/all-ateliers/all-ateliers.component';
 import { AtelierDetailsComponent } from './components/dynamic/Atelier/atelier-details/atelier-details.component';
@@ -36,6 +36,7 @@ import { AskQuestionComponent } from './components/dynamic/Forum/ask-question/as
 import { ForumsCardComponent } from './components/dynamic/Forum/forums-card/forums-card.component';
 import { AskQuestionDivComponent } from './components/dynamic/Forum/ask-question-div/ask-question-div.component';
 import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/forum-filter.component';
+import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card/qst-card.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/fo
     ForumsCardComponent,
     AskQuestionDivComponent,
     ForumFilterComponent,
+    QstCardComponent,
   
   ],
   

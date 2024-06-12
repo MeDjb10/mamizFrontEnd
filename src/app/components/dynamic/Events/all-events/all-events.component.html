@@ -1,15 +1,10 @@
 <div class="flex justify-center py-16 px-2">
     <div class="flex md:w-11/12 md:justify-between md:gap-7 flex-col md:flex-row">
-        <app-filter-atelier></app-filter-atelier>
+        <app-filter-event (filterChange)="onFilterChange($event)"></app-filter-event>
         <div class="mb-12 grid gap-y-4 gap-x-4 lg:grid-cols-2 md:w-11/12">
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
-            <app-events-card></app-events-card>
+            <ng-container *ngFor="let event of filteredEvents">
+                <app-events-card [title]="event?.title" [desc]="event?.description" [date]="event?.date"></app-events-card>
+            </ng-container>
         </div>
     </div>
 </div>

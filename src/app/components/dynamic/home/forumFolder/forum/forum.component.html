@@ -1,0 +1,16 @@
+<section class="bg-lightblue w-fit h-auto p-4 gap-4 rounded-xl items-center shadow-lg">
+    <p class="mb-4 tracking-tighter text-5xl" style="font-family: helBold;">
+        Questions récentes
+    </p>
+    <div class="flex flex-col gap-8 items-center max-h-96 overflow-y-auto custom-scrollbar">
+        <ng-container *ngFor="let post of posts | slice:0:3">
+            <app-qst-card [title]="post?.title" [theme]="post?.theme" [question]="post?.question"></app-qst-card>
+        </ng-container>
+        
+    </div>
+    <div class="mt-4 flex justify-end ">
+        <a href="#" class="bg-teal p-1 rounded-lg text-white hover:bg-cyan-700 c2 px-2">
+            Voir Tout <i class="fa-solid fa-angle-right"></i>
+        </a>
+    </div>
+</section>

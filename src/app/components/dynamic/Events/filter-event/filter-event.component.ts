@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-filter-event',
   templateUrl: './filter-event.component.html',
-  styleUrls: ['./filter-event.component.css']
+  styleUrls: ['./filter-event.component.css'],
 })
 export class FilterEventComponent {
   @Output() filterChange = new EventEmitter<any>();
@@ -12,12 +12,13 @@ export class FilterEventComponent {
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
-      artist: [''],
-      album: ['']
+      title: [''],
+      date: [''],
     });
   }
 
   onFilterChange() {
     this.filterChange.emit(this.filterForm.value);
+    console.log(this.filterForm.value);
   }
 }
