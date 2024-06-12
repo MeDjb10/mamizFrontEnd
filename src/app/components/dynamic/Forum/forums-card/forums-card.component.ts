@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Response } from 'src/app/serverSide/classes/response';
 
 @Component({
@@ -7,11 +8,14 @@ import { Response } from 'src/app/serverSide/classes/response';
   styleUrls: ['./forums-card.component.css'],
 })
 export class ForumsCardComponent implements OnInit {
+  @Input() id: number = 0; // Add an initializer for the 'id' property
   @Input() title?: string;
   @Input() theme?: string;
   @Input() question?: string;
   @Input() responded?: boolean;
   @Input() response?: Response;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log('response', this.response);
@@ -25,5 +29,14 @@ export class ForumsCardComponent implements OnInit {
 
   get medcinSpecialite(): string {
     return this.response?.medcin ? this.response.medcin.specialite : '';
+  }
+
+  navigateToDetails(id: number): void {
+    this.router.navigate(['home/forum-details', id]);
+  }
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
   }
 }
