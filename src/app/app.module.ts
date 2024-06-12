@@ -22,9 +22,20 @@ import { FilterAtelierComponent } from './components/dynamic/Atelier/filter-atel
 import { AllAteliersComponent } from './components/dynamic/Atelier/all-ateliers/all-ateliers.component';
 import { AtelierDetailsComponent } from './components/dynamic/Atelier/atelier-details/atelier-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { AtelierCardComponent } from './components/dynamic/home/atelierFolder/atelier-card/atelier-card.component';
 import { EventCardComponent } from './components/dynamic/home/eventFolder/event-card/event-card.component';
 import { DepotCardComponent } from './components/dynamic/home/depotFolder/depot-card/depot-card.component';
+import { FilterEventComponent } from './components/dynamic/Events/filter-event/filter-event.component';
+import { EventDetailsComponent } from './components/dynamic/Events/event-details/event-details.component';
+import { AllEventsComponent } from './components/dynamic/Events/all-events/all-events.component';
+import { EventsCardComponent } from './components/dynamic/Events/events-card/events-card.component';
+import { AllForumsComponent } from './components/dynamic/Forum/all-forums/all-forums.component';
+import { ForumDetailsComponent } from './components/dynamic/Forum/forum-details/forum-details.component';
+import { AskQuestionComponent } from './components/dynamic/Forum/ask-question/ask-question.component';
+import { ForumsCardComponent } from './components/dynamic/Forum/forums-card/forums-card.component';
+import { AskQuestionDivComponent } from './components/dynamic/Forum/ask-question-div/ask-question-div.component';
+import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/forum-filter.component';
 
 
 @NgModule({
@@ -50,6 +61,16 @@ import { DepotCardComponent } from './components/dynamic/home/depotFolder/depot-
     AtelierCardComponent,
     EventCardComponent,
     DepotCardComponent,
+    FilterEventComponent,
+    EventDetailsComponent,
+    AllEventsComponent,
+    EventsCardComponent,
+    AllForumsComponent,
+    ForumDetailsComponent,
+    AskQuestionComponent,
+    ForumsCardComponent,
+    AskQuestionDivComponent,
+    ForumFilterComponent,
   
   ],
   

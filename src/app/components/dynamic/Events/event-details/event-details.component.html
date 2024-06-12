@@ -1,0 +1,54 @@
+<div class="container mx-auto mt-8 ">
+    <div class="relative bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="../../../../../assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"
+            class="w-full h-64 object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
+        <div class="absolute bottom-4 left-4 text-white">
+            <h1 class="text-4xl font-bold">
+
+                Evenement: {{event?.title}}
+            </h1>
+        </div>
+    </div>
+    <div class="mt-3 md:mt-8 grid grid-cols-1 md:grid-cols-3 md:gap-6 ">
+        <div class="block md:hidden">
+            <div class=" border-2 border-lightblue rounded-xl grid grid-cols-2 items-center mx-3 mb-4">
+                <div class="text-center">
+                    <p class="text-xl font-bold">
+                        {{event?.date | date:'d' }}
+                    </p>
+                    <p class="text-sm">
+                        {{event?.date | date:'MMM, y'}}
+                    </p>
+                </div>
+                <div class="text-sm tracking-tighter">
+                    <p>- Nombre de place: {{event?.maxPlaces}}</p>
+                    <p>- Prix: {{event?.price}}</p>
+                </div>
+            </div>
+        </div>
+        <div class=" p-6 hidden md:block">
+            <div
+                class="text-center border-2 border-lightblue rounded-xl hover:border-teal transition-colors duration-200">
+                <p class="text-7xl font-bold">
+                    {{event?.date | date:'d' }}
+                </p>
+                <p class="text-lg">
+                    {{event?.date | date:'MMM, y'}}
+                </p>
+            </div>
+            <div class="mt-4 border-2 p-5 border-lightblue rounded-lg hover:border-teal transition-colors duration-200">
+                <p>- Nombre de place: {{event?.maxPlaces}}</p>
+                <p>- Prix: {{event?.price}}</p>
+            </div>
+        </div>
+        <div class="col-span-2 px-3">
+            <p
+                class="text-gray-700 text-lg leading-relaxed hover:text-gray-900 transition-colors duration-200 text-justify">
+                {{event?.description}}
+
+            </p>
+        </div>
+
+    </div>
+</div>
