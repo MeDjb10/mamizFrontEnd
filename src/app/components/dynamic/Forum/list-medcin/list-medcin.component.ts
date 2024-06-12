@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { MedcinService } from 'src/app/serverSide/services/medcin.service';
 
 @Component({
-  selector: 'app-ask-question-div',
-  templateUrl: './ask-question-div.component.html',
-  styleUrls: ['./ask-question-div.component.css'],
+  selector: 'app-list-medcin',
+  templateUrl: './list-medcin.component.html',
+  styleUrls: ['./list-medcin.component.css'],
 })
-export class AskQuestionDivComponent {
+export class ListMedcinComponent {
   medcins: any[] = [];
 
   constructor(private medcinService: MedcinService) {}
@@ -15,11 +15,5 @@ export class AskQuestionDivComponent {
     this.medcinService.getAll().subscribe((medcins) => {
       this.medcins = medcins;
     });
-  }
-
-  visible: boolean = false;
-
-  showDialog() {
-    this.visible = true;
   }
 }

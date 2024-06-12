@@ -1,6 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+//primeNG.component
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { SidebarModule } from 'primeng/sidebar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { AvatarModule } from 'primeng/avatar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListMedcinComponent } from './components/dynamic/Forum/list-medcin/list-medcin.component';
 
+
+
+//othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/static/navbar/navbar.component';
@@ -37,6 +49,9 @@ import { ForumsCardComponent } from './components/dynamic/Forum/forums-card/foru
 import { AskQuestionDivComponent } from './components/dynamic/Forum/ask-question-div/ask-question-div.component';
 import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/forum-filter.component';
 import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card/qst-card.component';
+import { ForumAricleCardComponent } from './components/dynamic/Forum/forum-aricle-card/forum-aricle-card.component';
+import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medcin-card.component';
+
 
 
 @NgModule({
@@ -73,10 +88,25 @@ import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card
     AskQuestionDivComponent,
     ForumFilterComponent,
     QstCardComponent,
-  
+    ListMedcinComponent,
+    ForumAricleCardComponent,
+    MedcinCardComponent,
+   
   ],
-  
-  imports: [BrowserModule, AppRoutingModule,HttpClientModule,ReactiveFormsModule],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    DialogModule,
+    DynamicDialogModule,
+    SidebarModule,
+    FileUploadModule,
+    BrowserAnimationsModule,
+    AvatarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
