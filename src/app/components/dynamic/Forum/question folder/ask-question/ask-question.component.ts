@@ -8,29 +8,84 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AskQuestionComponent {
   currentStep = 1;
-  form: FormGroup;
+  question: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      stepOne: this.fb.group({
-        theme:['',Validators.required],
-        qst: ['', Validators.required],
-        detail: ['', Validators.required],
-        taille: ['', Validators.required],
-        poids: ['', Validators.required],
-        traitement: ['', Validators.required],
-        deatilTrait: ['', ],
-      }),
+    this.question = this.fb.group({
+      theme: ['', Validators.required],
+      qst: ['', Validators.required],
+      detail: ['', Validators.required],
+      taille: ['', Validators.required],
+      poids: ['', Validators.required],
+      traitement: ['', Validators.required],
+      deatilTrait: ['',],
+
     });
+
+    this.specialties = [
+      { name: 'Allergologie' },
+      { name: 'Anatomie' },
+      { name: 'Anesthésie' },
+      { name: 'Cardiologie' },
+      { name: 'Chirurgie' },
+      { name: 'Dermatologie' },
+      { name: 'Endocrinologie' },
+      { name: 'Gastro-entérologie' },
+      { name: 'Gériatrie' },
+      { name: 'Gynécologie' },
+      { name: 'Hématologie' },
+      { name: 'Immunologie' },
+      { name: 'Infectiologie' },
+      { name: 'Médecine interne' },
+      { name: 'Médecine légale' },
+      { name: 'Médecine nucléaire' },
+      { name: 'Médecine physique et de réadaptation' },
+      { name: 'Néonatologie' },
+      { name: 'Néphrologie' },
+      { name: 'Neurologie' },
+      { name: 'Obstétrique' },
+      { name: 'Odontologie' },
+      { name: 'Oncologie' },
+      { name: 'Ophtalmologie' },
+      { name: 'Orthopédie' },
+      { name: 'Oto-rhino-laryngologie (ORL)' },
+      { name: 'Pédiatrie' },
+      { name: 'Pneumologie' },
+      { name: 'Psychiatrie' },
+      { name: 'Radiologie' },
+      { name: 'Rhumatologie' },
+      { name: 'Urologie' },
+      { name: 'Vétérinaire' },
+      { name: 'Médecin général' },
+      { name: 'Je ne sais pas' }
+    ];
   }
 
   get stepOne() {
-    return this.form.get('stepOne') as FormGroup;
+    return this.question.get('stepOne') as FormGroup;
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log(this.form.value);
+    if (this.question.valid) {
+      console.log(this.question.value);
     }
+  }
+
+
+  isChecked = false;
+
+  toggleCheckbox() {
+    this.isChecked = !this.isChecked;
+  }
+
+  selectedSpecialty: any;
+  filteredSpecialties!: any[];
+  specialties!: any[];
+
+  
+
+  filterSpecialty(event: any) {
+    const query = event.query.toLowerCase();
+    this.filteredSpecialties = this.specialties.filter(specialty => specialty.name.toLowerCase().includes(query));
   }
 }
