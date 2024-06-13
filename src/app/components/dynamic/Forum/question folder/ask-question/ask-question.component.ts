@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.css']
 })
-export class AskQuestionComponent {
+export class AskQuestionComponent implements OnInit, AfterViewInit {
   currentStep = 1;
   question: FormGroup;
+  selectedSpecialty: any;
+  filteredSpecialties: any[] = [];
+  specialties: any[] = [];
+  isChecked = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.question = this.fb.group({
       theme: ['', Validators.required],
       qst: ['', Validators.required],
@@ -18,8 +22,7 @@ export class AskQuestionComponent {
       taille: ['', Validators.required],
       poids: ['', Validators.required],
       traitement: ['', Validators.required],
-      deatilTrait: ['',],
-
+      deatilTrait: [''],
     });
 
     this.specialties = [
@@ -61,8 +64,13 @@ export class AskQuestionComponent {
     ];
   }
 
-  get stepOne() {
-    return this.question.get('stepOne') as FormGroup;
+  ngOnInit(): void {
+    // Any additional initialization logic if needed
+  }
+
+  ngAfterViewInit(): void {
+    // Ensure change detection is run after the view has been initialized
+    this.cdr.detectChanges();
   }
 
   onSubmit() {
@@ -71,18 +79,9 @@ export class AskQuestionComponent {
     }
   }
 
-
-  isChecked = false;
-
   toggleCheckbox() {
     this.isChecked = !this.isChecked;
   }
-
-  selectedSpecialty: any;
-  filteredSpecialties!: any[];
-  specialties!: any[];
-
-  
 
   filterSpecialty(event: any) {
     const query = event.query.toLowerCase();
