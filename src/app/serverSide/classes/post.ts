@@ -12,6 +12,6 @@ export interface Post {
   taille: number;
   traitement: boolean;
   user: User;
-  response: Response;
+  response?: Response | undefined;
 }
 

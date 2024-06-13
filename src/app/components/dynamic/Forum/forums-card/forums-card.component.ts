@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Response } from 'src/app/serverSide/classes/response';
 
@@ -15,7 +16,14 @@ export class ForumsCardComponent implements OnInit {
   @Input() responded?: boolean;
   @Input() response?: Response;
 
-  constructor(private router: Router) {}
+  
+  reponse:FormGroup;
+
+  constructor(private router: Router,private fb:FormBuilder) {
+      this.reponse = this.fb.group({
+        reponse: [''],
+      });
+  }
 
   ngOnInit(): void {
     console.log('response', this.response);

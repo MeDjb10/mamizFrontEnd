@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ask-question',
   templateUrl: './ask-question.component.html',
-  styleUrls: ['./ask-question.component.css']
+  styleUrls: ['./ask-question.component.css'],
 })
 export class AskQuestionComponent {
-  currentStep = 1;
   question: FormGroup;
+    isChecked:boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.question = this.fb.group({
       theme: ['', Validators.required],
       qst: ['', Validators.required],
       detail: ['', Validators.required],
       taille: ['', Validators.required],
       poids: ['', Validators.required],
-      traitement: ['', Validators.required],
-      deatilTrait: ['',],
-
+      traitement: [false, Validators.required],
+      deatilTrait: [''],
     });
 
     this.specialties = [
@@ -57,8 +59,11 @@ export class AskQuestionComponent {
       { name: 'Urologie' },
       { name: 'Vétérinaire' },
       { name: 'Médecin général' },
-      { name: 'Je ne sais pas' }
+      { name: 'Je ne sais pas' },
     ];
+
+    console.log(this.isChecked);
+    
   }
 
   get stepOne() {
@@ -72,9 +77,9 @@ export class AskQuestionComponent {
   }
 
 
-  isChecked = false;
-
   toggleCheckbox() {
+    console.log(this.isChecked);
+    
     this.isChecked = !this.isChecked;
   }
 
@@ -82,10 +87,10 @@ export class AskQuestionComponent {
   filteredSpecialties!: any[];
   specialties!: any[];
 
-  
-
   filterSpecialty(event: any) {
     const query = event.query.toLowerCase();
-    this.filteredSpecialties = this.specialties.filter(specialty => specialty.name.toLowerCase().includes(query));
+    this.filteredSpecialties = this.specialties.filter((specialty) =>
+      specialty.name.toLowerCase().includes(query),
+    );
   }
 }
