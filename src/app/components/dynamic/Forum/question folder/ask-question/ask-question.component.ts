@@ -13,6 +13,7 @@ export class AskQuestionComponent {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       stepOne: this.fb.group({
+        theme:['',Validators.required],
         qst: ['', Validators.required],
         detail: ['', Validators.required],
         taille: ['', Validators.required],

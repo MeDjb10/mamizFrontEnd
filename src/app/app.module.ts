@@ -9,8 +9,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListMedcinComponent } from './components/dynamic/Forum/list-medcin/list-medcin.component';
-
-
+import { InputNumberModule } from 'primeng/inputnumber';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
@@ -57,6 +58,7 @@ import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-de
 import { CreateDepotComponent } from './components/dynamic/Depot/create-depot/create-depot.component';
 import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
 import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depot-card/create-depot-card.component';
+import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/depot-filter.component';
 
 
 
@@ -104,6 +106,7 @@ import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depo
     DepotDetailsComponent,
     CreateDepotComponent,
     CreateDepotCardComponent,
+    DepotFilterComponent,
   ],
 
   imports: [
@@ -118,9 +121,11 @@ import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depo
     FileUploadModule,
     BrowserAnimationsModule,
     AvatarModule,
-  
+    InputNumberModule,
+    AutoCompleteModule,
+    ToggleButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

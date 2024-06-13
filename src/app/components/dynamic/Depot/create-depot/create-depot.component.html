@@ -1,1 +1,58 @@
-<p>create-depot works!</p>
+<div class="grid place-items-center ">
+    <div class="">
+        <div style="width:45vw">
+            <form [formGroup]="depot" (ngSubmit)="onSubmit()">
+                <div class=" mt-3">
+                    <label htmlFor="qst" class="text-teal">Nom de Produit:</label>
+                    <input id="qst" formControlName="name"
+                        [ngClass]="{'border-red-500': depot.get('name')?.invalid && depot.get('name')?.touched}"
+                        class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+
+                </div>
+                <div class="mt-3">
+                    <label for="" class="text-teal">Description:</label>
+                    <textarea id="message" rows="4" formControlName="description"
+                    [ngClass]="{'border-red-500': depot.get('description')?.invalid && depot.get('description')?.touched}"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue "
+                    placeholder="Décrivez ce que vous vendez, veuillez fournir un maximum d'informations."></textarea>
+
+                </div>
+                
+                <div class=" mt-3">
+                    <label htmlFor="qst" class="text-teal">Prix:</label>
+                    <input id="qst" formControlName="price" type="number"
+                        [ngClass]="{'border-red-500': depot.get('price')?.invalid && depot.get('price')?.touched}"
+                        class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+                </div>
+
+                <div class=" mt-3">
+                    <label htmlFor="qst" class="text-teal">Adresse:</label>
+                    <input id="qst" formControlName="adresse"
+                        [ngClass]="{'border-red-500': depot.get('adresse')?.invalid && depot.get('adresse')?.touched}"
+                        class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+                </div>
+                <div class=" mt-3">
+                    <label for="" class="text-teal"> Ajouter Des photos</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file"
+                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-teal border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-lightpink ">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fa-solid fa-cloud-arrow-up fa-xl"></i>
+                                <p class="my-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                        class="font-semibold">Cliquez pour télécharger</span> ou glissez-déposez</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
+                                    2Mb.)</p>
+                            </div>
+                            <input id="dropzone-file" type="file" class="hidden" multiple />
+                        </label>
+                    </div>
+                </div>
+                <div class="fex flex-col items-center text-center">
+                    <button type="submit"
+                        class="btn hover:bg-darkpink border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-darkpink font-bold hover:shadow-lg"
+                        [disabled]="!depot.valid"> <i class="fa-solid fa-plus"></i> Publier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

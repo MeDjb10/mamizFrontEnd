@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-depot-card.component.css']
 })
 export class CreateDepotCardComponent {
+  visible: boolean = false;
 
+  showDialog() {
+    this.visible = true;
+  }
 }

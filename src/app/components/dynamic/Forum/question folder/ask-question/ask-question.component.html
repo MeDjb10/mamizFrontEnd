@@ -2,7 +2,7 @@
     <div class="">
         <div class="max-w-xl">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <app-ask-question-step1 *ngIf="currentStep === 1" [formGroup]="stepOne"></app-ask-question-step1>
+                <app-ask-question-step1 [formGroup]="stepOne"></app-ask-question-step1>
 
                 <div class="fex flex-col items-center text-center">
                     <p>
