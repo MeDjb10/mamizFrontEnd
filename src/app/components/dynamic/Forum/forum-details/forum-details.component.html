@@ -1,53 +1,45 @@
-<div class="p-8 bg-lightpink bg-cover">
-    <p class="font-bold text-5xl">
-        Kerchi touja3 feya
-        <!-- bch ykoun houni {{forum.quetion}} -->
-    </p>
-    <div class="grid grid-cols-6  md:grid-cols-9  gap-4 mt-4">
-        <div class=" col-span-2 min-h-[100px] rounded-xl hidden md:block">
-            <app-ask-question-div></app-ask-question-div>
-        </div>
-        <div class=" col-span-7 min-h-[100px] flex-col ">
-            <div class="max-w-xs md:max-w-full p-6 bg-white border border-darkpink rounded-xl shadow mb-4">
-                <div>
-                    <div class="bg-teal h-auto w-fit px-2 mb-2 text-sm md:text-base font-bold text-white">
-                        <p>{{post?.theme}}</p>
-                    </div>
-                    <a href="#">
-                        <h5 class="mb-2 md:text-2xl tracking-tighter text-gray-900 line-clamp-2" style="font-family: helBold;">
-                            Kerchi touja3 feya
-                        </h5>
-                    </a>
-                    <p class=" font-normal text-sm md:text-base text-black">
-                        {{post?.question}}
-                    </p>
-                    <!-- KEN LL TBIB SO *NGIF LL USER  -->
-                    <ul class="font-bold mt-2">
-                        <li>CES INFORMATIONS SONT CONFIDETIELLES dhaharly</li>
-                        <li>Traitement : <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i></li>
-                        <li>Taille: <span class="font-normal">139cm</span></li>
-                        <li>Poids: <span class="font-normal">99kg</span></li>
-                    </ul>
-                </div>
-                <hr class="my-2 border-lightblue sm:mx-auto" />
-            
-                <div class="grid ">
-                    <div class="col-span-2">
-                        <div class="flex items-center gap-4">
-                            <img class="w-10 h-10 rounded-full" src="assets\useful stuff\user.png" alt="">
-                            <div class="font-medium ">
-                                <div class="font-bold text-teal text-sm md:text-base">{{medcinName}} <i class="fa-solid fa-user-doctor"></i></div>
-                                <div class="text-xs md:text-base text-gray-500 ">{{medcinSpecialite}}</div>
-                            </div>
-                        </div>
-                        <div class="border-2 p-2 mt-2 border-lightblue rounded-xl">
-                           {{content}}
-                        </div>
-                    </div>
-                </div>
+<div class="  gap-4 min-h-[100px] flex-col ">
+    <div class="max-w-xs md:max-w-full  mb-4">
+        <div>
+            <div class="bg-teal h-auto w-fit px-2 mb-2 text-sm md:text-base font-bold text-white">
+                <p>
+                    {{post?.theme}}
+                </p>
             </div>
-            <div class="block md:hidden">
-                <app-ask-question-div></app-ask-question-div>
+            <a href="#">
+                <h5 class="mb-2 md:text-2xl tracking-tighter text-gray-900 line-clamp-2" style="font-family: helBold;">
+                    {{post?.title}}
+                </h5>
+            </a>
+            <p class=" font-normal text-sm md:text-base text-black">
+                {{post?.question}} 
+            </p>
+            <!-- KEN LL TBIB SO *NGIF LL USER  -->
+            <ul class="font-bold mt-2">
+                <li>CES INFORMATIONS SONT CONFIDETIELLES dhaharly</li>
+                <li>Traitement : <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i></li>
+                <li>Taille: <span class="font-normal">139cm</span></li>
+                <li>Poids: <span class="font-normal">99kg</span></li>
+            </ul>
+        </div>
+        <hr class="my-2 border-lightblue sm:mx-auto" />
+        <div class="grid ">
+            <div class="col-span-2">
+                <div class="flex items-center gap-4">
+                    <img class="w-10 h-10 rounded-full" src="assets\useful stuff\user.png" alt="">
+                    <div class="font-medium ">
+                        <div class="font-bold text-teal text-sm md:text-base">
+                            {{medcinName}}  
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div class="text-xs md:text-base text-gray-500 ">
+                            {{medcinSpecialite}}
+                        </div>
+                    </div>
+                </div>
+                <div class="border-2 p-2 mt-2 border-lightblue rounded-xl">
+                    {{content}}
+                </div>
             </div>
         </div>
     </div>

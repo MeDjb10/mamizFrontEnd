@@ -51,8 +51,14 @@ import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/fo
 import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card/qst-card.component';
 import { ForumAricleCardComponent } from './components/dynamic/Forum/forum-aricle-card/forum-aricle-card.component';
 import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medcin-card.component';
-
 import { AskQuestionStep1Component } from './components/dynamic/Forum/question folder/ask-question-step1/ask-question-step1.component';
+import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-depots.component';
+
+import { CreateDepotComponent } from './components/dynamic/Depot/create-depot/create-depot.component';
+import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
+import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depot-card/create-depot-card.component';
+
+
 
 
 
@@ -94,6 +100,10 @@ import { AskQuestionStep1Component } from './components/dynamic/Forum/question f
     ForumAricleCardComponent,
     MedcinCardComponent,
     AskQuestionStep1Component,
+    AllDepotsComponent,
+    DepotDetailsComponent,
+    CreateDepotComponent,
+    CreateDepotCardComponent,
   ],
 
   imports: [
