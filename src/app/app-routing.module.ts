@@ -7,6 +7,7 @@ import { AllAteliersComponent } from './components/dynamic/Atelier/all-ateliers/
 import { AtelierDetailsComponent } from './components/dynamic/Atelier/atelier-details/atelier-details.component';
 import { AllEventsComponent } from './components/dynamic/Events/all-events/all-events.component';
 import { AllForumsComponent } from './components/dynamic/Forum/all-forums/all-forums.component';
+import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-depots.component';
 
 
 const routes: Routes = [
@@ -20,11 +21,13 @@ const routes: Routes = [
       { path: 'event', title: ' Event', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },
       { path: 'atelier-details/:id', component: AtelierDetailsComponent },
+      { path: 'depot',title:'Depot', component: AllDepotsComponent },
+      
       
       { path: '**', redirectTo: 'acceuil' },
     ],
   },
-  {path: 'forum',title:"Forum", component: AllForumsComponent},
+ 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
