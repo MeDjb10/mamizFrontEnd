@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-ask-question',
   templateUrl: './ask-question.component.html',
-  styleUrls: ['./ask-question.component.css']
+  styleUrls: ['./ask-question.component.css'],
 })
 export class AskQuestionComponent implements OnInit, AfterViewInit {
   currentStep = 1;
@@ -80,11 +80,15 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   toggleCheckbox() {
+    console.log(this.isChecked);
+    
     this.isChecked = !this.isChecked;
   }
 
   filterSpecialty(event: any) {
     const query = event.query.toLowerCase();
-    this.filteredSpecialties = this.specialties.filter(specialty => specialty.name.toLowerCase().includes(query));
+    this.filteredSpecialties = this.specialties.filter((specialty) =>
+      specialty.name.toLowerCase().includes(query),
+    );
   }
 }
