@@ -1,0 +1,131 @@
+<div [formGroup]="formGroup" class=" p-5 space-y-4">
+    <!--   
+    <div *ngIf="formGroup.get('field2')?.invalid && formGroup.get('field2')?.touched" class="error">
+        Field 2 is required.
+    </div> -->
+
+    <button id="dropdownHelperRadioButton" data-dropdown-toggle="dropdownHelperRadio"
+        class="transition-colors duration-100 text-teal border-teal border bg-white hover:bg-teal hover:text-white focus:ring-4 focus:outline-none focus:ring-lightblue font-medium rounded-lg text-sm px-4 py-2.5 w-full text-center inline-flex items-center"
+        type="button">Categorie<i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <!-- Dropdown menu -->
+    <div id="dropdownHelperRadio" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 "
+        data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
+        style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 6119.5px, 0px);">
+        <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHelperRadioButton">
+            <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <div class="flex items-center h-5">
+                        <input id="helper-radio-4" name="helper-radio" type="radio" value=""
+                            class="w-4 h-4 text-teal bg-gray-100 border-gray-300 focus:ring-lightblue focus:ring-2">
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label for="helper-radio-4" class="font-medium text-gray-900 ">
+                            <div>dermatologie</div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <div class="flex items-center h-5">
+                        <input id="helper-radio-5" name="helper-radio" type="radio" value=""
+                            class="w-4 h-4 text-teal bg-gray-100 border-gray-300 focus:ring-lightblue focus:ring-2">
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label for="helper-radio-5" class="font-medium text-gray-900 ">
+                            <div>Pediatrie</div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <div class="flex items-center h-5">
+                        <input id="helper-radio-6" name="helper-radio" type="radio" value=""
+                            class="w-4 h-4 text-teal bg-gray-100 border-gray-300 focus:ring-lightblue focus:ring-2">
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label for="helper-radio-6" class="font-medium text-gray-900 ">
+                            <div>Generale</div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <div class="flex items-center h-5">
+                        <input id="helper-radio-6" name="helper-radio" type="radio" value=""
+                            class="w-4 h-4 text-teal bg-gray-100 border-gray-300 focus:ring-lightblue focus:ring-2">
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label for="helper-radio-6" class="font-medium text-gray-900 ">
+                            <div>je ne sais pas</div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class=" mt-3">
+        <label htmlFor="qst" class="text-teal">Taper votre Question:</label>
+        <input id="qst" formControlName="qst"
+            [ngClass]="{'border-red-500': formGroup.get('qst')?.invalid && formGroup.get('qst')?.touched}"
+            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+
+    </div>
+
+    <textarea id="message" rows="4" formControlName="detail"
+        [ngClass]="{'border-red-500': formGroup.get('detail')?.invalid && formGroup.get('detail')?.touched}"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue "
+        placeholder="Pour que la réponse soit la plus pertinente possible, veuillez fournir un maximum d'informations."></textarea>
+
+
+    <label class="block text-sm font-medium text-teal" for="multiple_files">Upload multiple
+        files</label>
+    <input
+        class="block w-full text-sm text-teal border border-teal rounded-lg cursor-pointer bg-gray-50 focus:outline-none "
+        id="multiple_files" type="file" multiple>
+    <hr class="border-lightblue">
+
+    <p class="text-pink">
+        <i class="fa-solid fa-triangle-exclamation"></i> Ces informations au dessous seront affiché juste pour les
+        médecins.
+    </p>
+    <p class="text-pink">
+        <i class="fa-solid fa-triangle-exclamation"></i> Ces champs ne sont pas requis
+    </p>
+    <div class="flex gap-4 ">
+        <div class="flex">
+            <label htmlFor="taille" class="text-teal">Taille (cm)</label>
+            <input id="taille" formControlName="taille"
+                class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightblue block w-full p-2.5" />
+
+        </div>
+        <div class="flex">
+            <label htmlFor="poids" class="text-teal">Poids (kg)</label>
+            <input id="poids" formControlName="poids"
+                class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
+        </div>
+    </div>
+    <div>
+
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" formControlName="traitement" value="" class="sr-only peer"
+                (change)="toggleCheckbox()">
+            <div
+                class="relative w-11 h-6 bg-lightblue peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-lightpink  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-lightblue peer-checked:after:bg-lightblue after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-teal after:border-teal after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal">
+            </div>
+            <span class="ms-3 text-sm font-medium text-teal ">Traitemnet ou medicament en
+                cours</span>
+        </label>
+        <textarea *ngIf="isChecked" formControlName="deatilTrait" id="message" rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue"
+            placeholder="Decrivez le traitement ou le medicament"></textarea>
+
+    </div>
+    <hr class="border-lightblue">
+
+</div>

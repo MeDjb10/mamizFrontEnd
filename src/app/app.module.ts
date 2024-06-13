@@ -44,13 +44,15 @@ import { AllEventsComponent } from './components/dynamic/Events/all-events/all-e
 import { EventsCardComponent } from './components/dynamic/Events/events-card/events-card.component';
 import { AllForumsComponent } from './components/dynamic/Forum/all-forums/all-forums.component';
 import { ForumDetailsComponent } from './components/dynamic/Forum/forum-details/forum-details.component';
-import { AskQuestionComponent } from './components/dynamic/Forum/ask-question/ask-question.component';
+import { AskQuestionComponent } from './components/dynamic/Forum/question folder/ask-question/ask-question.component';
 import { ForumsCardComponent } from './components/dynamic/Forum/forums-card/forums-card.component';
 import { AskQuestionDivComponent } from './components/dynamic/Forum/ask-question-div/ask-question-div.component';
 import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/forum-filter.component';
 import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card/qst-card.component';
 import { ForumAricleCardComponent } from './components/dynamic/Forum/forum-aricle-card/forum-aricle-card.component';
 import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medcin-card.component';
+
+import { AskQuestionStep1Component } from './components/dynamic/Forum/question folder/ask-question-step1/ask-question-step1.component';
 
 
 
@@ -91,7 +93,7 @@ import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medc
     ListMedcinComponent,
     ForumAricleCardComponent,
     MedcinCardComponent,
-   
+    AskQuestionStep1Component,
   ],
 
   imports: [
@@ -106,6 +108,7 @@ import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medc
     FileUploadModule,
     BrowserAnimationsModule,
     AvatarModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent],

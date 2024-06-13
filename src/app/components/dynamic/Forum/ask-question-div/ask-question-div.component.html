@@ -1,55 +1,16 @@
 <div
-  class="max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4"
->
-  <p class="text-3xl font-bold tracking-tighter text-darkpink">
-    Avez vous des inquiétudes?
-  </p>
-  <p class="mt-3">Un groupe de médecins spécialisés répondra à vos demandes</p>
-  <div class="card flex justify-center">
-    <p-button
-      (click)="showDialog()"
-      class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
-      label="Poser votre question"
-    />
-    <p-dialog
-      header="Quastion formulaire"
-      [(visible)]="visible"
-      [modal]="true"
-      [style]="{ width: '25rem' }"
-    >
-         <ng-template pTemplate="header">
-        <div class="flex items-center justify-center space-x-2">
-          <p-avatar
-            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-            shape="circle"
-          />
-          <span class="font-bold whitespace-nowrap"> Amy Elsner </span>
-        </div>
-      </ng-template>
-      <span class="text-secondary block mb-5">Update your information.</span>
-      <div class="flex items-center space-x-3 mb-3">
-        <label for="username" class="font-semibold w-24"> Username </label>
-        <input pInputText id="username" class="flex-grow" autocomplete="off" />
-      </div>
-      <div class="flex items-center space-x-3 mb-5">
-        <label for="email" class="font-semibold w-24">Email</label>
-        <input pInputText id="email" class="flex-grow" autocomplete="off" />
-      </div>
-      <ng-template pTemplate="footer">
-        <p-button
-          label="Cancel"
-          [text]="true"
-          severity="secondary"
-          (click)="visible = false"
-        />
-        <p-button
-          label="Save"
-          [outlined]="true"
-          severity="secondary"
-          (click)="visible = false"
-        />
-      </ng-template>
-    </p-dialog>
-  </div>
+    class="max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4">
+    <p class="text-3xl font-bold tracking-tighter text-darkpink">
+        Avez vous des inquiétudes?
+    </p>
+    <p class="mt-3">Un groupe de médecins spécialisés répondra à vos demandes</p>
+    <div class="card flex justify-center">
+        <p-button (click)="showDialog()"
+            class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
+            label="Poser votre question" />
+        <p-dialog header="Ecrivez vos inquietudes" [(visible)]="visible" [modal]="true" [style]="{ 'width': 'auto','border-radius': '1rem' }" >
+            <app-ask-question></app-ask-question>
+        </p-dialog>
+    </div>
 </div>
 <app-list-medcin></app-list-medcin>
