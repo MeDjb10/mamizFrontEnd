@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from 'src/app/serverSide/services/post.service';
 
@@ -8,16 +8,17 @@ import { PostService } from 'src/app/serverSide/services/post.service';
   styleUrls: ['./forum-details.component.css'],
 })
 export class ForumDetailsComponent {
+  @Input() id: number = 0; 
   post: any; // Adjust the type as needed
 
   constructor(
-    private route: ActivatedRoute,
+  
     private postService: PostService,
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.postService.getById(id).subscribe((data) => {
+    
+    this.postService.getById(this.id).subscribe((data) => {
       // Adjust the type as needed
       this.post = data;
     });

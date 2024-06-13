@@ -4,7 +4,7 @@
     </p>
     <div class="flex flex-col gap-8 items-center max-h-96 overflow-y-auto custom-scrollbar">
         <ng-container *ngFor="let post of posts | slice:0:3">
-            <app-qst-card [title]="post?.title" [theme]="post?.theme" [question]="post?.question"></app-qst-card>
+            <app-qst-card  [title]="post?.title" [theme]="post?.theme" [question]="post?.question"></app-qst-card>
         </ng-container>
         
     </div>
