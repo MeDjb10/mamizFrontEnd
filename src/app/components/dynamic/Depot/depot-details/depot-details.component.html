@@ -1,45 +1,73 @@
-<div class="max-w-xs max-h-xs">
-    <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
-        [containerStyle]="{ 'max-width': '640px','max-height':'640px'}" [numVisible]="5">
-        <ng-template pTemplate="item" let-item class="">
-            <img [src]="item.itemImageSrc" style="width: 100%;" />
-        </ng-template>
-        <ng-template pTemplate="thumbnail" let-item>
-            <div class="grid grid-nogutter justify-content-center">
-                <img [src]="item.thumbnailImageSrc" />
-            </div>
-        </ng-template>
-    </p-galleria>
-
-</div>
-
-<div class="grid grid-cols-2 ">
-    <div>
-        <h1 class="text-5xl font-bold tracking-tighter text-teal">
-            Karousa
-        </h1>
-        <p class="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto hic dolorem repudiandae praesentium totam,
-            architecto nihil dignissimos, ipsam eligendi esse, repellendus officiis fugit labore quo eum laboriosam nisi
-            aliquid nulla!
-        </p>
+<div class="border-lightblue border rounded-xl bg-white flex flex-col items-center gap-4">
+    <div class="lg:mt-2">
+             <p-galleria [value]="images" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true"
+            [autoPlay]="true" [circular]="true" [showIndicatorsOnItem]="true" [responsiveOptions]="responsiveOptions"
+            [containerStyle]="{ 'max-width': '640px' }">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.itemImageSrc" style="min-width: fit; max-height: 500px;display: block" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="item.thumbnailImageSrc" style="display: block;" />
+                </div>
+            </ng-template>
+        </p-galleria>
     </div>
-    <div class="w-fit p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
-        <div class="">
-            <p>
-                prix:99
-            </p>
-            <p>adresse:Tunis tunis</p>
-        </div>
-        <hr>
-        <div>
-            <img src="assets\useful stuff\user.png" alt="" class="h-10">
-            <p>
-                Taleb mouelhi
-            </p>
-            <p>
-                <i class="fa-solid fa-phone"></i> 99305303
+    <div class="grid  md:grid-cols-4 p-4 gap-3">
+        <div class=" md:col-span-2 lg:col-span-3">
+            <h1 class="text-5xl font-bold tracking-tighter text-teal">
+                Karousa
+            </h1>
+            <p class="">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto hic dolorem repudiandae praesentium
+                totam,
+                architecto nihil dignissimos, ipsam eligendi esse, repellendus officiis fugit labore quo eum laboriosam
+                nisi
+                aliquid nulla!
             </p>
         </div>
+        <div
+            class="md:w-fit md:col-span-2 lg:col-span-1 p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
+            <div class="text-xl md:text-base lg:text-2xl tracking-tighter">
+                <p>
+                    <span class="font-bold">Prix: </span> 99 dt
+                </p>
+                <p><span class="font-bold">Adresse: </span>Tunis tunis</p>
+            </div>
+            <hr>
+            <div class="space-y-2 mt-2">
+                <div class="flex items-center gap-2">
+                    <img src="assets\useful stuff\user.png" alt="" class="h-6 lg:h-10">
+                    <p class="text-darkpink font-bold tracking-tighter text-xl lg:text-2xl">
+                        Taleb mouelhi
+                    </p>
+                </div>
+                <p class="lg:text-2xl tracking-tighter hover:text-teal transition-colors duration-150">
+                    <i class="fa-solid fa-phone"></i> 99305303
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <hr class="border-lightblue">
+    <p class="text-4xl font-bold tracking-tighter text-darkpink">
+        More items
+    </p>
+    <div class="relative">
+        <div id="scrollContainer" class="overflow-x-auto whitespace-nowrap scroll-smooth pb-5">
+            <button class="absolute left-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
+              (click)="scrollLeft()">
+              <i class="fa-solid fa-chevron-left fa-xl"></i>
+            </button>
+           
+           <ng-container  *ngFor="let depot of depots">
+            <app-depot-card [name]="depot.name" [desc]="depot.description" [price]="depot.price" [pic]="depot.photos[0]"></app-depot-card>
+           </ng-container>
+            <button class="absolute right-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
+              (click)="scrollRight()">
+              <i class="fa-solid fa-chevron-right fa-xl"></i>
+            </button>
+          </div>
     </div>
 </div>

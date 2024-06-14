@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DepotService } from 'src/app/serverSide/services/depot.service';
 
 @Component({
   selector: 'app-depot-details',
@@ -9,10 +10,14 @@ export class DepotDetailsComponent {
   images: any[];
   responsiveOptions: any[];
 
-  constructor() {
+  constructor(private depotService: DepotService) {
     this.images = [
       { itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
+      { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },{ itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
       { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },
+      { itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
+      { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },
+      
       // add more images as needed
     ];
 
@@ -31,8 +36,32 @@ export class DepotDetailsComponent {
       }
     ];
   }
+  depots!: any[]; // Adjust the type as needed
+
 
   ngOnInit(): void {
-    // Any initialization logic can go here
+    this.depotService.getAll().subscribe((data: any[]) => {
+      this.depots = data;
+    });
+  }
+
+  scrollLeft() {
+    const scrollContainer = document.getElementById('scrollContainer');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: -300,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  scrollRight() {
+    const scrollContainer = document.getElementById('scrollContainer');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: 300,
+        behavior: 'smooth',
+      });
+    }
   }
 }

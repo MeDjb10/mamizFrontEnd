@@ -8,6 +8,8 @@ import { AtelierDetailsComponent } from './components/dynamic/Atelier/atelier-de
 import { AllEventsComponent } from './components/dynamic/Events/all-events/all-events.component';
 import { AllForumsComponent } from './components/dynamic/Forum/all-forums/all-forums.component';
 import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-depots.component';
+import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/liste-depot.component';
+import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,14 @@ const routes: Routes = [
       { path: 'event', title: ' Event', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },
       { path: 'atelier-details/:id', component: AtelierDetailsComponent },
-      { path: 'depot',title:'Depot', component: AllDepotsComponent },
+      { path: 'depot',title:'Depot', component: AllDepotsComponent ,
+        children:[
+          { path: '', redirectTo: 'listedepots', pathMatch: 'full' },
+          { path: 'listedepots', component:  ListeDepotComponent},
+          { path: 'depot-details', component: DepotDetailsComponent },
+
+        ]
+      },
       
       
       { path: '**', redirectTo: 'acceuil' },

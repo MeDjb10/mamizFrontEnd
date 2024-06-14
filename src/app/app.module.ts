@@ -61,6 +61,7 @@ import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/
 import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depot-card/create-depot-card.component';
 import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/depot-filter.component';
 import { DepotscardComponent } from './components/dynamic/Depot/depotscard/depotscard.component';
+import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/liste-depot.component';
 
 
 
@@ -109,6 +110,7 @@ import { DepotscardComponent } from './components/dynamic/Depot/depotscard/depot
     CreateDepotCardComponent,
     DepotFilterComponent,
     DepotscardComponent,
+    ListeDepotComponent,
   ],
 
   imports: [
