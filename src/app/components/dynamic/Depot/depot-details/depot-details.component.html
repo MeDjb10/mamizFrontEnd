@@ -1,10 +1,45 @@
-<p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px','max-height':'640px'}" [numVisible]="5">
-    <ng-template pTemplate="item" let-item>
-        <img [src]="item.itemImageSrc" style="width: 100%;" />
-    </ng-template>
-    <ng-template pTemplate="thumbnail" let-item>
-        <div class="grid grid-nogutter justify-content-center">
-            <img [src]="item.thumbnailImageSrc" />
+<div class="max-w-xs max-h-xs">
+    <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '640px','max-height':'640px'}" [numVisible]="5">
+        <ng-template pTemplate="item" let-item class="">
+            <img [src]="item.itemImageSrc" style="width: 100%;" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.thumbnailImageSrc" />
+            </div>
+        </ng-template>
+    </p-galleria>
+
+</div>
+
+<div class="grid grid-cols-2 ">
+    <div>
+        <h1 class="text-5xl font-bold tracking-tighter text-teal">
+            Karousa
+        </h1>
+        <p class="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto hic dolorem repudiandae praesentium totam,
+            architecto nihil dignissimos, ipsam eligendi esse, repellendus officiis fugit labore quo eum laboriosam nisi
+            aliquid nulla!
+        </p>
+    </div>
+    <div class="w-fit p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
+        <div class="">
+            <p>
+                prix:99
+            </p>
+            <p>adresse:Tunis tunis</p>
         </div>
-    </ng-template>
-</p-galleria>
+        <hr>
+        <div>
+            <img src="assets\useful stuff\user.png" alt="" class="h-10">
+            <p>
+                Taleb mouelhi
+            </p>
+            <p>
+                <i class="fa-solid fa-phone"></i> 99305303
+            </p>
+        </div>
+    </div>
+</div>
