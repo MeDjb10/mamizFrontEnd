@@ -12,6 +12,7 @@ import { ListMedcinComponent } from './components/dynamic/Forum/list-medcin/list
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { GalleriaModule } from 'primeng/galleria';
 
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
@@ -59,6 +60,7 @@ import { CreateDepotComponent } from './components/dynamic/Depot/create-depot/cr
 import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
 import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depot-card/create-depot-card.component';
 import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/depot-filter.component';
+import { DepotscardComponent } from './components/dynamic/Depot/depotscard/depotscard.component';
 
 
 
@@ -106,6 +108,7 @@ import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/de
     CreateDepotComponent,
     CreateDepotCardComponent,
     DepotFilterComponent,
+    DepotscardComponent,
   ],
 
   imports: [
@@ -122,7 +125,8 @@ import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/de
     AvatarModule,
     InputNumberModule,
     AutoCompleteModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    GalleriaModule
   ],
   providers: [],
   bootstrap: [AppComponent],
