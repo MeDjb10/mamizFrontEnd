@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./depotscard.component.css'],
 })
 export class DepotscardComponent {
+  @Input() id?: string;
   @Input() name?: string;
   @Input() desc?: string;
   @Input() price?: number;
   @Input() pic?: string;
 
   constructor(private router: Router) {}
-  navigateToDetails(): void {
-    this.router.navigate(['home/depot/depot-details']);
+  navigateToDetails(id:any): void {
+    this.router.navigate(['home/depot/depot-details', id]);
   }
 }

@@ -21,34 +21,30 @@
     <div class="grid  md:grid-cols-4 p-4 gap-3">
         <div class=" md:col-span-2 lg:col-span-3">
             <h1 class="text-5xl font-bold tracking-tighter text-teal">
-                Karousa
+               {{depot?.name}}
             </h1>
             <p class="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto hic dolorem repudiandae praesentium
-                totam,
-                architecto nihil dignissimos, ipsam eligendi esse, repellendus officiis fugit labore quo eum laboriosam
-                nisi
-                aliquid nulla!
+                {{depot?.description}}
             </p>
         </div>
         <div
             class="md:w-fit md:col-span-2 lg:col-span-1 p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
             <div class="text-xl md:text-base lg:text-2xl tracking-tighter">
                 <p>
-                    <span class="font-bold">Prix: </span> 99 dt
+                    <span class="font-bold">Prix: </span>  {{depot?.price | currency:'TND':'symbol':'1.2-2'}}
                 </p>
-                <p><span class="font-bold">Adresse: </span>Tunis tunis</p>
+                <p><span class="font-bold">Adresse: </span> {{depot?.adresse}}</p>
             </div>
             <hr>
             <div class="space-y-2 mt-2">
                 <div class="flex items-center gap-2">
                     <img src="assets\useful stuff\user.png" alt="" class="h-6 lg:h-10">
                     <p class="text-darkpink font-bold tracking-tighter text-xl lg:text-2xl">
-                        Taleb mouelhi
+                        {{depot?.user?.nom}}
                     </p>
                 </div>
                 <p class="lg:text-2xl tracking-tighter hover:text-teal transition-colors duration-150">
-                    <i class="fa-solid fa-phone"></i> 99305303
+                    <i class="fa-solid fa-phone"></i> {{depot?.user?.numTel}}
                 </p>
             </div>
         </div>

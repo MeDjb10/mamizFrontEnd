@@ -23,22 +23,23 @@ const routes: Routes = [
       { path: 'event', title: ' Event', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },
       { path: 'atelier-details/:id', component: AtelierDetailsComponent },
-      { path: 'depot',title:'Depot', component: AllDepotsComponent ,
-        children:[
+      {
+        path: 'depot',
+        title: 'Depot',
+        component: AllDepotsComponent,
+        children: [
           { path: '', redirectTo: 'listedepots', pathMatch: 'full' },
-          { path: 'listedepots', component:  ListeDepotComponent},
-          { path: 'depot-details', component: DepotDetailsComponent },
-
-        ]
+          { path: 'listedepots', component: ListeDepotComponent },
+          { path: 'depot-details/:id', component: DepotDetailsComponent },
+        ],
       },
-      
-      
+
       { path: '**', redirectTo: 'acceuil' },
     ],
   },
- 
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
