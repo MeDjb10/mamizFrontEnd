@@ -25,9 +25,9 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
     private userService: UserService,
   ) {
     this.question = this.fb.group({
-      theme: [''],
-      qst: [''],
-      detail: [''],
+      theme: ['',Validators.required],
+      qst: ['',Validators.required],
+      detail: ['',Validators.required],
       taille: [''],
       poids: [''],
       traitement: [''],
@@ -85,10 +85,6 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    alert('works');
-    if (this.question.valid) {
-      console.log(this.question.value);
-    }
     if (this.question.valid) {
       const newPost: Post = {
         id: 0, // Backend will generate the ID

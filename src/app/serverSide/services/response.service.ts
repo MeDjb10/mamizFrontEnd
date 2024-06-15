@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Response } from '../classes/response';
 
 @Injectable({
@@ -24,12 +24,32 @@ export class ResponseService {
     });
   }
 
-  addResponse(response: Response): void {
-    this.http
-      .post<Response>(this.baseUrl, response)
-      .subscribe((newResponse) => {
+  createResponse(
+    postId: number,
+    medcinId: number,
+    response: Response,
+  ): Observable<Response> {
+    return this.http
+      .post<Response>(
+        `${this.baseUrl}/post/${postId}/medcin/${medcinId}`,
+        response,
+      )
+      .pipe(
+        tap((newResponse) => {
+          const currentResponses = this.responseSubject.value;
+          this.responseSubject.next([...currentResponses, newResponse]);
+        }),
+      );
+  }
+
+  deleteResponse(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
+      tap(() => {
         const currentResponses = this.responseSubject.value;
-        this.responseSubject.next([...currentResponses, newResponse]);
-      });
+        this.responseSubject.next(
+          currentResponses.filter((response) => response.id !== id),
+        );
+      }),
+    );
   }
 }

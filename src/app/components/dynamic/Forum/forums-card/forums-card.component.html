@@ -15,14 +15,14 @@
   <hr class="my-2 border-lightblue sm:mx-auto" />
   <!-- houni bch tzid fl ngif ken el user is a doctor wala le -->
   <div *ngIf="!responded" class="flex flex-row items-center justify-between">
-    <form [formGroup]="reponse" >
+    <form [formGroup]="reponse" (submit)="onSubmit()">
       <div class="">
       <label htmlFor="qst" class="text-teal">Taper votre Repense:</label>
       <textarea id="message" rows="2" cols="70" formControlName="reponse"
         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue "
         placeholder=""></textarea>
     </div>
-    <button class="mx-2 items-center max-w-fit max-h-10 px-3 py-2 text-xs md:text-sm font-semibold text-center c2 border border-teal text-teal bg-lightpink rounded-lg hover:bg-darkpink hover:text-lightblue focus:ring-4 focus:outline-none focus:ring-blue-300 gap-2 transition-colors duration-200 hover:shadow-md">
+    <button type="submit" [disabled]="!reponse.valid" class="mx-2 items-center max-w-fit max-h-10 px-3 py-2 text-xs md:text-sm font-semibold text-center c2 border border-teal text-teal bg-lightpink rounded-lg hover:bg-darkpink hover:text-lightblue focus:ring-4 focus:outline-none focus:ring-blue-300 gap-2 transition-colors duration-200 hover:shadow-md">
       Publier
     </button>
     </form>
