@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DepotService } from 'src/app/serverSide/services/depot.service';
 
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-depot-details',
   templateUrl: './depot-details.component.html',
@@ -10,7 +12,7 @@ export class DepotDetailsComponent {
   images: any[];
   responsiveOptions: any[];
 
-  constructor(private depotService: DepotService) {
+  constructor(private depotService: DepotService,private router: Router,private location: Location) {
     this.images = [
       { itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
       { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },{ itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
@@ -63,5 +65,8 @@ export class DepotDetailsComponent {
         behavior: 'smooth',
       });
     }
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

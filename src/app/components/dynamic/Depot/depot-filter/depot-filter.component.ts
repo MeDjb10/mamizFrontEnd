@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DepotFilterComponent {
   checked:boolean=true;
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+  }
 }

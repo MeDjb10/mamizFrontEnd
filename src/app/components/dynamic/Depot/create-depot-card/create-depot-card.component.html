@@ -1,5 +1,5 @@
 <div
-    class="max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4">
+    class="hidden md:block max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4">
     <p class="text-3xl font-bold tracking-tighter text-darkpink">
         Avez vous Quelque chose à vendre?
     </p>
@@ -8,8 +8,8 @@
             class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg">
             <i class="fa-solid fa-circle-plus"></i> Publier une annonce
         </button>
-        <p-dialog header="Ecrivez vos inquietudes" [(visible)]="visible" [modal]="true"
-            [style]="{ 'width': '50vw','border-radius': '1rem' }">
+        <p-dialog header="Creez Une Annonce" [(visible)]="visible" [modal]="true"
+        [style]="{ 'width': 'auto','border-radius': '1rem' }">
             <app-create-depot></app-create-depot>
         </p-dialog>
     </div>
