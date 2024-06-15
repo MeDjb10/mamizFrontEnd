@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Response } from 'src/app/serverSide/classes/response';
 import { MedcinService } from 'src/app/serverSide/services/medcin.service';
@@ -12,7 +12,7 @@ import { ResponseService } from 'src/app/serverSide/services/response.service';
   styleUrls: ['./forums-card.component.css'],
 })
 export class ForumsCardComponent implements OnInit {
-  @Input() id: number = 0; // Add an initializer for the 'id' property
+  @Input() id: number = 0;
   @Input() title?: string;
   @Input() theme?: string;
   @Input() question?: string;
@@ -31,7 +31,7 @@ export class ForumsCardComponent implements OnInit {
     private medcinService: MedcinService,
   ) {
     this.reponse = this.fb.group({
-      reponse: [''],
+      reponse: ['', Validators.required],
     });
   }
 
@@ -50,20 +50,18 @@ export class ForumsCardComponent implements OnInit {
         content: this.reponse.value.reponse,
       };
 
-      console.log(newResponse);
       this.responseService
         .createResponse(this.id, this.medcin.id, newResponse)
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             console.log('Response created', response);
-            // You can add code here to handle the response, for example to update the UI
+            this.response = response; 
+            this.responded = true; 
           },
-          (error) => {
+          error: (error) => {
             console.error('Error creating response', error);
-            // You can add code here to handle the error, for example to show an error message
           },
-        );
-
+        });
       this.reponse.reset();
     }
   }
@@ -81,6 +79,7 @@ export class ForumsCardComponent implements OnInit {
   navigateToDetails(id: number): void {
     this.router.navigate(['home/forum-details', id]);
   }
+
   visible: boolean = false;
 
   showDialog() {
