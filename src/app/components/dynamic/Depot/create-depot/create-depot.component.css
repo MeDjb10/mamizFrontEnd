@@ -1,0 +1,9 @@
+.custom-width {
+    width: 90vw; /* Default to full width */
+  }
+  
+  @media (min-width: 716px) {
+    .custom-width {
+      width: 45vw;
+    }
+  }

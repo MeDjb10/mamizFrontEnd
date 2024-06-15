@@ -13,7 +13,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
-
+import { ScrollTopModule } from 'primeng/scrolltop';
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -128,7 +128,8 @@ import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/list
     InputNumberModule,
     AutoCompleteModule,
     ToggleButtonModule,
-    GalleriaModule
+    GalleriaModule,
+    ScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent],
