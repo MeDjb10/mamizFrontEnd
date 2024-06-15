@@ -14,6 +14,10 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
+
+
+import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -129,9 +133,11 @@ import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/list
     AutoCompleteModule,
     ToggleButtonModule,
     GalleriaModule,
-    ScrollTopModule
+    ScrollTopModule,
+    ToastModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
