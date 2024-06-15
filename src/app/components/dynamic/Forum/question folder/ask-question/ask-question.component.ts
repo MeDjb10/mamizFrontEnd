@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Post } from 'src/app/serverSide/classes/post';
+import { PostService } from 'src/app/serverSide/services/post.service';
+import { UserService } from 'src/app/serverSide/services/user.service';
 
 @Component({
   selector: 'app-ask-question',
@@ -9,19 +12,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AskQuestionComponent implements OnInit, AfterViewInit {
   currentStep = 1;
   question: FormGroup;
+  user: any;
   selectedSpecialty: any;
   filteredSpecialties: any[] = [];
   specialties: any[] = [];
   isChecked = false;
 
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+  constructor(
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
+    private postService: PostService,
+    private userService: UserService,
+  ) {
     this.question = this.fb.group({
-      theme: ['', Validators.required],
-      qst: ['', Validators.required],
-      detail: ['', Validators.required],
-      taille: ['', Validators.required],
-      poids: ['', Validators.required],
-      traitement: ['', Validators.required],
+      theme: [''],
+      qst: [''],
+      detail: [''],
+      taille: [''],
+      poids: [''],
+      traitement: [''],
       deatilTrait: [''],
     });
 
@@ -60,12 +69,14 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       { name: 'Urologie' },
       { name: 'Vétérinaire' },
       { name: 'Médecin général' },
-      { name: 'Je ne sais pas' }
+      { name: 'Je ne sais pas' },
     ];
   }
 
   ngOnInit(): void {
-    // Any additional initialization logic if needed
+    this.userService.getById(3).subscribe((user) => {
+      this.user = user;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -74,14 +85,34 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
+    alert('works');
     if (this.question.valid) {
       console.log(this.question.value);
+    }
+    if (this.question.valid) {
+      const newPost: Post = {
+        id: 0, // Backend will generate the ID
+        title: this.question.get('qst')?.value, // Add logic if title is required
+        postDate: new Date().toISOString(),
+        theme: this.question.get('theme')?.value.name,
+        question:this.question.get('detail')?.value ,
+        responded: false,
+        poid: this.question.get('poids')?.value,
+        taille: this.question.get('taille')?.value,
+        traitement: this.question.get('traitement')?.value,
+        user: this.user, // Replace with actual user data
+      };
+
+      console.log(newPost);
+      
+      this.postService.addPost(newPost);
+      this.question.reset();
     }
   }
 
   toggleCheckbox() {
     console.log(this.isChecked);
-    
+
     this.isChecked = !this.isChecked;
   }
 

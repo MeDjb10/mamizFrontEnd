@@ -5,7 +5,7 @@
                 <div class="p-5 space-y-4">
                     <div class="border border-teal rounded-lg">
                         <label htmlFor="qst" class="text-teal">Categorie:</label>
-                        <p-autoComplete  [dropdown]="true" [suggestions]="filteredSpecialties" 
+                        <p-autoComplete formControlName="theme"  [dropdown]="true" [suggestions]="filteredSpecialties" 
                             (completeMethod)="filterSpecialty($event)" field="name" placeholder="Pédiatre"
                             class="transition-colors duration-100 text-teal border-teal border bg-white hover:bg-teal hover:text-white focus:ring-4 focus:outline-none focus:ring-lightblue font-medium rounded-lg text-sm px-4 py-2.5 w-full text-center inline-flex items-center">
                         </p-autoComplete>
