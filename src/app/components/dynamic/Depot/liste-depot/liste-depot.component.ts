@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DepotService } from 'src/app/serverSide/services/depot.service';
 
 @Component({
   selector: 'app-liste-depot',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./liste-depot.component.css']
 })
 export class ListeDepotComponent {
+  depots!: any[]; 
 
+  constructor(private depotService: DepotService) {}
+
+  ngOnInit(): void {
+    this.depotService.getAll().subscribe((data: any[]) => {
+      this.depots = data;
+    });
+  }
 }

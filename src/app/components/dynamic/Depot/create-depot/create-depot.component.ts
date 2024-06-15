@@ -11,11 +11,11 @@ export class CreateDepotComponent {
 
   constructor(private fb: FormBuilder) {
     this.depot = this.fb.group({
-        name: ['', Validators.required],
-        descripton: ['', Validators.required],
-        price: ['', Validators.required],
-        adresse: ['', Validators.required],
-        photo: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      adresse: ['', Validators.required],
+      photo: ['', Validators.required],
     });
   }
 
