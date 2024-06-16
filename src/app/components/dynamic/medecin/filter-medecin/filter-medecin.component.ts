@@ -1,0 +1,50 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-filter-medecin',
+  templateUrl: './filter-medecin.component.html',
+  styleUrls: ['./filter-medecin.component.css']
+})
+export class FilterMedecinComponent {
+  specialties: any[] = [];
+  
+  constructor() {
+    this.specialties = [
+      { name: 'Allergologie' },
+      { name: 'Anatomie' },
+      { name: 'Anesthésie' },
+      { name: 'Cardiologie' },
+      { name: 'Chirurgie' },
+      { name: 'Dermatologie' },
+      { name: 'Endocrinologie' },
+      { name: 'Gastro-entérologie' },
+      { name: 'Gériatrie' },
+      { name: 'Gynécologie' },
+      { name: 'Hématologie' },
+      { name: 'Immunologie' },
+      { name: 'Infectiologie' },
+      { name: 'Médecine interne' },
+      { name: 'Médecine légale' },
+      { name: 'Médecine nucléaire' },
+      { name: 'Médecine physique et de réadaptation' },
+      { name: 'Néonatologie' },
+      { name: 'Néphrologie' },
+      { name: 'Neurologie' },
+      { name: 'Obstétrique' },
+      { name: 'Odontologie' },
+      { name: 'Oncologie' },
+      { name: 'Ophtalmologie' },
+      { name: 'Orthopédie' },
+      { name: 'Oto-rhino-laryngologie (ORL)' },
+      { name: 'Pédiatrie' },
+      { name: 'Pneumologie' },
+      { name: 'Psychiatrie' },
+      { name: 'Radiologie' },
+      { name: 'Rhumatologie' },
+      { name: 'Urologie' },
+      { name: 'Vétérinaire' },
+      { name: 'Médecin général' },
+      { name: 'Je ne sais pas' },
+    ];
+  }
+}

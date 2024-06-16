@@ -1,0 +1,31 @@
+<div class="col-span-3 min-h-[100px] flex-col hidden md:block">
+    <p class="text-4xl font-bold tracking-tighter text-darkpink">
+      Des Questions Recents
+    </p>
+    <!-- just like about three articles keka behi -->
+    <div class="flex flex-col gap-4 items-center  p-3  bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow ">
+        <ng-container *ngFor="let post of posts | slice:0:3">
+            <div class="max-w-xs md:max-w-sm w-full p-6 bg-white border border-darkpink rounded-xl shadow">
+                <div>
+                  <div class="bg-teal h-auto w-fit px-2 mb-2 text-sm md:text-base font-bold text-white">
+                    <p>{{post.theme}}</p>
+                  </div>
+                  <a href="#">
+                    <h5 class="mb-2 md:text-2xl tracking-tighter text-gray-900" style="font-family: helBold">
+                      {{post.title}}
+                    </h5>
+                  </a>
+                  <p class="mb-3 font-normal text-black truncate">
+                    {{post.question}}
+                  </p>
+                </div>
+                <a routerLink="/forum"
+                  class="inline-flex items-center px-3 py-2 md:text-sm font-semibold text-center border-teal border text-teal bg-lightpink rounded-lg hover:bg-darkpink hover:text-lightblue focus:ring-4 focus:outline-none focus:ring-blue-300 gap-2">
+                  Voir Réponse
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+        </ng-container>
+        
+    </div>
+  </div>

@@ -18,6 +18,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +67,11 @@ import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depo
 import { DepotFilterComponent } from './components/dynamic/Depot/depot-filter/depot-filter.component';
 import { DepotscardComponent } from './components/dynamic/Depot/depotscard/depotscard.component';
 import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/liste-depot.component';
+import { AllMedecinComponent } from './components/dynamic/medecin/all-medecin/all-medecin.component';
+import { MedecinCardComponent } from './components/dynamic/medecin/medecin-card/medecin-card.component';
+import { MedecinDetailsComponent } from './components/dynamic/medecin/medecin-details/medecin-details.component';
+import { FilterMedecinComponent } from './components/dynamic/medecin/filter-medecin/filter-medecin.component';
+import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for-medecin/forum-for-medecin.component';
 
 
 
@@ -115,6 +121,11 @@ import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/list
     DepotFilterComponent,
     DepotscardComponent,
     ListeDepotComponent,
+    AllMedecinComponent,
+    MedecinCardComponent,
+    MedecinDetailsComponent,
+    FilterMedecinComponent,
+    ForumForMedecinComponent,
   ],
 
   imports: [
@@ -136,6 +147,7 @@ import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/list
     ScrollTopModule,
     ToastModule,
     CommonModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],

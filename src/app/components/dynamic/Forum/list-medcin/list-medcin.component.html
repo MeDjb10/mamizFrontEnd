@@ -1,11 +1,8 @@
-<p
-  class="text-4xl font-bold tracking-tighter my-1 text-darkpink hidden md:block"
->
+<p class="text-4xl font-bold tracking-tighter my-1 text-darkpink hidden md:block">
   Liste de Docteurs
 </p>
 <div
-  class="hidden md:block max-w-xs md:max-w-full p-6 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4"
->
+  class="hidden md:block max-w-xs md:max-w-full p-6 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4">
   <div class="grid gap-y-4 gap-x-4 lg:grid-cols-1">
     <!-- search by tbib or specialité -->
 
@@ -13,22 +10,15 @@
       <form class="flex items-center max-w-sm mx-auto">
         <label for="simple-search" class="sr-only">Recherche</label>
         <div class="relative w-full">
-          <div
-            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
-          >
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <i class="fa-solid fa-notes-medical"></i>
           </div>
-          <input
-            type="text"
-            id="simple-search"
+          <input type="text" id="simple-search"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightblue block w-full ps-10 p-2.5"
-            placeholder="cherhcer par medcin ou specialité"
-          />
+            placeholder="cherhcer par medcin ou specialité" />
         </div>
-        <button
-          type="submit"
-          class="p-2.5 ms-2 text-sm font-medium text-white bg-pink rounded-lg border hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-blue-300"
-        >
+        <button type="submit"
+          class="p-2.5 ms-2 text-sm font-medium text-white bg-pink rounded-lg border hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-blue-300">
           <i class="fa-solid fa-magnifying-glass w-4"></i>
           <span class="sr-only">Search</span>
         </button>
@@ -36,9 +26,10 @@
     </div>
 
     <!-- div ta3 tbib -->
-    
-    <ng-container *ngFor="let medcin of medcins">
-      <app-medcin-card [nom]="medcin?.nom" [prenom]="medcin?.prenom" [specialite]="medcin?.specialite"></app-medcin-card>
+
+    <ng-container *ngFor="let medcin of medcins | slice: 0 : 9">
+      <app-medcin-card [nom]="medcin?.nom" [prenom]="medcin?.prenom"
+        [specialite]="medcin?.specialite"></app-medcin-card>
     </ng-container>
   </div>
 </div>

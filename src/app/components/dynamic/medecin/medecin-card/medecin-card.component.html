@@ -1,0 +1,25 @@
+<button>
+    <div [pTooltip]="tooltipContent" tooltipPosition="top"
+    class="flex items-center gap-3 bg-white border border-teal w-40 h-20 md:w-72 p-3 rounded-xl hover:shadow-lg hover:border-2 transition-shadow duration-150">
+        <img src="assets\useful stuff\user.png" alt="" class="h-7 md:h-14 justify-start">
+        <div class="text-left">
+            <p class=" font-bold tracking-tighter text-sm md:text-xl line-clamp-2">
+                Dr. {{nom}} {{prenom}} 
+            </p>
+            <p class="text-teal text-xs md:text-base">
+                {{specialite}}
+            </p>
+        </div>
+    </div>
+</button>
+
+<ng-template #tooltipContent>
+   <app-medecin-details
+    [nom]="nom"
+    [prenom]="prenom"
+    [specialite]="specialite"
+    [adresse]="adresse"
+    [numero]="numero"
+    [profilePic]="profilePic"
+   ></app-medecin-details>
+</ng-template>

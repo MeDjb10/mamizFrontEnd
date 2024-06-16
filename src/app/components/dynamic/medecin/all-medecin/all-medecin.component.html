@@ -1,0 +1,43 @@
+<div class="p-8 bg-lightpink bg-cover">
+    <p-scrollTop styleClass="custom-scrolltop bg-teal"></p-scrollTop>
+    <p class="font-bold text-5xl">Nos Médecins</p>
+    <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo, soluta
+        magnam fuga doloribus quibusdam.
+    </p>
+    <div class="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-12 gap-4 mt-4">
+        <div class="col-span-3 min-h-[100px] rounded-xl hidden md:block">
+            <app-ask-question-div></app-ask-question-div>
+            <app-forum-for-medecin></app-forum-for-medecin>
+        </div>
+        <div class="col-span-6 min-h-[100px] flex-col">
+            <div class="block md:hidden">
+                <app-ask-question-div></app-ask-question-div>
+            </div>
+            <div class="my-4">
+                <app-forum-filter></app-forum-filter>
+                <div class="">
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <ng-container *ngFor="let doc of doctors">
+                            <app-medecin-card [nom]="doc?.nom" [prenom]="doc?.prenom"
+                                [specialite]="doc?.specialite"></app-medecin-card>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-span-3 min-h-[100px] flex-col hidden lg:block">
+            <p class="text-4xl font-bold tracking-tighter text-darkpink">
+                Recent articles
+            </p>
+            <!-- just like about three articles keka behi -->
+            <div
+                class="p-3  bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
+                <ng-container *ngFor="let article of latestArticle | slice: 0 : 3">
+                    <app-forum-aricle-card [title]="article?.title"
+                        [desc]="article?.description"></app-forum-aricle-card>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
