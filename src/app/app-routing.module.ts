@@ -10,6 +10,7 @@ import { AllForumsComponent } from './components/dynamic/Forum/all-forums/all-fo
 import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-depots.component';
 import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/liste-depot.component';
 import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
+import { AllMedecinComponent } from './components/dynamic/medecin/all-medecin/all-medecin.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,7 @@ const routes: Routes = [
           { path: 'depot-details/:id', component: DepotDetailsComponent },
         ],
       },
-
+      { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
       { path: '**', redirectTo: 'acceuil' },
     ],
   },
