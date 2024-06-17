@@ -52,7 +52,7 @@ export class AllMedecinComponent {
   }
 
   applyFilters() {
-    if(!this.search && !this.selectedSpec){
+    if(!this.search && !this.selectedSpec  || this.selectedSpec==='Afficher tous'){
       this.filtredDoctors = this.doctors;
     }else {
     this.filtredDoctors = this.doctors.filter(data => {

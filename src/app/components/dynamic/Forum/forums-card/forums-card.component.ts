@@ -40,7 +40,7 @@ export class ForumsCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.medcinService.getById(3).subscribe((data) => {
+    this.medcinService.getById(6).subscribe((data) => {
       this.medcin = data;
     });
     this.postService.getById(this.id).subscribe((data) => {

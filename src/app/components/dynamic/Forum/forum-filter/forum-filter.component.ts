@@ -13,6 +13,7 @@ export class ForumFilterComponent {
 
   constructor() {
     this.specialties = [
+      { name: 'Afficher tous' },
       { name: 'Allergologie' },
       { name: 'Anatomie' },
       { name: 'Anesthésie' },

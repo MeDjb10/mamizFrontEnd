@@ -9,7 +9,7 @@ import { PostService } from 'src/app/serverSide/services/post.service';
 })
 export class ForumDetailsComponent {
   @Input() id: number = 0; 
-  post: any; // Adjust the type as needed
+  post: any; 
   traitement:boolean=false;
   constructor(
   

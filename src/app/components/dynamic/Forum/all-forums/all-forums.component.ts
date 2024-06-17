@@ -15,15 +15,15 @@ export class AllForumsComponent implements OnInit {
   articles: Article[] = [];
   latestArticle: Article[] = [];
   posts: Post[] = [];
-  selectedSpec:string|null=null;
-  search:string='';
-  filtredPosts:Post[]=[];
+  selectedSpec: string | null = null;
+  search: string = '';
+  filtredPosts: Post[] = [];
 
   constructor(
     private articleService: ArticleService,
     private postService: PostService,
     private responseService: ResponseService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.articleService.getAll().subscribe((data) => {
@@ -35,12 +35,15 @@ export class AllForumsComponent implements OnInit {
         (a, b) =>
           new Date(b.postDate).getTime() - new Date(a.postDate).getTime(),
       );
-      
+      this.filtredPosts = posts.sort(
+        (a, b) =>
+          new Date(b.postDate).getTime() - new Date(a.postDate).getTime(),
+      );
     });
     this.responseService.responses$.subscribe((responses: Response[]) => { // Specify the type of 'responses' as Response[]
       this.updatePostsWithResponses(responses);
     });
-    this.filtredPosts=this.posts;
+    this.filtredPosts = this.posts;
     this.postService.fetchPosts();
     this.responseService.fetchResponses();
   }
@@ -71,15 +74,16 @@ export class AllForumsComponent implements OnInit {
   }
 
   applyFilters() {
-    if(!this.search && !this.selectedSpec){
+    if (!this.search && !this.selectedSpec || this.selectedSpec==='Afficher tous') {
       this.filtredPosts = this.posts;
-    }else {
-    this.filtredPosts = this.posts.filter(data => {
-      const matchesSpecialty = !this.selectedSpec || data.theme.includes(this.selectedSpec);
-      const matchesSearchTerm = !this.search || 
-                                data.title.toLowerCase().includes(this.search) ||
-                                data.question.toLowerCase().includes(this.search) ;
-      return matchesSpecialty && matchesSearchTerm;
-    });}
+    } else {
+      this.filtredPosts = this.posts.filter(data => {
+        const matchesSpecialty = !this.selectedSpec || data.theme.includes(this.selectedSpec);
+        const matchesSearchTerm = !this.search ||
+          data.title.toLowerCase().includes(this.search) ||
+          data.question.toLowerCase().includes(this.search);
+        return matchesSpecialty && matchesSearchTerm;
+      });
+    }
   }
 }

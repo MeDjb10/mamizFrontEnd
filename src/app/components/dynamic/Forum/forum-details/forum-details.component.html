@@ -14,12 +14,13 @@
             <p class=" font-normal text-sm md:text-base text-black">
                 {{post?.question}} 
             </p>
+            <hr >
             <!-- KEN LL TBIB SO *NGIF LL USER  -->
             <ul class="font-bold mt-2">
                 <li>CES INFORMATIONS SONT CONFIDETIELLES dhaharly</li>
                 <li>Traitement : <i *ngIf="traitement" class="fa-solid fa-check"></i> <i *ngIf="!traitement" class="fa-solid fa-xmark"></i></li>
-                <li>Taille: <span class="font-normal">139cm</span></li>
-                <li>Poids: <span class="font-normal">99kg</span></li>
+                <li>Taille: <span class="font-normal">{{post?.taille}}</span></li>
+                <li>Poids: <span class="font-normal">{{post?.poid}}</span></li>
             </ul>
         </div>
         <hr class="my-2 border-lightblue sm:mx-auto" />

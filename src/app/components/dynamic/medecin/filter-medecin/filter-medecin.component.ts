@@ -10,6 +10,7 @@ export class FilterMedecinComponent {
   @Output() searchChanged = new EventEmitter<string>();
   constructor() {
     this.specialties = [
+      { name: 'Afficher tous' },
       { name: 'Allergologie' },
       { name: 'Anatomie' },
       { name: 'Anesthésie' },
