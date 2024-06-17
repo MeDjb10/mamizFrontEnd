@@ -160,7 +160,8 @@ registerLocaleData(localeFr, 'fr');
     TooltipModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr' }
+    { provide: LOCALE_ID, useValue: 'fr' },
+    [MessageService],
   ],
   bootstrap: [AppComponent],
 })
