@@ -1,7 +1,7 @@
 // post.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from '../classes/post';
 
 @Injectable({
@@ -9,26 +9,15 @@ import { Post } from '../classes/post';
 })
 export class PostService {
   private baseUrl = 'http://localhost:8080/api/posts';
-  private postSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>(
-    [],
-  );
-  public posts$: Observable<Post[]> = this.postSubject.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.fetchPosts();
+  constructor(private http: HttpClient) {}
+
+  fetchPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}/approved`);
   }
 
-  fetchPosts(): void {
-    this.http.get<Post[]>(this.baseUrl).subscribe((posts) => {
-      this.postSubject.next(posts);
-    });
-  }
-
-  addPost(post: Post): void {
-    this.http.post<Post>(this.baseUrl, post).subscribe((newPost) => {
-      const currentPosts = this.postSubject.value;
-      this.postSubject.next([...currentPosts, newPost]);
-    });
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.baseUrl, post);
   }
 
   getById(id: number): Observable<Post> {

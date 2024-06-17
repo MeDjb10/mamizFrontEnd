@@ -14,7 +14,7 @@ export class ListeDepotComponent {
   constructor(private depotService: DepotService) { }
 
   ngOnInit(): void {
-    this.depotService.getAll().subscribe((data: any[]) => {
+    this.depotService.getApprovedDepots().subscribe((data: any[]) => {
       this.depots = data;
       this.filtredDepots = data;
     });

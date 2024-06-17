@@ -30,7 +30,7 @@ export class AllForumsComponent implements OnInit {
       this.articles = data;
       this.latestArticle = this.getLatestArticle();
     });
-    this.postService.posts$.subscribe((posts) => {
+    this.postService.fetchPosts().subscribe((posts) => {
       this.posts = posts.sort(
         (a, b) =>
           new Date(b.postDate).getTime() - new Date(a.postDate).getTime(),

@@ -13,7 +13,7 @@ export class ForumForMedecinComponent {
   constructor(private postService:PostService) {}
 
   ngOnInit(): void {
-    this.postService.posts$.subscribe((posts) => {
+    this.postService.fetchPosts().subscribe((posts) => {
       this.posts = posts;
       this.posts.sort(
         (a, b) =>

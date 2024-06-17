@@ -1,0 +1,51 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-8 text-center">Sign Up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
+        <input type="text" id="nom" formControlName="nom" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="prenom" class="block text-sm font-medium text-gray-700">Prenom</label>
+        <input type="text" id="prenom" formControlName="prenom" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" formControlName="email" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="numTel" class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="text" id="numTel" formControlName="numTel" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+        <select id="gender" formControlName="gender" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+          <option value="homme">Homme</option>
+          <option value="femme">Femme</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="birthDate" class="block text-sm font-medium text-gray-700">Birth Date</label>
+        <input type="date" id="birthDate" formControlName="birthDate" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="motPasse" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="motPasse" formControlName="motPasse" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div class="mb-4">
+        <label for="confirmMotPasse" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <input type="password" id="confirmMotPasse" formControlName="confirmMotPasse" required class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
+      </div>
+      <div *ngIf="passwordsMismatch" class="text-red-500 text-sm mb-4">
+        Passwords do not match!
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+      </div>
+    </form>
+     <div class="text-sm font-medium text-bgHigh mt-2">
+            Already have an account? <a (click)="NavigateTo()" class="text-yellow hover:underline">Log in</a>
+        </div>
+  </div>
+</div>

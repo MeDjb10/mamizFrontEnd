@@ -10,7 +10,7 @@
         </button>
         <p-dialog header="Creez Une Annonce" [(visible)]="visible" [modal]="true"
         [style]="{ 'width': 'auto','border-radius': '1rem' }">
-            <app-create-depot></app-create-depot>
+            <app-create-depot  (formSubmitted)="visible = false" ></app-create-depot>
         </p-dialog>
     </div>
 </div>

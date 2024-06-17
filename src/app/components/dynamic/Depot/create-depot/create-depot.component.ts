@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DepotService } from 'src/app/serverSide/services/depot.service';
 import { Depot } from 'src/app/serverSide/classes/depot';
-import { User } from 'src/app/serverSide/classes/user';
 import { UserService } from 'src/app/serverSide/services/user.service';
 
 @Component({
@@ -16,6 +15,7 @@ export class CreateDepotComponent {
   depot: FormGroup;
   uploadedFiles: any[] = [];
   user: any;
+  @Output() formSubmitted: EventEmitter<void> = new EventEmitter<void>();
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -70,6 +70,8 @@ export class CreateDepotComponent {
         },
       });
     }
+
+   
   }
 
   onUpload(event: any) {

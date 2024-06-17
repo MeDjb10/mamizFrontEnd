@@ -17,6 +17,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { MessageService } from 'primeng/api';
 
 
 import { ToastModule } from 'primeng/toast';
@@ -75,6 +76,9 @@ import { MedecinCardComponent } from './components/dynamic/medecin/medecin-card/
 import { MedecinDetailsComponent } from './components/dynamic/medecin/medecin-details/medecin-details.component';
 import { FilterMedecinComponent } from './components/dynamic/medecin/filter-medecin/filter-medecin.component';
 import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for-medecin/forum-for-medecin.component';
+import { SignupComponent } from './components/dynamic/info/signup/signup.component';
+import { LoginComponent } from './components/dynamic/info/login/login.component';
+import { FormsComponent } from './components/dynamic/info/forms/forms.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -129,6 +133,9 @@ registerLocaleData(localeFr, 'fr');
     MedecinDetailsComponent,
     FilterMedecinComponent,
     ForumForMedecinComponent,
+    SignupComponent,
+    LoginComponent,
+    FormsComponent,
   ],
 
   imports: [
@@ -150,7 +157,7 @@ registerLocaleData(localeFr, 'fr');
     ScrollTopModule,
     ToastModule,
     CommonModule,
-    TooltipModule
+    TooltipModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' }
