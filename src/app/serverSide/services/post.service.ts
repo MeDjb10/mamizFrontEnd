@@ -19,7 +19,7 @@ export class PostService {
   addPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.baseUrl, post);
   }
-
+ 
   getById(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.baseUrl}/${id}`);
   }

@@ -89,7 +89,6 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    alert('Votre question a été envoyée avec succès');
     if (this.question.valid) {
       const newPost: Post = {
         id: 0, // Backend will generate the ID
@@ -106,9 +105,28 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
       console.log(newPost);
 
-      this.postService.addPost(newPost);
+      this.postService.addPost(newPost).subscribe({
+        next: (response) => {
+          console.log('post created', response);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Depot created successfully',
+          });
+          this.question.reset();
+          
+        },
+        error: (error) => {
+          console.error('Error creating post', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to create depot',
+          });
+        },
+      });;
     
-      this.question.reset();
+      
 
       
     }
