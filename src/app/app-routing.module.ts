@@ -11,6 +11,9 @@ import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-de
 import { ListeDepotComponent } from './components/dynamic/Depot/liste-depot/liste-depot.component';
 import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
 import { AllMedecinComponent } from './components/dynamic/medecin/all-medecin/all-medecin.component';
+import { FormsComponent } from './components/dynamic/info/forms/forms.component';
+import { LoginComponent } from './components/dynamic/info/login/login.component';
+import { SignupComponent } from './components/dynamic/info/signup/signup.component';
 
 
 const routes: Routes = [
@@ -38,7 +41,14 @@ const routes: Routes = [
       { path: '**', redirectTo: 'acceuil' },
     ],
   },
-
+  {
+    path: 'form',
+    component: FormsComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
+    ],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];

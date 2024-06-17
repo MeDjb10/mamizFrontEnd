@@ -75,6 +75,7 @@ import { FilterMedecinComponent } from './components/dynamic/medecin/filter-mede
 import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for-medecin/forum-for-medecin.component';
 import { SignupComponent } from './components/dynamic/info/signup/signup.component';
 import { LoginComponent } from './components/dynamic/info/login/login.component';
+import { FormsComponent } from './components/dynamic/info/forms/forms.component';
 
 
 
@@ -131,6 +132,7 @@ import { LoginComponent } from './components/dynamic/info/login/login.component'
     ForumForMedecinComponent,
     SignupComponent,
     LoginComponent,
+    FormsComponent,
   ],
 
   imports: [
