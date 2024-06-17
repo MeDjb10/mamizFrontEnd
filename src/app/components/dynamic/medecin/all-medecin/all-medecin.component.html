@@ -15,10 +15,14 @@
                 <app-ask-question-div></app-ask-question-div>
             </div>
             <div class="my-4">
-                <app-forum-filter></app-forum-filter>
+                <app-forum-filter
+                
+        (specialtySelected)="onSpecialtySelected($event)"
+        (searchChanged)="onSearchChanged($event)"
+                ></app-forum-filter>
                 <div class="">
                     <div class="grid grid-cols-2 gap-4 mt-4">
-                        <ng-container *ngFor="let doc of doctors">
+                        <ng-container *ngFor="let doc of filtredDoctors">
                             <app-medecin-card [nom]="doc?.nom" [prenom]="doc?.prenom"
                                 [specialite]="doc?.specialite"></app-medecin-card>
                         </ng-container>

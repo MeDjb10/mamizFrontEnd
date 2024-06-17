@@ -17,7 +17,7 @@
             <!-- KEN LL TBIB SO *NGIF LL USER  -->
             <ul class="font-bold mt-2">
                 <li>CES INFORMATIONS SONT CONFIDETIELLES dhaharly</li>
-                <li>Traitement : <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i></li>
+                <li>Traitement : <i *ngIf="traitement" class="fa-solid fa-check"></i> <i *ngIf="!traitement" class="fa-solid fa-xmark"></i></li>
                 <li>Taille: <span class="font-normal">139cm</span></li>
                 <li>Poids: <span class="font-normal">99kg</span></li>
             </ul>
@@ -38,6 +38,9 @@
                     </div>
                 </div>
                 <div class="border-2 p-2 mt-2 border-lightblue rounded-xl">
+                    <p class="text-gray-400 text-sm font-thin tracking-tighter italic" >
+                        Rependu à {{rsDate | date : " hh:mm le dd MMMM YYYY "}}
+                    </p>
                     {{content}}
                 </div>
             </div>

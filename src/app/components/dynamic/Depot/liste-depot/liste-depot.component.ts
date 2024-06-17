@@ -7,13 +7,34 @@ import { DepotService } from 'src/app/serverSide/services/depot.service';
   styleUrls: ['./liste-depot.component.css']
 })
 export class ListeDepotComponent {
-  depots!: any[]; 
+  depots!: any[];
 
-  constructor(private depotService: DepotService) {}
+  search: string = '';
+  filtredDepots: any[] = [];
+  constructor(private depotService: DepotService) { }
 
   ngOnInit(): void {
     this.depotService.getApprovedDepots().subscribe((data: any[]) => {
       this.depots = data;
+      this.filtredDepots = data;
     });
+  }
+
+  onSearchChanged(searchTerm: string) {
+    this.search = searchTerm;
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    if (!this.search) {
+      this.filtredDepots = this.depots;
+    } else {
+      this.filtredDepots = this.depots.filter(data => {
+        const matchesSearchTerm = !this.search ||
+          data.name.toLowerCase().includes(this.search) ||
+          data.description.toLowerCase().includes(this.search);
+        return matchesSearchTerm;
+      });
+    }
   }
 }

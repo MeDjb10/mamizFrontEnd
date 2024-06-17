@@ -3,30 +3,44 @@
         <div class="max-w-xl">
             <form [formGroup]="question" (ngSubmit)="onSubmit()">
                 <div class="p-5 space-y-4">
-                    <div class="border border-teal rounded-lg">
-                        <label htmlFor="qst" class="text-teal">Categorie:</label>
-                        <p-autoComplete formControlName="theme"  [dropdown]="true" [suggestions]="filteredSpecialties" 
-                            (completeMethod)="filterSpecialty($event)" field="name" placeholder="Pédiatre"
-                            class="transition-colors duration-100 text-teal border-teal border bg-white hover:bg-teal hover:text-white focus:ring-4 focus:outline-none focus:ring-lightblue font-medium rounded-lg text-sm px-4 py-2.5 w-full text-center inline-flex items-center">
-                        </p-autoComplete>
+                    <div>
+                        <div class=" flex justify-center items-center ">
+                            <label for="qst" class="text-teal mr-2 flex items-center">Categorie:</label>
+                            <p-autoComplete formControlName="theme" [dropdown]="true" [suggestions]="filteredSpecialties" styleClass="custom-autoComplete border-2 border-teal p-2 bg-gray-50 rounded-lg" 
+                                (completeMethod)="filterSpecialty($event)" field="name" placeholder=" ex: Pédiatre"
+                                class="transition-colors duration-100 text-gray-900 font-medium rounded-lg text-sm px-4 py-2.5 w-full text-center inline-flex items-center h-full ">
+                            </p-autoComplete>
+                        </div>
+                        <p class="text-darkpink" *ngIf="question.get('theme')?.invalid && question.get('theme')?.touched">
+                            <i class="fa-solid fa-triangle-exclamation"></i> La catégorie est importante. Si vous ne savez pas, vous pouvez écrire "Je ne sais pas".
+                        </p>
                     </div>
+                    
                 
                     <div class="mt-3">
                         <label htmlFor="qst" class="text-teal">Taper votre Question:</label>
                         <input id="qst" formControlName="qst" [ngClass]="{'border-red-500': question.get('qst')?.invalid && question.get('qst')?.touched}"
                             class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightblue block w-full p-2.5" />
+                        <p class="text-darkpink" *ngIf="question.get('qst')?.invalid && question.get('qst')?.touched">
+                            <i class="fa-solid fa-triangle-exclamation"></i> La question est requise!
+                        </p>
                     </div>
                 
-                    <textarea id="message" rows="4" formControlName="detail" [ngClass]="{'border-red-500': question.get('detail')?.invalid && question.get('detail')?.touched}"
+                    <div>
+                        <textarea id="message" rows="4" formControlName="detail" [ngClass]="{'border-red-500': question.get('detail')?.invalid && question.get('detail')?.touched}"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue"
                         placeholder="Pour que la réponse soit la plus pertinente possible, veuillez fournir un maximum d'informations."></textarea>
+                        <p class="text-darkpink" *ngIf="question.get('detail')?.invalid && question.get('detail')?.touched">
+                            <i class="fa-solid fa-triangle-exclamation"></i> La description est requise!
+                        </p>
+                    </div>
                     <hr class="border-lightblue">
                 
                     <p class="text-pink">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Ces informations au dessous seront affiché juste pour les médecins.
+                        <i class="fa-solid fa-triangle-exclamation"></i> Ces informations au dessous seront affichés juste pour les médecins.
                     </p>
                     <p class="text-pink">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Ces champs ne sont pas requis
+                        <i class="fa-solid fa-triangle-exclamation"></i> Le traitement est désactivé par défaut.
                     </p>
                     <div class="flex gap-4">
                         <div class="flex">

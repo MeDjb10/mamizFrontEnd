@@ -10,23 +10,29 @@ import { PostService } from 'src/app/serverSide/services/post.service';
 export class ForumDetailsComponent {
   @Input() id: number = 0; 
   post: any; // Adjust the type as needed
-
+  traitement:boolean=false;
   constructor(
   
     private postService: PostService,
   ) {}
 
   ngOnInit(): void {
-    
     this.postService.getById(this.id).subscribe((data) => {
-      // Adjust the type as needed
       this.post = data;
+      this.traitement=this.post.traitement;
+      
     });
+  }
+
+  get rsDate(): string {
+    return this.post?.response?.responseDate
+      ? `${this.post?.response?.responseDate} `
+      : '';
   }
 
   get medcinName(): string {
     return this.post?.response?.medcin
-      ? `${this.post?.response?.medcin?.nom.toUpperCase()} ${this.post?.response?.medcin?.prenom}`
+      ? `${this.post?.response?.medcin?.nom} ${this.post?.response?.medcin?.prenom}`
       : '';
   }
 
@@ -39,4 +45,6 @@ export class ForumDetailsComponent {
   get content(): string {
     return this.post?.response?.content;
   }
+
+
 }

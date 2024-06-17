@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 //primeNG.component
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -78,7 +81,7 @@ import { LoginComponent } from './components/dynamic/info/login/login.component'
 import { FormsComponent } from './components/dynamic/info/forms/forms.component';
 
 
-
+registerLocaleData(localeFr, 'fr');
 
 
 @NgModule({
@@ -156,7 +159,10 @@ import { FormsComponent } from './components/dynamic/info/forms/forms.component'
     CommonModule,
     TooltipModule,
   ],
-  providers: [MessageService],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr' },
+    [MessageService],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,12 @@
 <div class="max-w-xs md:max-w-full p-6 bg-white border border-darkpink rounded-xl shadow mb-4">
   <div>
-    <div class="bg-teal h-auto w-fit px-2 mb-2 text-sm md:text-base font-bold text-white">
-      <p>{{ theme }}</p>
+    <div class="flex justify-between">
+      <div class="bg-teal h-auto w-fit px-2 mb-2 text-sm md:text-base font-bold text-white">
+        <p>{{ theme }}</p>
+      </div>
+      <p class="text-gray-400 font-thin tracking-tighter italic">
+        {{postDate | date : "EEEE dd MMMM YYYY "}}
+      </p>
     </div>
     <a href="#">
       <h5 class="mb-2 md:text-2xl tracking-tighter text-gray-900 line-clamp-2" style="font-family: helBold">

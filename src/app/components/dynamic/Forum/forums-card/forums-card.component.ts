@@ -20,6 +20,7 @@ export class ForumsCardComponent implements OnInit {
   @Input() question?: string;
   @Input() responded?: boolean;
   @Input() response?: Response;
+  @Input() postDate?: string;
   medcin: any;
   post: any;
 
@@ -39,7 +40,7 @@ export class ForumsCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.medcinService.getById(6).subscribe((data) => {
+    this.medcinService.getById(3).subscribe((data) => {
       this.medcin = data;
     });
     this.postService.getById(this.id).subscribe((data) => {
@@ -71,7 +72,7 @@ export class ForumsCardComponent implements OnInit {
 
   get medcinName(): string {
     return this.response?.medcin
-      ? `${this.response.medcin.nom.toUpperCase()} ${this.response.medcin.prenom}`
+      ? `${this.response.medcin.nom} ${this.response.medcin.prenom}`
       : '';
   }
 
