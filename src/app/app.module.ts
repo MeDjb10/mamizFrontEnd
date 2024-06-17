@@ -14,6 +14,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { MessageService } from 'primeng/api';
 
 
 import { ToastModule } from 'primeng/toast';
@@ -147,9 +148,9 @@ import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for
     ScrollTopModule,
     ToastModule,
     CommonModule,
-    TooltipModule
+    TooltipModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

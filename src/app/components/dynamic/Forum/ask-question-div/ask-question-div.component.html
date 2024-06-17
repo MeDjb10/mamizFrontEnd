@@ -9,7 +9,7 @@
             class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
             label="Poser votre question" />
         <p-dialog header="Ecrivez vos inquietudes" [(visible)]="visible" [modal]="true" [style]="{ 'width': 'auto','border-radius': '1rem' }" >
-            <app-ask-question></app-ask-question>
+            <app-ask-question (formSubmitted)="visible = false"></app-ask-question>
         </p-dialog>
     </div>
 </div>

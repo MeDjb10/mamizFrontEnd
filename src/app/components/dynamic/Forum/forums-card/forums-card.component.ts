@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Response } from 'src/app/serverSide/classes/response';
 import { MedcinService } from 'src/app/serverSide/services/medcin.service';
 import { PostService } from 'src/app/serverSide/services/post.service';
@@ -10,6 +11,7 @@ import { ResponseService } from 'src/app/serverSide/services/response.service';
   selector: 'app-forums-card',
   templateUrl: './forums-card.component.html',
   styleUrls: ['./forums-card.component.css'],
+  providers: [MessageService],
 })
 export class ForumsCardComponent implements OnInit {
   @Input() id: number = 0;
@@ -29,6 +31,7 @@ export class ForumsCardComponent implements OnInit {
     private responseService: ResponseService,
     private postService: PostService,
     private medcinService: MedcinService,
+    private messageService: MessageService
   ) {
     this.reponse = this.fb.group({
       reponse: ['', Validators.required],
@@ -36,7 +39,7 @@ export class ForumsCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.medcinService.getById(1).subscribe((data) => {
+    this.medcinService.getById(6).subscribe((data) => {
       this.medcin = data;
     });
     this.postService.getById(this.id).subscribe((data) => {

@@ -16,6 +16,10 @@ export class DepotService {
     return this.http.get<Depot[]>(this.baseUrl);
   }
 
+  getApprovedDepots(): Observable<Depot[]> {
+    return this.http.get<Depot[]>(`${this.baseUrl}/approved`);
+  }
+
   getById(id: number): Observable<Depot> {
     return this.http.get<Depot>(`${this.baseUrl}/${id}`);
   }

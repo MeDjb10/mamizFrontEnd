@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { Post } from 'src/app/serverSide/classes/post';
 import { PostService } from 'src/app/serverSide/services/post.service';
 import { UserService } from 'src/app/serverSide/services/user.service';
@@ -8,6 +9,7 @@ import { UserService } from 'src/app/serverSide/services/user.service';
   selector: 'app-ask-question',
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.css'],
+  providers: [MessageService],
 })
 export class AskQuestionComponent implements OnInit, AfterViewInit {
   currentStep = 1;
@@ -17,17 +19,19 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   filteredSpecialties: any[] = [];
   specialties: any[] = [];
   isChecked = false;
+  @Output() formSubmitted: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private postService: PostService,
     private userService: UserService,
+    private messageService: MessageService,
   ) {
     this.question = this.fb.group({
-      theme: ['',Validators.required],
-      qst: ['',Validators.required],
-      detail: ['',Validators.required],
+      theme: ['', Validators.required],
+      qst: ['', Validators.required],
+      detail: ['', Validators.required],
       taille: [''],
       poids: [''],
       traitement: [''],
@@ -77,6 +81,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
     this.userService.getById(3).subscribe((user) => {
       this.user = user;
     });
+      
   }
 
   ngAfterViewInit(): void {
@@ -85,13 +90,14 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
+    alert('Votre question a été envoyée avec succès');
     if (this.question.valid) {
       const newPost: Post = {
         id: 0, // Backend will generate the ID
         title: this.question.get('qst')?.value, // Add logic if title is required
         postDate: new Date().toISOString(),
         theme: this.question.get('theme')?.value.name,
-        question:this.question.get('detail')?.value ,
+        question: this.question.get('detail')?.value,
         responded: false,
         poid: this.question.get('poids')?.value,
         taille: this.question.get('taille')?.value,
@@ -100,9 +106,12 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       };
 
       console.log(newPost);
-      
+
       this.postService.addPost(newPost);
+    
       this.question.reset();
+
+      
     }
   }
 
