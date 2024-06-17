@@ -73,6 +73,8 @@ import { MedecinCardComponent } from './components/dynamic/medecin/medecin-card/
 import { MedecinDetailsComponent } from './components/dynamic/medecin/medecin-details/medecin-details.component';
 import { FilterMedecinComponent } from './components/dynamic/medecin/filter-medecin/filter-medecin.component';
 import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for-medecin/forum-for-medecin.component';
+import { SignupComponent } from './components/dynamic/info/signup/signup.component';
+import { LoginComponent } from './components/dynamic/info/login/login.component';
 
 
 
@@ -127,6 +129,8 @@ import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for
     MedecinDetailsComponent,
     FilterMedecinComponent,
     ForumForMedecinComponent,
+    SignupComponent,
+    LoginComponent,
   ],
 
   imports: [

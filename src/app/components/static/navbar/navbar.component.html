@@ -41,34 +41,41 @@
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul
-                class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg bg-lightpink md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-lightpink md:dark:bg-lightpink dark:border-lightpink">
+                class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg bg-lightpink md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0   dark:border-lightpink">
                 <li>
                     <a routerLink="/home/acceuil"
-                        class="block py-2 px-3 text-teal bg-pink rounded md:bg-transparent md:text-darkpink md:p-0 "
+                    routerLinkActive="active-link" 
+                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a routerLink="/home/article"
-                        class="block py-2 px-3 text-teal rounded hover:bg-pink md:hover:bg-transparent md:hover:text-darktea md:p-0">Article</a>
+                    <a routerLink="/home/article" 
+                      routerLinkActive="active-link" 
+                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Article</a>
                 </li>
                 <li>
                     <a routerLink="/home/atelier"
+                        routerLinkActive="active-link"
                         class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Atelier</a>
                 </li>
                 <li>
                     <a routerLink="/home/event"
+                       routerLinkActive="active-link"
                         class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Evenement</a>
                 </li>
                 <li>
                     <a routerLink="/home/depot"
+                    routerLinkActive="active-link"
                         class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Depot</a>
                 </li>
                 <li>
                     <a routerLink="/home/medcin"
+                    routerLinkActive="active-link"
                         class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Medecins</a>
                 </li>
                 <li>
                     <a routerLink="/home/forum"
+                    routerLinkActive="active-link"
                         class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Forum</a>
                 </li>
             </ul>
