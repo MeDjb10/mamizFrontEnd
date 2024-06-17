@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter-medecin',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class FilterMedecinComponent {
   specialties: any[] = [];
-  
+  @Output() searchChanged = new EventEmitter<string>();
   constructor() {
     this.specialties = [
       { name: 'Allergologie' },
@@ -46,5 +46,10 @@ export class FilterMedecinComponent {
       { name: 'Médecin général' },
       { name: 'Je ne sais pas' },
     ];
+  }
+
+  onSearchChange(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.searchChanged.emit(searchTerm);
   }
 }

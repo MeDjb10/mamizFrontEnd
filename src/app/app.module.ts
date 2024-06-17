@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 //primeNG.component
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -74,7 +77,7 @@ import { FilterMedecinComponent } from './components/dynamic/medecin/filter-mede
 import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for-medecin/forum-for-medecin.component';
 
 
-
+registerLocaleData(localeFr, 'fr');
 
 
 @NgModule({
@@ -149,7 +152,9 @@ import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for
     CommonModule,
     TooltipModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr' }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

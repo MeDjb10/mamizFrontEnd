@@ -10,7 +10,6 @@ import { UserService } from 'src/app/serverSide/services/user.service';
   styleUrls: ['./ask-question.component.css'],
 })
 export class AskQuestionComponent implements OnInit, AfterViewInit {
-  currentStep = 1;
   question: FormGroup;
   user: any;
   selectedSpecialty: any;
@@ -30,7 +29,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       detail: ['',Validators.required],
       taille: [''],
       poids: [''],
-      traitement: [''],
+      traitement: [false],
       deatilTrait: [''],
     });
 

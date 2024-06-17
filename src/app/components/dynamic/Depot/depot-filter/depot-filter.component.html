@@ -19,6 +19,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <input type="text" id="simple-search"
+                (input)="onSearchChange($event)"
                 class=" bg-gray-50 border border-lightblue focus:ring-lightblue focus:border-lightblue text-sm rounded-lg block w-full ps-10 p-2.5  "
                 placeholder="Ecrviez un mot clé..." required />
         </div>

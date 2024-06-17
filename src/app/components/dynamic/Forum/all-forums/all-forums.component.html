@@ -1,4 +1,6 @@
 <div class="p-8 bg-lightpink bg-cover">
+  <p-scrollTop styleClass="custom-scrolltop bg-teal"></p-scrollTop>
+
   <p class="font-bold text-5xl">Questions Médicales</p>
   <p>
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo, soluta
@@ -15,11 +17,14 @@
         <app-ask-question-div></app-ask-question-div>
       </div>
       <div class="my-4">
-        <app-forum-filter></app-forum-filter>
+        <app-forum-filter
+        (specialtySelected)="onSpecialtySelected($event)"
+        (searchChanged)="onSearchChanged($event)"
+        ></app-forum-filter>
       </div>
-      <ng-container *ngFor="let post of posts">
+      <ng-container *ngFor="let post of filtredPosts">
         <app-forums-card [title]="post?.title" [theme]="post?.theme" [question]="post?.question"
-          [responded]="post?.responded" [response]="post?.response" [id]="post.id"></app-forums-card>
+          [responded]="post?.responded" [response]="post?.response" [postDate]="post?.postDate"[id]="post.id"></app-forums-card>
       </ng-container>
     </div>
     <div class="col-span-3 min-h-[100px] flex-col hidden lg:block">

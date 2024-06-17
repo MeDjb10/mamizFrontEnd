@@ -15,7 +15,10 @@ import { ResponseService } from 'src/app/serverSide/services/response.service';
 export class AllMedecinComponent {
   articles: Article[] = [];
   latestArticle: Article[] = [];
-  doctors:Medcin[]=[];
+  doctors:any[]=[];
+  selectedSpec:string|null=null;
+  search:string='';
+  filtredDoctors:any[]=[];
 
   constructor(
     private articleService: ArticleService,
@@ -29,11 +32,37 @@ export class AllMedecinComponent {
     });
     this.medcinService.getAll().subscribe((data) => {
       this.doctors = data;
+      this.filtredDoctors = data;
     })
   }
 
   getLatestArticle(): Article[] {
     return this.articles.sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  
+  onSpecialtySelected(specialty: string) {
+    this.selectedSpec = specialty;
+    this.applyFilters();
+  }
+
+  onSearchChanged(searchTerm: string) {
+    this.search = searchTerm;
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    if(!this.search && !this.selectedSpec){
+      this.filtredDoctors = this.doctors;
+    }else {
+    this.filtredDoctors = this.doctors.filter(data => {
+      const matchesSpecialty = !this.selectedSpec || data.specialite.includes(this.selectedSpec);
+      const matchesSearchTerm = !this.search || 
+                                data.nom.toLowerCase().includes(this.search) ||
+                                data.prenom.toLowerCase().includes(this.search)||
+                                data.adresse.toLowerCase().includes(this.search)  ;
+      return matchesSpecialty && matchesSearchTerm;
+    });}
   }
 
 }
