@@ -9,7 +9,7 @@
       </button>
      
      <ng-container  *ngFor="let depot of depots">
-      <app-depot-card [name]="depot.name" [desc]="depot.description" [price]="depot.price" [pic]="depot.photos[0]"></app-depot-card>
+      <app-depot-card (click)="navigateToDetails(depot.id)" [name]="depot.name" [desc]="depot.description" [price]="depot.price" [pic]="depot.photos[0]"></app-depot-card>
      </ng-container>
       <button class="absolute right-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
         (click)="scrollRight()">

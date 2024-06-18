@@ -1,10 +1,17 @@
 <div>
-    <app-depot-filter
+  <app-depot-filter
     (searchChanged)="onSearchChanged($event)"
-    ></app-depot-filter>
+  ></app-depot-filter>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-    <ng-container *ngFor="let depot of filtredDepots">
-        <app-depotscard [id]="depot.id" [name]="depot.name" [desc]="depot.description" [price]="depot.price" [pic]="depot.photos[0]"></app-depotscard>
-    </ng-container>
+  <ng-container *ngFor="let depot of filtredDepots">
+    <app-depotscard
+      [id]="depot.id"
+      [name]="depot.name"
+      [desc]="depot.description"
+      [price]="depot.price"
+      [pic]="depot.photos[0]"
+      (click)="navigateToDetails(depot.id)"
+    ></app-depotscard>
+  </ng-container>
 </div>

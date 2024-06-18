@@ -6,41 +6,64 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-depot-details',
   templateUrl: './depot-details.component.html',
-  styleUrls: ['./depot-details.component.css']
+  styleUrls: ['./depot-details.component.css'],
 })
 export class DepotDetailsComponent {
   images: any[];
   responsiveOptions: any[];
-  depot:any;
+  depot: any;
 
-  constructor(private depotService: DepotService,private route: ActivatedRoute,private location: Location) {
+  constructor(
+    private depotService: DepotService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router:Router
+  ) {
     this.images = [
-      { itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
-      { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },{ itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
-      { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },
-      { itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg', thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg' },
-      { itemImageSrc: 'assets/useful stuff/poussette.jpg', thumbnailImageSrc: 'assets/useful stuff/poussette.jpg' },
-      
+      {
+        itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+        thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+      },
+      {
+        itemImageSrc: 'assets/useful stuff/poussette.jpg',
+        thumbnailImageSrc: 'assets/useful stuff/poussette.jpg',
+      },
+      {
+        itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+        thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+      },
+      {
+        itemImageSrc: 'assets/useful stuff/poussette.jpg',
+        thumbnailImageSrc: 'assets/useful stuff/poussette.jpg',
+      },
+      {
+        itemImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+        thumbnailImageSrc: 'assets/useful stuff/Studentinclassroom.jpeg',
+      },
+      {
+        itemImageSrc: 'assets/useful stuff/poussette.jpg',
+        thumbnailImageSrc: 'assets/useful stuff/poussette.jpg',
+      },
+
       // add more images as needed
     ];
 
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
-        numVisible: 5
+        numVisible: 5,
       },
       {
         breakpoint: '768px',
-        numVisible: 3
+        numVisible: 3,
       },
       {
         breakpoint: '560px',
-        numVisible: 1
-      }
+        numVisible: 1,
+      },
     ];
   }
   depots!: any[]; // Adjust the type as needed
-
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -52,6 +75,10 @@ export class DepotDetailsComponent {
     this.depotService.getApprovedDepots().subscribe((data: any[]) => {
       this.depots = data;
     });
+  }
+
+  navigateToDetails(id: any): void {
+    this.router.navigate(['home/depot/depot-details', id]);
   }
 
   scrollLeft() {
