@@ -19,6 +19,7 @@
             <ul class="font-bold mt-2">
                 <li>CES INFORMATIONS SONT CONFIDETIELLES dhaharly</li>
                 <li>Traitement : <i *ngIf="traitement" class="fa-solid fa-check"></i> <i *ngIf="!traitement" class="fa-solid fa-xmark"></i></li>
+                <li *ngIf="traitement">Detail Traitement:<span class="font-normal">{{post?.detailTrait}}</span></li>
                 <li>Taille: <span class="font-normal">{{post?.taille}}</span></li>
                 <li>Poids: <span class="font-normal">{{post?.poid}}</span></li>
             </ul>

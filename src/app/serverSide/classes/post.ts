@@ -11,6 +11,7 @@ export interface Post {
   poid: number;
   taille: number;
   traitement: boolean;
+  detailTrait : string;
   user: User;
   response?: Response | undefined;
 }

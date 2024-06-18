@@ -34,7 +34,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       taille: [''],
       poids: [''],
       traitement: [false],
-      deatilTrait: [''],
+      detailTrait: [''],
     });
 
     this.specialties = [
@@ -100,6 +100,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
         poid: this.question.get('poids')?.value,
         taille: this.question.get('taille')?.value,
         traitement: this.question.get('traitement')?.value,
+        detailTrait: this.question.get('detailTrait')?.value,
         user: this.user, // Replace with actual user data
       };
 
