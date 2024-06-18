@@ -3,7 +3,7 @@
     <h2 class="text-3xl md:text-7xl font-bold mb-4 text-left">Evenements</h2>
     <div class="flex flex-col items-left space-y-4">
       <ng-container *ngFor="let event of events | slice:0:4" >
-        <app-event-card [title]="event?.title" [date]="event?.date" [desc]="event?.description"></app-event-card>
+        <app-event-card [id]="event?.id" [title]="event?.title" [date]="event?.date" [desc]="event?.description" (click)="navigateToDetails(event.id)"></app-event-card>
       </ng-container>
       
      

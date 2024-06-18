@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-card',
@@ -6,7 +7,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./events-card.component.css'],
 })
 export class EventsCardComponent {
+  @Input() id?: string;
   @Input() title?: string;
   @Input() desc?: string;
   @Input() date?: string;
+
+
+  constructor(private router:Router){}
+  navigateToDetails(id: any): void {
+    this.router.navigate(['home/event-details', id]);
+  }
 }

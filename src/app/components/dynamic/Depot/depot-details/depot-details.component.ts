@@ -49,7 +49,7 @@ export class DepotDetailsComponent {
         this.depot = depot;
       });
     }
-    this.depotService.getAll().subscribe((data: any[]) => {
+    this.depotService.getApprovedDepots().subscribe((data: any[]) => {
       this.depots = data;
     });
   }

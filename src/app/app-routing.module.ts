@@ -14,6 +14,7 @@ import { AllMedecinComponent } from './components/dynamic/medecin/all-medecin/al
 import { FormsComponent } from './components/dynamic/info/forms/forms.component';
 import { LoginComponent } from './components/dynamic/info/login/login.component';
 import { SignupComponent } from './components/dynamic/info/signup/signup.component';
+import { EventDetailsComponent } from './components/dynamic/Events/event-details/event-details.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'event', title: ' Event', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },
       { path: 'atelier-details/:id', component: AtelierDetailsComponent },
+      { path: 'event-details/:id', component: EventDetailsComponent },
       {
         path: 'depot',
         title: 'Depot',
