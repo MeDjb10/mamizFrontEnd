@@ -1,39 +1,26 @@
 <div class="border-lightblue border rounded-xl bg-white flex flex-col gap-4">
   <div class="flex justify-start">
-    <button
-      (click)="goBack()"
-      class="bg-teal mt-2 ml-2 text-white rounded-3xl px-4 py-2 hover:bg-white hover:text-teal hover:border-teal hover:border transition-colors duration-200"
-    >
+    <button (click)="goBack()"
+      class="bg-teal mt-2 ml-2 text-white rounded-3xl px-4 py-2 hover:bg-white hover:text-teal hover:border-teal hover:border transition-colors duration-200">
       <i class="fa-solid fa-arrow-left"></i> Retourner au Depot Maman
     </button>
   </div>
   <div class="flex justify-center">
-    <p-galleria
-      [value]="images"
-      [showItemNavigators]="true"
-      [showThumbnails]="false"
-      [showIndicators]="true"
-      [autoPlay]="true"
-      [circular]="true"
-      [showIndicatorsOnItem]="true"
-      [responsiveOptions]="responsiveOptions"
+    <p-galleria [value]="images" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true"
+      [autoPlay]="true" [circular]="true" [showIndicatorsOnItem]="true" [responsiveOptions]="responsiveOptions"
       [containerStyle]="{
         'max-width': '640px',
         'min-width': '640px',
         'max-height': '500px',
         'min-height': '500px',
-      }"
-    >
+      }">
       <ng-template pTemplate="item" let-item>
-        <img
-          [src]="item.itemImageSrc"
-          style="
+        <img [src]="item.itemImageSrc" style="
             min-width: fit;
             max-height: 500px;
             min-height: 500px;
             display: block;
-          "
-        />
+          " />
       </ng-template>
       <ng-template pTemplate="thumbnail" let-item>
         <div class="grid grid-nogutter justify-content-center">
@@ -52,8 +39,7 @@
       </p>
     </div>
     <div
-      class="md:w-fit md:col-span-2 lg:col-span-1 p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow"
-    >
+      class="md:w-fit md:col-span-2 lg:col-span-1 p-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
       <div class="text-xl md:text-base lg:text-2xl tracking-tighter">
         <p>
           <span class="font-bold">Prix: </span>
@@ -65,53 +51,15 @@
       <div class="space-y-2 mt-2">
         <div class="flex items-center gap-2">
           <img src="assets\useful stuff\user.png" alt="" class="h-6 lg:h-10" />
-          <p
-            class="text-darkpink font-bold tracking-tighter text-xl lg:text-2xl"
-          >
+          <p class="text-darkpink font-bold tracking-tighter text-xl lg:text-2xl">
             {{ depot?.user?.nom }}
           </p>
         </div>
-        <p
-          class="lg:text-2xl tracking-tighter hover:text-teal transition-colors duration-150"
-        >
+        <p class="lg:text-2xl tracking-tighter hover:text-teal transition-colors duration-150">
           <i class="fa-solid fa-phone"></i> {{ depot?.user?.numTel }}
         </p>
       </div>
     </div>
   </div>
 </div>
-<div class="mt-4">
-  <hr class="border-lightblue" />
-  <p class="text-4xl font-bold tracking-tighter text-darkpink">
-    Plus d'articles
-  </p>
-  <div class="relative">
-    <div
-      id="scrollContainer"
-      class="overflow-x-auto whitespace-nowrap scroll-smooth pb-5"
-    >
-      <button
-        class="absolute left-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
-        (click)="scrollLeft()"
-      >
-        <i class="fa-solid fa-chevron-left fa-xl"></i>
-      </button>
-
-      <ng-container *ngFor="let depot of depots">
-        <app-depot-card
-          [name]="depot.name"
-          [desc]="depot.description"
-          [price]="depot.price"
-          [pic]="depot.photos[0]"
-          (click)="navigateToDetails(depot.id)"
-        ></app-depot-card>
-      </ng-container>
-      <button
-        class="absolute right-0 z-10 h-full px-4 text-darkpink bg-lightblue rounded-lg ml-2 opacity-75 hover:opacity-100"
-        (click)="scrollRight()"
-      >
-        <i class="fa-solid fa-chevron-right fa-xl"></i>
-      </button>
-    </div>
-  </div>
-</div>
+<app-scroll-depot></app-scroll-depot>

@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepotService } from 'src/app/serverSide/services/depot.service';
 
 import { Location } from '@angular/common';
+import { Subscription, switchMap } from 'rxjs';
 @Component({
   selector: 'app-depot-details',
   templateUrl: './depot-details.component.html',
   styleUrls: ['./depot-details.component.css'],
 })
-export class DepotDetailsComponent {
+export class DepotDetailsComponent implements OnInit {
   images: any[];
   responsiveOptions: any[];
   depot: any;
-
   constructor(
     private depotService: DepotService,
     private route: ActivatedRoute,
     private location: Location,
     private router:Router
+
   ) {
     this.images = [
       {
@@ -62,43 +63,26 @@ export class DepotDetailsComponent {
         numVisible: 1,
       },
     ];
-  }
-  depots!: any[]; // Adjust the type as needed
+  } // Adjust the type as needed
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.depotService.getById(id).subscribe((depot) => {
-        this.depot = depot;
-      });
-    }
-    this.depotService.getApprovedDepots().subscribe((data: any[]) => {
-      this.depots = data;
+    this.route.paramMap
+    .pipe(
+      switchMap((params) => {
+        const id = Number(params.get('id'));
+        return this.depotService.getById(id);
+      })
+    )
+    .subscribe((depot) => {
+      this.depot = depot;
     });
-  }
 
-  navigateToDetails(id: any): void {
-    this.router.navigate(['home/depot/depot-details', id]);
-  }
-
-  scrollLeft() {
-    const scrollContainer = document.getElementById('scrollContainer');
-    if (scrollContainer) {
-      scrollContainer.scrollBy({
-        left: -300,
-        behavior: 'smooth',
-      });
-    }
-  }
-
-  scrollRight() {
-    const scrollContainer = document.getElementById('scrollContainer');
-    if (scrollContainer) {
-      scrollContainer.scrollBy({
-        left: 300,
-        behavior: 'smooth',
-      });
-    }
+    // const id = Number(this.route.snapshot.paramMap.get('id'));
+    // if (id) {
+    //   this.depotService.getById(id).subscribe((depot) => {
+    //     this.depot = depot;
+    //   });
+    // }
   }
   goBack(): void {
     this.location.back();

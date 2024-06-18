@@ -79,6 +79,9 @@ import { ForumForMedecinComponent } from './components/dynamic/medecin/forum-for
 import { SignupComponent } from './components/dynamic/info/signup/signup.component';
 import { LoginComponent } from './components/dynamic/info/login/login.component';
 import { FormsComponent } from './components/dynamic/info/forms/forms.component';
+import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
+import { ArticleDetailsComponent } from './components/dynamic/Article/article-details/article-details.component';
+import { ScrollDepotComponent } from './components/dynamic/Depot/scroll-depot/scroll-depot.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -136,6 +139,9 @@ registerLocaleData(localeFr, 'fr');
     SignupComponent,
     LoginComponent,
     FormsComponent,
+    AllArticleComponent,
+    ArticleDetailsComponent,
+    ScrollDepotComponent,
   ],
 
   imports: [

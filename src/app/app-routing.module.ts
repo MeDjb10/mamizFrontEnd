@@ -34,9 +34,9 @@ const routes: Routes = [
         title: 'Depot',
         component: AllDepotsComponent,
         children: [
-          { path: '', redirectTo: 'listedepots', pathMatch: 'full' },
           { path: 'listedepots', component: ListeDepotComponent },
           { path: 'depot-details/:id', component: DepotDetailsComponent },
+          { path: '', redirectTo: 'listedepots', pathMatch: 'full' },
         ],
       },
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
