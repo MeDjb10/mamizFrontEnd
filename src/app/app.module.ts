@@ -82,6 +82,9 @@ import { FormsComponent } from './components/dynamic/info/forms/forms.component'
 import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
 import { ArticleDetailsComponent } from './components/dynamic/Article/article-details/article-details.component';
 import { ScrollDepotComponent } from './components/dynamic/Depot/scroll-depot/scroll-depot.component';
+import { ListArticleComponent } from './components/dynamic/Article/list-article/list-article.component';
+import { ArticleTabsComponent } from './components/dynamic/Article/article-tabs/article-tabs.component';
+import { ArticleService } from './serverSide/services/article.service';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -142,6 +145,8 @@ registerLocaleData(localeFr, 'fr');
     AllArticleComponent,
     ArticleDetailsComponent,
     ScrollDepotComponent,
+    ListArticleComponent,
+    ArticleTabsComponent,
   ],
 
   imports: [

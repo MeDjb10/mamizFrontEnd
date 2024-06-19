@@ -1,0 +1,13 @@
+<!-- src/app/article-list/article-list.component.html -->
+<div *ngIf="articles.length === 0">No articles found.</div>
+<div *ngFor="let article of articles" class="article-card">
+  <div class="border border-teal my-1 rounded-xl p-2 flex">
+    <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-12">
+    <div>
+        <p class="bg-teal w-fit px-2 text-white">
+            {{article.category}}
+        </p>
+        <h2 class="font-bold tracking-tighter ">{{ article.title }}</h2>
+    </div>
+  </div>
+</div>
