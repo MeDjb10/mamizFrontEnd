@@ -15,6 +15,7 @@ import { FormsComponent } from './components/dynamic/info/forms/forms.component'
 import { LoginComponent } from './components/dynamic/info/login/login.component';
 import { SignupComponent } from './components/dynamic/info/signup/signup.component';
 import { EventDetailsComponent } from './components/dynamic/Events/event-details/event-details.component';
+import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
       { path: 'acceuil', title: ' Acceuil', component: AcceuilComponent },
+      { path: 'article', title: ' Articles', component: AllArticleComponent },
       { path: 'atelier', title: ' Ateliers', component: AllAteliersComponent },
       { path: 'event', title: ' Event', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },

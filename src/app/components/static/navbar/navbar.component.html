@@ -27,8 +27,8 @@
             >
             <span class="sr-only">Open user menu</span>
               <img
-                *ngIf="user"
-                [src]="'assets/imgs/' + user.profilePic"
+                *ngIf="logedIn"
+                [src]="'assets/logos/' + user?.profilePic"
                 class="w-8 h-8 rounded-full"
               />
             </button>

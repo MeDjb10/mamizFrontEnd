@@ -1,21 +1,21 @@
-<div class="bg-lightblue w-fit p-3 m-3 rounded-xl gap-4">
-    <div class="flex gap-x-3">
-        <img src="{{profilePic}}" alt="" class="h-20 ">
-        <div>
-            <p class="font-bold text-3xl ">
+<div class="bg-lightblue w-full sm:w-auto p-3 m-3 rounded-xl gap-4">
+    <div class="flex flex-col sm:flex-row gap-x-3 items-center">
+        <img [src]="'assets/logos/' +profilePic" alt="" class="h-16 sm:h-20 rounded-full">
+        <div class="text-center sm:text-left mt-3 sm:mt-0">
+            <p class="font-bold text-xl sm:text-3xl">
                 Dr. {{nom}} {{prenom}}
             </p>
-            <div class="bg-teal text-white font-bold tracking-tight text-xl h-auto w-fit px-2 mb-2">
+            <div class="bg-teal text-white font-bold tracking-tight text-lg sm:text-xl h-auto w-fit px-2 mb-2 mx-auto sm:mx-0">
                 <p>{{specialite}}</p>
             </div>
         </div>
     </div>
-    <div class="flex justify-evenly mt-3">
+    <div class="flex flex-col sm:flex-row justify-between mt-3 text-center sm:text-left">
         <div>
-            <p> <i class="fa-solid fa-phone"></i> {{numero}}</p>
+            <p><i class="fa-solid fa-phone"></i> {{numTel}}</p>
         </div>
-        <div class="flex justify-end">
-            <p> <i class="fa-solid fa-location-dot"></i> Adresse : {{adresse}} </p>
+        <div class="mt-2 sm:mt-0">
+            <p><i class="fa-solid fa-location-dot"></i> Adresse : {{adresse}} </p>
         </div>
     </div>
 </div>

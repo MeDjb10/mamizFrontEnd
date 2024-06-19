@@ -2,8 +2,11 @@ export interface Medcin {
   id: number;
   nom: string;
   prenom: string;
-  numero: string;
+  motPasse: string;
+  email: string;
+  profilePic: string;
+  numTel: string;
   adresse: string;
   specialite: string;
-  profilePic: string;
+ 
 }

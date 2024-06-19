@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { User } from '../classes/user';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +27,7 @@ export class AuthServiceService {
           if (user && user.motPasse === password) {
             this.storeUserSession(user, remember);
             this.redirectUser(user);
+            this.authenticated = true;
           } else {
             this.showError('User not found or incorrect password');
           }
@@ -69,6 +71,7 @@ export class AuthServiceService {
     localStorage.removeItem(this.USER_ID_KEY);
     sessionStorage.removeItem(this.USER_ID_KEY);
     localStorage.removeItem(this.IS_MEDCIN_KEY);
+    sessionStorage.removeItem(this.IS_MEDCIN_KEY);
 
     Swal.fire({
       icon: 'success',
@@ -76,8 +79,8 @@ export class AuthServiceService {
       text: 'You have been logged out',
       width: '350px',
     });
-    this.router.navigate(['/home']);
 
+    this.authenticated = false;
     window.location.reload();
   }
 
@@ -94,7 +97,7 @@ export class AuthServiceService {
       !!sessionStorage.getItem(this.IS_MEDCIN_KEY)
     );
   }
-
+ 
   getCurrentUserId(): string | null {
     return (
       localStorage.getItem(this.USER_ID_KEY) ||

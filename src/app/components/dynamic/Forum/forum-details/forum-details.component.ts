@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 import { PostService } from 'src/app/serverSide/services/post.service';
 
 @Component({
@@ -8,19 +9,20 @@ import { PostService } from 'src/app/serverSide/services/post.service';
   styleUrls: ['./forum-details.component.css'],
 })
 export class ForumDetailsComponent {
-  @Input() id: number = 0; 
-  post: any; 
-  traitement:boolean=false;
+  @Input() id: number = 0;
+  post: any;
+  traitement: boolean = false;
+  isMedcin: boolean = false;
   constructor(
-  
     private postService: PostService,
+    private authService: AuthServiceService,
   ) {}
 
   ngOnInit(): void {
+    this.isMedcin = this.authService.isMedcin();
     this.postService.getById(this.id).subscribe((data) => {
       this.post = data;
-      this.traitement=this.post.traitement;
-      
+      this.traitement = this.post.traitement;
     });
   }
 
@@ -45,6 +47,4 @@ export class ForumDetailsComponent {
   get content(): string {
     return this.post?.response?.content;
   }
-
-
 }

@@ -1,15 +1,27 @@
 <div
-    class="max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4">
-    <p class="text-3xl font-bold tracking-tighter text-darkpink">
-        Avez vous des inquiétudes?
-    </p>
-    <p class="mt-3">Un groupe de médecins spécialisés répondra à vos demandes</p>
-    <div class="card flex justify-center">
-        <p-button (click)="showDialog()"
-            class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
-            label="Poser votre question" />
-        <p-dialog header="Ecrivez vos inquietudes" [(visible)]="visible" [modal]="true" [style]="{ 'width': 'auto','border-radius': '1rem' }" >
-            <app-ask-question (formSubmitted)="visible = false"></app-ask-question>
-        </p-dialog>
+  class="max-w-xs md:max-w-full p-6 text-center bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow mb-4"
+>
+  <p class="text-3xl font-bold tracking-tighter text-darkpink">
+    Avez vous des inquiétudes?
+  </p>
+  <p class="mt-3">Un groupe de médecins spécialisés répondra à vos demandes</p>
+  <div class="card flex justify-center">
+    <p-button
+      *ngIf="canCreatePost()"
+      (click)="showDialog()"
+      class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
+      label="Poser votre question"
+    />
+    <div *ngIf="!canCreatePost()">
+      <p>Please log in to create a post.</p>
     </div>
+    <p-dialog
+      header="Ecrivez vos inquietudes"
+      [(visible)]="visible"
+      [modal]="true"
+      [style]="{ width: 'auto', 'border-radius': '1rem' }"
+    >
+      <app-ask-question (formSubmitted)="visible = false"></app-ask-question>
+    </p-dialog>
+  </div>
 </div>

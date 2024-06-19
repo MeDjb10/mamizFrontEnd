@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 import { MedcinService } from 'src/app/serverSide/services/medcin.service';
 
 @Component({
@@ -8,8 +9,12 @@ import { MedcinService } from 'src/app/serverSide/services/medcin.service';
 })
 export class AskQuestionDivComponent {
   medcins: any[] = [];
+  visible: boolean = false;
 
-  constructor(private medcinService: MedcinService) {}
+  constructor(
+    private medcinService: MedcinService,
+    private authService: AuthServiceService,
+  ) {}
 
   ngOnInit(): void {
     this.medcinService.getAll().subscribe((medcins) => {
@@ -17,7 +22,9 @@ export class AskQuestionDivComponent {
     });
   }
 
-  visible: boolean = false;
+  canCreatePost(): boolean {
+    return this.authService.isAuthenticated();
+  }
 
   showDialog() {
     this.visible = true;

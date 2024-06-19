@@ -6,6 +6,7 @@ import { Response } from 'src/app/serverSide/classes/response';
 import { MedcinService } from 'src/app/serverSide/services/medcin.service';
 import { PostService } from 'src/app/serverSide/services/post.service';
 import { ResponseService } from 'src/app/serverSide/services/response.service';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 
 @Component({
   selector: 'app-forums-card',
@@ -23,8 +24,8 @@ export class ForumsCardComponent implements OnInit {
   @Input() postDate?: string;
   medcin: any;
   post: any;
-
   reponse: FormGroup;
+  isMedcin: boolean = false;
 
   constructor(
     private router: Router,
@@ -32,7 +33,8 @@ export class ForumsCardComponent implements OnInit {
     private responseService: ResponseService,
     private postService: PostService,
     private medcinService: MedcinService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthServiceService,
   ) {
     this.reponse = this.fb.group({
       reponse: ['', Validators.required],
@@ -40,16 +42,22 @@ export class ForumsCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.medcinService.getById(6).subscribe((data) => {
-      this.medcin = data;
-    });
+    this.isMedcin = this.authService.isMedcin();
+    if (this.isMedcin) {
+      const medcinId = this.authService.getCurrentUserId();
+      if (medcinId) {
+        this.medcinService.getById(Number(medcinId)).subscribe((data) => {
+          this.medcin = data;
+        });
+      }
+    }
     this.postService.getById(this.id).subscribe((data) => {
       this.post = data;
     });
   }
 
   onSubmit() {
-    if (this.reponse.valid) {
+    if (this.reponse.valid && this.isMedcin && this.medcin) {
       const newResponse: any = {
         content: this.reponse.value.reponse,
       };
@@ -59,8 +67,8 @@ export class ForumsCardComponent implements OnInit {
         .subscribe({
           next: (response) => {
             console.log('Response created', response);
-            this.response = response; 
-            this.responded = true; 
+            this.response = response;
+            this.responded = true;
           },
           error: (error) => {
             console.error('Error creating response', error);
