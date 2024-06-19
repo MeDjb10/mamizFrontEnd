@@ -4,7 +4,8 @@ export interface Depot {
   id: number;
   name: string;
   description: string;
-  adresse: string;
+  adresse: string;  
+  status?: string;  
   price: number;
   depotDate:string;
   photos: string[];

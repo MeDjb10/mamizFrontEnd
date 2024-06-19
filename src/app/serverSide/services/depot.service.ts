@@ -24,6 +24,10 @@ export class DepotService {
     return this.http.get<Depot>(`${this.baseUrl}/${id}`);
   }
 
+  getDepotsByUser(userId: number): Observable<Depot[]> {
+    return this.http.get<Depot[]>(`${this.baseUrl}/user/${userId}`);
+  }
+
   create(depot: Depot): Observable<Depot> {
     return this.http.post<Depot>(this.baseUrl, depot);
   }

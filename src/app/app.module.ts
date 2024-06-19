@@ -18,11 +18,12 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { MessageService } from 'primeng/api';
-
-
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
+import { BadgeModule } from 'primeng/badge';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,7 +85,9 @@ import { ArticleDetailsComponent } from './components/dynamic/Article/article-de
 import { ScrollDepotComponent } from './components/dynamic/Depot/scroll-depot/scroll-depot.component';
 import { ListArticleComponent } from './components/dynamic/Article/list-article/list-article.component';
 import { ArticleTabsComponent } from './components/dynamic/Article/article-tabs/article-tabs.component';
-import { ArticleService } from './serverSide/services/article.service';
+import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
+import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
+
 
 
 registerLocaleData(localeFr, 'fr');
@@ -147,6 +150,8 @@ registerLocaleData(localeFr, 'fr');
     ScrollDepotComponent,
     ListArticleComponent,
     ArticleTabsComponent,
+    YourPostsComponent,
+    YourDepotsComponent,
   ],
 
   imports: [
@@ -169,11 +174,10 @@ registerLocaleData(localeFr, 'fr');
     ToastModule,
     CommonModule,
     TooltipModule,
+    BadgeModule,
+    OverlayPanelModule,
   ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'fr' },
-    [MessageService],
-  ],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
