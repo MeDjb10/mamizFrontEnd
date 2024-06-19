@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DepotService } from 'src/app/serverSide/services/depot.service';
 import { Depot } from 'src/app/serverSide/classes/depot';
 import { UserService } from 'src/app/serverSide/services/user.service';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 
 @Component({
   selector: 'app-create-depot',
@@ -21,6 +22,7 @@ export class CreateDepotComponent {
     private messageService: MessageService,
     private depotService: DepotService,
     private userService: UserService,
+    private auth:AuthServiceService
   ) {
     this.depot = this.fb.group({
       name: ['', Validators.required],
@@ -31,9 +33,13 @@ export class CreateDepotComponent {
   }
 
   ngOnInit(): void {
-    this.userService.getById(3).subscribe((user) => {
-      this.user = user;
-    });
+    const userId = this.auth.getCurrentUserId();
+    if (userId) {
+      this.userService.getById(Number(userId)).subscribe((user) => {
+        this.user = user;
+      });
+    }
+    
   }
   onSubmit() {
     if (this.depot.valid) {

@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 import { Post } from 'src/app/serverSide/classes/post';
 import { PostService } from 'src/app/serverSide/services/post.service';
 import { UserService } from 'src/app/serverSide/services/user.service';
@@ -26,6 +27,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
     private postService: PostService,
     private userService: UserService,
     private messageService: MessageService,
+    private auth:AuthServiceService
   ) {
     this.question = this.fb.group({
       theme: ['', Validators.required],
@@ -77,9 +79,13 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.userService.getById(3).subscribe((user) => {
-      this.user = user;
-    });
+    const userId = this.auth.getCurrentUserId();
+    if (userId) {
+      this.userService.getById(Number(userId)).subscribe((user) => {
+        this.user = user;
+      });
+    }
+    
       
   }
 
