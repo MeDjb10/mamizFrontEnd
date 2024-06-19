@@ -24,7 +24,7 @@ export class NavbarComponent {
   }
 
   sidebarVisible: boolean = false;
-  
+
   constructor(
     private router: Router,
     private auth: AuthServiceService,
@@ -63,6 +63,7 @@ export class NavbarComponent {
 
   logOut() {
     this.auth.logout();
+    this.logedIn=false;
     this.router.navigate(['/home']);
   }
 

@@ -81,7 +81,6 @@ export class AuthServiceService {
     });
 
     this.authenticated = false;
-    window.location.reload();
   }
 
   isAuthenticated(): boolean {

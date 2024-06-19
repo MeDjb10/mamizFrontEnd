@@ -87,6 +87,7 @@ import { ListArticleComponent } from './components/dynamic/Article/list-article/
 import { ArticleTabsComponent } from './components/dynamic/Article/article-tabs/article-tabs.component';
 import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
 import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
+import { UserProfileComponent } from './components/dynamic/user/user-profile/user-profile.component';
 
 
 
@@ -152,6 +153,7 @@ registerLocaleData(localeFr, 'fr');
     ArticleTabsComponent,
     YourPostsComponent,
     YourDepotsComponent,
+    UserProfileComponent,
   ],
 
   imports: [
