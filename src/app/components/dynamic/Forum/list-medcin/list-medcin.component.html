@@ -30,7 +30,7 @@
     <!-- div ta3 tbib -->
 
     <ng-container *ngFor="let medcin of filteredMedcins">
-      <app-medcin-card [nom]="medcin?.nom" [prenom]="medcin?.prenom"
+      <app-medcin-card class="cursor-pointer" routerLink="/home/medcin" [nom]="medcin?.nom" [prenom]="medcin?.prenom"
         [specialite]="medcin?.specialite"></app-medcin-card>
     </ng-container>
   </div>
