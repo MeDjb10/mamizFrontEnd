@@ -1,5 +1,6 @@
+import { ReactionType } from "../enum/reaction-type";
 import { Article } from "./article";
-import { ReactionType } from "./reaction-type";
+
 import { User } from "./user";
 
 export interface Reaction {
