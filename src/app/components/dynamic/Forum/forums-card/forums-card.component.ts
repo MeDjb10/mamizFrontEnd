@@ -61,7 +61,8 @@ export class ForumsCardComponent implements OnInit {
       const newResponse: any = {
         content: this.reponse.value.reponse,
       };
-
+      console.log(this.id);
+      
       this.responseService
         .createResponse(this.id, this.medcin.id, newResponse)
         .subscribe({

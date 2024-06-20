@@ -4,71 +4,61 @@
       <form [formGroup]="depot" (ngSubmit)="onSubmit()">
         <div class="mt-3">
           <label htmlFor="qst" class="text-teal">Nom de Produit:</label>
-          <input
-            id="qst"
-            formControlName="name"
-            [ngClass]="{
+          <input id="qst" formControlName="name" [ngClass]="{
               'border-red-500':
                 depot.get('name')?.invalid && depot.get('name')?.touched,
             }"
-            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5"
-          />
+            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+          <p class="text-darkpink" *ngIf="depot.get('name')?.invalid && depot.get('name')?.touched">
+            <i class="fa-solid fa-triangle-exclamation"></i> Le nom est important.
+          </p>
         </div>
         <div class="mt-3">
           <label for="" class="text-teal">Description:</label>
-          <textarea
-            id="message"
-            rows="4"
-            formControlName="description"
-            [ngClass]="{
+          <textarea id="message" rows="4" formControlName="description" [ngClass]="{
               'border-red-500':
                 depot.get('description')?.invalid &&
                 depot.get('description')?.touched,
             }"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-teal focus:ring-lightblue focus:border-lightblue"
-            placeholder="Décrivez ce que vous vendez, veuillez fournir un maximum d'informations."
-          ></textarea>
-        </div>
+            placeholder="Décrivez ce que vous vendez, veuillez fournir un maximum d'informations."></textarea>
+            <p class="text-darkpink" *ngIf="depot.get('description')?.invalid && depot.get('description')?.touched">
+              <i class="fa-solid fa-triangle-exclamation"></i> La description est importante. Assurez-vous d'écrire tous les détails.
+            </p>
+          </div>
 
         <div class="mt-3">
           <label htmlFor="qst" class="text-teal">Prix:</label>
-          <input
-            id="qst"
-            formControlName="price"
-            type="number"
-            [ngClass]="{
+          <input id="qst" formControlName="price" type="number" [ngClass]="{
               'border-red-500':
                 depot.get('price')?.invalid && depot.get('price')?.touched,
             }"
-            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5"
-          />
-        </div>
+            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+            <p class="text-darkpink" *ngIf="depot.get('price')?.invalid && depot.get('price')?.touched">
+              <i class="fa-solid fa-triangle-exclamation"></i> Le prix est important. 
+            </p>
+          </div>
 
         <div class="mt-3">
           <label htmlFor="qst" class="text-teal">Adresse:</label>
-          <input
-            id="qst"
-            formControlName="adresse"
-            [ngClass]="{
+          <input id="qst" formControlName="adresse" [ngClass]="{
               'border-red-500':
                 depot.get('adresse')?.invalid && depot.get('adresse')?.touched,
             }"
-            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5"
-          />
-        </div>
+            class="bg-gray-50 border border-teal text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightring-lightblue block w-full p-2.5" />
+            <p class="text-darkpink" *ngIf="depot.get('price')?.invalid && depot.get('price')?.touched">
+              <i class="fa-solid fa-triangle-exclamation"></i> L'adresse est importante.Assurez-vous d'ecrire l'adresse complete.
+            </p>
+          </div>
         <div class="mt-3">
           <label for="" class="text-teal"> Ajouter Des photos</label>
-          
+          <p class="text-teal">
+            <i class="fa-solid fa-triangle-exclamation"></i> Vous devez cliquer sur 'Upload' après avoir choisi les photos.
+          </p>
           <div class="card flex justify-content-center">
             <p-toast />
-            <p-fileUpload
-              name="demo[]"
-              url="https://www.primefaces.org/cdn/api/upload.php"
-              (onUpload)="onUpload($event)"
-              [multiple]="true"
-              accept="image/*"
-              [maxFileSize]="1000000"
-            >
+            <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+              (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
               <ng-template pTemplate="content">
                 <ul *ngIf="uploadedFiles.length">
                   <li *ngFor="let file of uploadedFiles">
@@ -80,11 +70,9 @@
           </div>
         </div>
         <div class="fex flex-col items-center text-center">
-          <button
-            type="submit"
+          <button type="submit"
             class="btn hover:bg-darkpink border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-darkpink font-bold hover:shadow-lg"
-            [disabled]="!depot.valid"
-          >
+            [disabled]="!depot.valid">
             <i class="fa-solid fa-plus"></i> Publier
           </button>
         </div>
