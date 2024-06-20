@@ -18,7 +18,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { MessageService } from 'primeng/api';
-
+import { PaginatorModule } from 'primeng/paginator';
 
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
@@ -169,6 +169,7 @@ registerLocaleData(localeFr, 'fr');
     ToastModule,
     CommonModule,
     TooltipModule,
+    PaginatorModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' },

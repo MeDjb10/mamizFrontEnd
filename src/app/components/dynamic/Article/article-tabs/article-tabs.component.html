@@ -1,13 +1,15 @@
 <div class="border-b border-gray-200 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
         <li *ngFor="let category of categories" class="me-2">
-            <p class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg"
-                [class.text-blue-600]="selectedCategory === category.value"
-                [class.border-blue-600]="selectedCategory === category.value"
-                [ngStyle]="{'background-color': category.color}" (click)="selectCategory(category.value)">
+            <p class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg cursor-pointer " [ngStyle]="{ 
+                    'color': selectedCategory === category.value ? category.color : 'inherit', 
+                    'border-color': selectedCategory === category.value ? category.color : 'transparent' 
+                }" (click)="selectCategory(category.value)">
                 <i [class]="category.iconClass"></i> {{ category.name }}
             </p>
         </li>
     </ul>
 </div>
-<app-list-article [category]="selectedCategory"></app-list-article>
+<div class="lg:max-h-svh lg:min-h-svh">
+    <app-list-article [category]="selectedCategory"></app-list-article>
+</div>
