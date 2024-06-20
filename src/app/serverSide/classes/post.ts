@@ -6,6 +6,7 @@ export interface Post {
   title: string;
   postDate: string;
   theme: string;
+  status?: string;
   question: string;
   responded: boolean;
   poid: number;

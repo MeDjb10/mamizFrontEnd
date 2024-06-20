@@ -16,6 +16,8 @@ import { LoginComponent } from './components/dynamic/info/login/login.component'
 import { SignupComponent } from './components/dynamic/info/signup/signup.component';
 import { EventDetailsComponent } from './components/dynamic/Events/event-details/event-details.component';
 import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
+import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
+import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
 
 
 const routes: Routes = [
@@ -27,13 +29,13 @@ const routes: Routes = [
       { path: 'acceuil', title: ' Acceuil', component: AcceuilComponent },
       { path: 'article', title: ' Articles', component: AllArticleComponent },
       { path: 'atelier', title: ' Ateliers', component: AllAteliersComponent },
-      { path: 'event', title: ' Event', component: AllEventsComponent },
+      { path: 'event', title: ' Evenement', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },
       { path: 'atelier-details/:id', component: AtelierDetailsComponent },
       { path: 'event-details/:id', component: EventDetailsComponent },
       {
         path: 'depot',
-        title: 'Depot',
+        title: 'Depots',
         component: AllDepotsComponent,
         children: [
           { path: 'listedepots', component: ListeDepotComponent },
@@ -42,6 +44,9 @@ const routes: Routes = [
         ],
       },
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
+      { path: 'yourPosts', title: 'Vous Questions', component: YourPostsComponent },
+      { path: 'yourDepots', title: 'Vous Depots', component: YourDepotsComponent },
+
       { path: '**', redirectTo: 'acceuil' },
     ],
   },

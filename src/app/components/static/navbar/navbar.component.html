@@ -1,107 +1,210 @@
 <nav class="bg-lightpink border-gray-200 dark:bg-lightpink">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="assets/logos/logo full.png" class="h-16" alt="Mamiz Logo" />
-        </a>
-        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-           
-             <button
-              *ngIf="!logedIn"
-              class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
-              (click)="NavigateTo()"
-            >
-              LOG IN
-            </button> 
-            <div *ngIf="logedIn" class="flex items-center">
-            <button
-              class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
-              (click)="logOut()"
-            >
-              LOG OUT
-            </button>
-            <button
-              class="bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
-              type="button"
-             id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-            >
-            <span class="sr-only">Open user menu</span>
-              <img
-                *ngIf="logedIn"
-                [src]="'assets/logos/' + user?.profilePic"
-                class="w-8 h-8 rounded-full"
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+  >
+    <div class="flex items-center space-x-4">
+      <i
+        (click)="sidebarVisible = true"
+        class="pi pi-bars text-4xl h-16 mr-4 flex items-center"
+      ></i>
+      <a href="" class="flex items-center">
+        <img src="assets/logos/logo full.png" class="h-16" alt="Mamiz Logo" />
+      </a>
+      <!-- SideBar-->
+      <div class="card flex justify-content-center">
+        <p-sidebar #sidebarRef [(visible)]="sidebarVisible">
+          <ng-template pTemplate="header">
+            <div class="flex items-center gap-2 p-4">
+              <p-avatar
+                [image]="'assets/logos/' + user?.profilePic"
+                shape="circle"
+                class="w-12 h-12"
               />
-            </button>
-          </div>
-            <!-- Dropdown menu -->
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white">{{user?.nom}}</span>
-            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{user?.email}}</span>
-          </div>
-          <ul class="py-2" aria-labelledby="user-menu-button">
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-            </li>
-          </ul>
-        </div>
-        <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-        </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-            <ul
-                class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg bg-lightpink md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0   dark:border-lightpink">
-                <li>
-                    <a routerLink="/home/acceuil"
-                    routerLinkActive="active-link" 
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
-                        aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a routerLink="/home/article" 
-                      routerLinkActive="active-link" 
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Article</a>
-                </li>
-                <li>
-                    <a routerLink="/home/atelier"
-                        routerLinkActive="active-link"
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Atelier</a>
-                </li>
-                <li>
-                    <a routerLink="/home/event"
-                       routerLinkActive="active-link"
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Evenement</a>
-                </li>
-                <li>
-                    <a routerLink="/home/depot"
-                    routerLinkActive="active-link"
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Depot</a>
-                </li>
-                <li>
-                    <a routerLink="/home/medcin"
-                    routerLinkActive="active-link"
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Medecins</a>
-                </li>
-                <li>
-                    <a routerLink="/home/forum"
-                    routerLinkActive="active-link"
-                        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Forum</a>
-                </li>
+              <span class="font-bold">{{ user?.nom }}</span>
+            </div>
+          </ng-template>
+          <div class="p-4">
+            <ul class="list-none space-y-4">
+              <li>
+                <a href="#" class="block p-2 rounded hover:bg-gray-200">
+                  User Profile
+                </a>
+              </li>
+              <li>
+                <a routerLink="/home/yourPosts" class="block p-2 rounded hover:bg-gray-200">
+                  Your Posts
+                </a>
+              </li>
+              <li>
+                <a routerLink="/home/yourDepots" class="block p-2 rounded hover:bg-gray-200">
+                  Your Depots
+                </a>
+              </li>
+              <li>
+                <a href="#" class="block p-2 rounded hover:bg-gray-200">
+                  Sign Out
+                </a>
+              </li>
+              <button
+                class="bg-yellow text-bg mr-4 px-3 py-1 rounded-full shadow-xl"
+                (click)="logOut()"
+              >
+                LOG OUT
+              </button>
             </ul>
-        </div>
+          </div>
+        </p-sidebar>
+      </div>
+      <!-- SideBar-->
     </div>
-   
+
+    <div
+      class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+    >
+      <div *ngIf="!logedIn">
+        <button
+          class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
+          (click)="NavigateTo()"
+        >
+          LOG IN
+        </button>
+      </div>
+
+      <div *ngIf="logedIn" class="flex items-center">
+        <button
+          class="bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
+          type="button"
+        >
+          <img
+            *ngIf="logedIn"
+            [src]="'assets/logos/' + user?.profilePic"
+            class="w-8 h-8 rounded-full"
+          />
+        </button>
+        <div class="m-2 flex justify-content-center">
+          <i
+            class="pi pi-bell text-3xl"
+            pBadge
+            value="{{ nbNotifications }}"
+            (click)="op.toggle($event)"
+          ></i>
+        </div>
+        <div>
+          <p-overlayPanel #op>
+            <div>
+              <span class="font-medium text-900 block mb-2">Notifications</span>
+              <div *ngIf="notifications.length == 0">
+                <span class="text-gray-400"
+                  >All the notifications are readed</span
+                >
+              </div>
+              <ul class="list-none p-0 m-0">
+                <li
+                  *ngFor="let notif of notifications"
+                  class="flex items-center gap-3 p-3 border-b border-gray-200"
+                >
+                  <img
+                    [src]="'assets/logos/' + notif?.medcin?.profilePic"
+                    class="w-10 h-10 rounded-full"
+                  />
+                  <div class="flex flex-col flex-1">
+                    <span class="font-medium text-black-alpha-10">
+                      {{ notif?.content }}</span
+                    >
+                    <div class="text-sm text-gray-400">
+                      {{ notif?.medcin?.nom }}
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 text-gray-400 ml-auto text-sm"
+                  >
+                    <span>{{
+                      notif?.notificationDate | date: " hh:mm le dd MMMM YYYY "
+                    }}</span>
+                    <i class="pi pi-calendar"></i>
+                  </div>
+                </li>
+              </ul>
+              <div class="mt-4">
+                <button
+                  *ngIf="notifications.length > 0"
+                  (click)="allRead()"
+                  class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Mark all as read
+                </button>
+              </div>
+            </div>
+          </p-overlayPanel>
+        </div>
+      </div>
+      <!-- Dropdown menu -->
+    </div>
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-user"
+    >
+      <ul
+        class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg bg-lightpink md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-lightpink"
+      >
+        <li>
+          <a
+            routerLink="/home/acceuil"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/article"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Article</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/atelier"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Atelier</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/event"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Evenement</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/depot"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Depot</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/medcin"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Medecins</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/home/forum"
+            routerLinkActive="active-link"
+            class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+            >Forum</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
