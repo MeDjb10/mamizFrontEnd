@@ -1,4 +1,4 @@
-import { NgModule,LOCALE_ID } from '@angular/core';
+import { NgModule,LOCALE_ID, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { registerLocaleData } from '@angular/common';
@@ -19,7 +19,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
@@ -90,6 +90,9 @@ import { ArticleTabsComponent } from './components/dynamic/Article/article-tabs/
 import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
 import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
 import { UserProfileComponent } from './components/dynamic/user/user-profile/user-profile.component';
+import { NewEventsCardComponent } from './components/dynamic/Events/new-events-card/new-events-card.component';
+import { UserDepotsDivComponent } from './components/dynamic/user/user-depots-div/user-depots-div.component';
+import { ListDepotComponent } from './components/dynamic/user/list-depot/list-depot.component';
 
 
 
@@ -156,6 +159,9 @@ registerLocaleData(localeFr, 'fr');
     YourPostsComponent,
     YourDepotsComponent,
     UserProfileComponent,
+    NewEventsCardComponent,
+    UserDepotsDivComponent,
+    ListDepotComponent,
   ],
 
   imports: [
@@ -181,8 +187,10 @@ registerLocaleData(localeFr, 'fr');
     PaginatorModule,
     BadgeModule,
     OverlayPanelModule,
+    TabViewModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
   bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {}

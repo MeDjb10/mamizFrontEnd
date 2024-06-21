@@ -2,7 +2,7 @@
   <h2 class="text-7xl font-bold mb-4 text-center tracking-tighter" style="font-family: 'helBold';">Ateliers à Venir</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4" >
     <ng-container  *ngFor="let atelier of ateliers | slice:0:4">
-          <app-atelier-card [title]="atelier?.title" [date]="atelier?.date" [price]="atelier?.price"  (click)="navigateToDetails(atelier.id)"></app-atelier-card>
+          <app-atelier-card [title]="atelier?.title" [description]="atelier?.description" [date]="atelier?.date" [price]="atelier?.price"  (click)="navigateToDetails(atelier.id)"></app-atelier-card>
     </ng-container>
 
   </div>

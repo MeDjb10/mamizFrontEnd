@@ -11,10 +11,11 @@ export class EventsCardComponent {
   @Input() title?: string;
   @Input() desc?: string;
   @Input() date?: string;
+  @Input() price?: number;
 
 
   constructor(private router:Router){}
   navigateToDetails(id: any): void {
-    this.router.navigate(['home/event-details', id]);
+    this.router.navigate(['home/atelier-details', id]);
   }
 }

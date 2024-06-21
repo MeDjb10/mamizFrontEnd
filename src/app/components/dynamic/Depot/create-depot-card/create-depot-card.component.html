@@ -12,8 +12,8 @@
     >
       <i class="fa-solid fa-circle-plus"></i> Publier une annonce
     </button>
-    <div *ngIf="!canCreatePost()">
-      <p>Please log in to create a post.</p>
+    <div *ngIf="!canCreatePost()" class="text-sm border border-darkpink rounded-xl p-1 mt-2 tracking-tighter">
+      <p><i class="fa-solid fa-triangle-exclamation"></i> Connectez-vous pour créer une annonce.</p>
     </div>
     <p-dialog
       header="Creez Une Annonce"

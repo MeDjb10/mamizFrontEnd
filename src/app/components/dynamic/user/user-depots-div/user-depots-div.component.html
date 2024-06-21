@@ -1,0 +1,35 @@
+<div class="flex items-center flex-col border-teal border-2 rounded-xl mx-3 bg-white">
+    <p class="text-3xl text-center font-bold tracking-tighter mt-2">
+        Vos Depots
+    </p>
+    <hr class="border border-lightblue">
+
+    <!-- Button to toggle depot list visibility -->
+    <button class="text-teal mb-3" (click)="toggleDepotList()">
+        {{ showDepotList ? 'Cacher la liste ' : 'Afficher la liste' }}
+        <i class="fa-solid fa-chevron-up"  *ngIf="showDepotList"></i>
+        <i class="fa-solid fa-chevron-down" *ngIf="!showDepotList"></i>
+    </button>
+    <div class="depot-list-container flex items-center flex-col" [ngClass]="{ 'expanded': showDepotList }">
+        <div>
+            <div class="border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                    <li *ngFor="let category of categories" class="me-2">
+                        <p class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg cursor-pointer"
+                            [ngStyle]="{ 
+                            'color': selectedCategory === category.value ? category.color : 'inherit', 
+                            'border-color': selectedCategory === category.value ? category.color : 'transparent' 
+                        }" (click)="selectCategory(category.value)">
+                            <i [class]="category.iconClass"></i> {{ category.name }}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="h-96 overflow-scroll" *ngIf="showDepotList">
+            <app-list-depot [category]="selectedCategory"></app-list-depot>
+        </div>
+    </div>
+
+</div>

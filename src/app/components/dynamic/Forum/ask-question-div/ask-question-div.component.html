@@ -12,8 +12,8 @@
       class="hover:bg-lightblue border-2 rounded-xl px-3 py-1 mt-3 transition-colors duration-200 border-lightblue font-bold hover:shadow-lg"
       label="Poser votre question"
     />
-    <div *ngIf="!canCreatePost()">
-      <p>Please log in to create a post.</p>
+    <div *ngIf="!canCreatePost()" class="text-sm border border-darkpink rounded-xl p-1 mt-2 tracking-tighter">
+      <p><i class="fa-solid fa-triangle-exclamation"></i> Connectez-vous pour créer un post.</p>
     </div>
     <p-dialog
       header="Ecrivez vos inquietudes"

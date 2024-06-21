@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-atelier-card',
-  templateUrl: './atelier-card.component.html',
-  styleUrls: ['./atelier-card.component.css'],
+  selector: 'app-new-events-card',
+  templateUrl: './new-events-card.component.html',
+  styleUrls: ['./new-events-card.component.css']
 })
-export class AtelierCardComponent {
+export class NewEventsCardComponent {
   @Input() date?: Date;
   @Input() price?: number;
   @Input() title?: string;

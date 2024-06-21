@@ -1,0 +1,6 @@
+/* Styling for custom active tab */
+.tabview-custom .p-tabview-nav li.custom-active-tab a {
+    color: #fff; /* Text color */
+    background-color: #007bff; /* Background color */
+    border-color: #007bff; /* Border color */
+}

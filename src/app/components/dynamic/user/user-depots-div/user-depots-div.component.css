@@ -1,0 +1,9 @@
+.depot-list-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.depot-list-container.expanded {
+    max-height: 600px; /* Adjust this value based on your content height */
+}

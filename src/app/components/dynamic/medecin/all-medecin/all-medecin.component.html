@@ -19,6 +19,8 @@
         (specialtySelected)="onSpecialtySelected($event)"
         (searchChanged)="onSearchChanged($event)"
                 ></app-forum-filter>
+                <p class="hidden lg:block text-sm text-teal text-center italic"><i class="fa-solid fa-triangle-exclamation"></i>Survolez le docteur que vous souhaitez pour voir ses détails.</p>
+                <p class="block lg:hidden text-xs text-teal text-center italic"><i class="fa-solid fa-triangle-exclamation"></i>Tapez le docteur que vous souhaitez pour voir ses détails.</p>
                 <div class="">
                     <div class="grid grid-cols-2 gap-4 mt-4">
                         <ng-container *ngFor="let doc of filtredDoctors">

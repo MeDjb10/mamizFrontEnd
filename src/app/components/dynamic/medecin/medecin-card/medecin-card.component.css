@@ -4,15 +4,22 @@
     transition: max-height 0.3s ease-in-out;
 }
 
-.profile-card:hover {
-    max-height: 200px;
+@media (min-width: 1024px) {
+    .profile-card:hover {
+        max-height: 200px;
+    }
+
+    .profile-card:hover .additional-info {
+        display: block;
+    }
 }
 
 .additional-info {
     display: none;
 }
 
-.profile-card:hover .additional-info {
-    display: block;
+@media (min-width: 1024px) {
+    .profile-card:hover .additional-info {
+        display: block;
+    }
 }
-

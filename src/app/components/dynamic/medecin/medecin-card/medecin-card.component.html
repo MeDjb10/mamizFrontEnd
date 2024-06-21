@@ -1,6 +1,6 @@
 <button>
-    <div [pTooltip]="tooltipContent" tooltipPosition="top"
-         class=" profile-card flex items-center gap-3 bg-white border border-teal w-full sm:w-40 md:w-56 lg:w-72 p-3 rounded-xl hover:shadow-lg hover:border-2 transition-shadow duration-150">
+    <div id="profileCard"
+         class=" profile-card flex items-center gap-3 bg-white border border-teal w-full sm:w-40 md:w-56 lg:w-60 p-3 rounded-xl hover:shadow-lg hover:border-2 transition-shadow duration-150">
         <img [src]="'assets/logos/' +profilePic" alt="" class="h-7 md:h-14 justify-start rounded-full">
         <div class="text-left">
             <p class="font-bold tracking-tighter text-xs sm:text-sm md:text-base lg:text-xl line-clamp-2">
@@ -9,20 +9,11 @@
             <p class="text-teal text-xs sm:text-sm md:text-base">
                 {{specialite}}
             </p>
-            <p class="additional-info text-xs sm:text-sm md:text-base lg:text-xl line-clamp-2 hidden">
-                Additional information about the doctor...
-            </p>
+            <hr>
+            <div class="additional-info text-xs sm:text-sm md:text-base line-clamp-2 hidden">
+                <p><span class="font-bold">Adresse:</span> {{adresse}} </p>
+                <p><span class="font-bold">Numero:</span> {{numTel}}</p>
+            </div>
         </div>
     </div>
 </button>
-
-<ng-template #tooltipContent>
-    <app-medecin-details
-        [nom]="nom"
-        [prenom]="prenom"
-        [specialite]="specialite"
-        [adresse]="adresse"
-        [numTel]="numTel"
-        [profilePic]="profilePic"
-    ></app-medecin-details>
-</ng-template>
