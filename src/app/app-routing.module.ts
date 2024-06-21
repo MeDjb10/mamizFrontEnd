@@ -18,6 +18,7 @@ import { EventDetailsComponent } from './components/dynamic/Events/event-details
 import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
 import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
 import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
+import { UserProfileComponent } from './components/dynamic/user/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
         ],
       },
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
+      { path: 'userProfile', title: ' Votre compte', component: UserProfileComponent },
       { path: 'yourPosts', title: 'Vous Questions', component: YourPostsComponent },
       { path: 'yourDepots', title: 'Vous Depots', component: YourDepotsComponent },
 

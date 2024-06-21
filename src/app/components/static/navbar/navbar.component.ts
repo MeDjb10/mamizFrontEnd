@@ -63,7 +63,7 @@ export class NavbarComponent {
 
   logOut() {
     this.auth.logout();
-    this.logedIn=false;
+    this.logedIn = this.auth.isAuthenticated();
     this.router.navigate(['/home']);
   }
 

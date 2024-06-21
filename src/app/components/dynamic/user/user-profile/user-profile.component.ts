@@ -6,21 +6,21 @@ import { UserService } from 'src/app/serverSide/services/user.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'],
 })
-export class UserProfileComponent implements OnInit{
+export class UserProfileComponent implements OnInit {
   visible: boolean = false;
   user: any;
   private readonly USER_ID_KEY = 'user_id';
   logedIn = this.auth.isAuthenticated();
-  
+
   constructor(
     private router: Router,
     private auth: AuthServiceService,
     private userService: UserService,
   ) {}
   ngOnInit(): void {
-  this.visible=false;
+    this.visible = false;
   }
 
   showDialog() {
@@ -29,8 +29,7 @@ export class UserProfileComponent implements OnInit{
 
   logOut() {
     this.auth.logout();
-    this.logedIn=false;
+    this.logedIn = this.auth.isAuthenticated();
     this.router.navigate(['/home']);
   }
-  
 }
