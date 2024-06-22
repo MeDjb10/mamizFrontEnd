@@ -7,3 +7,16 @@
 .depot-list-container.expanded {
     max-height: 600px; /* Adjust this value based on your content height */
 }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4e8b95;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #3aa6b9;
+}

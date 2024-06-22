@@ -1,7 +1,7 @@
-<div class="grid grid-cols-1 gap-4">
-    <div *ngIf="filteredDepots.length==0" class="tracking-tighter text-xl">Il n'y a pas d'annonce</div>
+<div class="grid grid-cols-1 gap-4 w-full">
+    <div *ngIf="filteredDepots.length==0" class="tracking-tighter text-xl">Il n'y a pas d'annonce rejectée</div>
     <div *ngFor="let depot of filteredDepots"
-        class="bg-white rounded-lg shadow-md p-4 flex justify-between items-center w-96">
+        class="bg-white rounded-lg shadow-md p-4 flex justify-between items-center ">
         <div class="tracking-tighter">
             <h2 class="text-xl font-semibold">{{ depot.name }}</h2>
             <p class="text-gray-600 text-sm line-clamp-1">{{ depot.description }}</p>
@@ -13,7 +13,7 @@
         </div>
         <div class="flex flex-col justify-between items-center">
             <button (click)="deleteDepot(depot?.id)"
-                class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600">
+                class="border border-red-600 text-red-600 font-bold hover:text-white rounded-lg px-4 py-2 hover:bg-red-600">
                 Delete
             </button>
         </div>

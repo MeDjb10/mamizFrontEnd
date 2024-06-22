@@ -1,31 +1,21 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Your Posts</h1>
-  <div class="grid grid-cols-1 gap-4">
-    <div
-      *ngFor="let post of posts"
-      class="bg-white rounded-lg shadow-md p-4 flex justify-between items-center"
-    >
-      <div>
+<div class="grid grid-cols-1 gap-4 w-full">
+    <div *ngIf="filtredPosts.length==0" class="tracking-tighter text-xl mt-1">Il n'y a pas de question rejecté</div>
+    <div *ngFor="let post of filtredPosts"
+      class="bg-white rounded-lg shadow-md p-4 justify-between items-center grid grid-cols-4">
+      <div class="col-span-3 tracking-tighter">
         <h2 class="text-xl font-semibold">{{ post?.title }}</h2>
-        <p class="text-gray-600">{{ post?.question }}</p>
-        <p class="text-gray-400 text-sm">
+        <p class="text-gray-600 break-words hyphens-auto text-sm">{{ post?.question }}</p>
+        <p class="text-gray-400 text-xs italic">
           Posted on {{ post?.postDate | date: "medium" }}
         </p>
       </div>
 
-      <div class="flex justify-between items-center">
-        <div class="m-3">
-          <p class="text-gray-600">Status</p>
-          <p class="text-gray-400 text-sm">{{ post?.status }}</p>
-        </div>
-
-        <button
-          (click)="deletePost(post?.id)"
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600"
-        >
+      <div class="flex justify-between items-center col-span-1">
+        <button (click)="deletePost(post?.id)"
+          class="border border-red-600 text-red-600 font-bold hover:text-white rounded-lg px-4 py-2 hover:bg-red-600">
           Delete
         </button>
       </div>
     </div>
-  </div>
+  
 </div>

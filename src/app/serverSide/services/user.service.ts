@@ -38,4 +38,8 @@ export class UserService {
       {},
     );
   }
+
+  updateUser(user: User): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${user.id}`, user);
+  }
 }
