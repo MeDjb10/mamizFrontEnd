@@ -108,6 +108,11 @@ registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
+    FAQComponent,
+    PolitiqueConfiComponent,
+    GeneralInfoComponent,
+    DepotTermsComponent,
+    AboutUsComponent,
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -170,6 +175,7 @@ registerLocaleData(localeFr, 'fr');
     ListDepotComponent,
     UserPostsDivComponent,
     EditInfoComponent,
+    SidebarComponent,
   ],
 
   imports: [
