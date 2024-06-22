@@ -18,6 +18,11 @@ import { EventDetailsComponent } from './components/dynamic/Events/event-details
 import { AllArticleComponent } from './components/dynamic/Article/all-article/all-article.component';
 import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
 import { UserProfileComponent } from './components/dynamic/user/user-profile/user-profile.component';
+import { GeneralInfoComponent } from './components/static/general-info/general-info.component';
+import { AboutUsComponent } from './components/static/about-us/about-us.component';
+import { DepotTermsComponent } from './components/static/depot-terms/depot-terms.component';
+import { FAQComponent } from './components/static/faq/faq.component';
+import { PolitiqueConfiComponent } from './components/static/politique-confi/politique-confi.component';
 
 
 const routes: Routes = [
@@ -46,6 +51,13 @@ const routes: Routes = [
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
       { path: 'userProfile', title: ' Votre compte', component: UserProfileComponent },
       { path: 'yourPosts', title: 'Vous Questions', component: YourPostsComponent },
+      { path: 'info', component: GeneralInfoComponent, children:[
+        { path: 'aboutUs', component: AboutUsComponent },
+        { path: 'DepotTerms', component: DepotTermsComponent },
+        { path: 'FAQ', component: FAQComponent },
+        { path: 'PolitiqueDeConfidentialité', component: PolitiqueConfiComponent },
+        { path: '', redirectTo: 'aboutUs', pathMatch: 'full' },
+      ] },
 
       { path: '**', redirectTo: 'acceuil' },
     ],

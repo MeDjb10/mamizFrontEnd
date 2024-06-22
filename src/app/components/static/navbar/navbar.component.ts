@@ -17,7 +17,7 @@ export class NavbarComponent {
   logedIn = this.auth.isAuthenticated();
   nbNotifications: number = 0;
   notifications: any[] = [];
-  sidebarVisible1:boolean =false;
+  sidebarVisible1: boolean = false;
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   closeCallback(e: Event): void {
@@ -31,7 +31,7 @@ export class NavbarComponent {
     private auth: AuthServiceService,
     private userService: UserService,
     private notificationService: NotificationService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     const userId = this.auth.getCurrentUserId();
@@ -40,6 +40,7 @@ export class NavbarComponent {
         this.user = user;
       });
     }
+
 
     this.notificationService
       .getUnreadNotifications(Number(userId))

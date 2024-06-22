@@ -1,0 +1,5 @@
+
+
+.bg-pink a {
+    color: white; /* Ensures text is readable on pink background */
+}

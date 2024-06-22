@@ -1,0 +1,22 @@
+<div class="grid grid-cols-9 md:grid-cols-12 p-5 md:p-10 ">
+    <div class="col-span-9 md:col-span-3 ">
+        <ul class="font-bold text-sm md:text-lg tracking-tight">
+            <li routerLinkActive="bg-pink " class="rounded-lg p-2 transition-colors duration-100">
+                <a routerLink="aboutUs" class="text-gray-600 hover:text-teal transition-colors duration-100">À propos de nous</a>
+            </li>
+            <li routerLinkActive="bg-pink " class="rounded-lg p-2 transition-colors duration-100">
+                <a routerLink="DepotTerms" class="text-gray-600 hover:text-teal transition-colors duration-100">Condition générales de Dépôt Maman</a>
+            </li>
+            <li routerLinkActive="bg-pink " class="rounded-lg p-2 transition-colors duration-100">
+                <a routerLink="FAQ" class="text-gray-600 hover:text-teal transition-colors duration-100">Questions Fréquemment Posées (FAQ)</a>
+            </li>
+            <li routerLinkActive="bg-pink " class="rounded-lg p-2 transition-colors duration-100">
+                <a routerLink="PolitiqueDeConfidentialité" class="text-gray-600 hover:text-teal transition-colors duration-100">Politique de confidentialité</a>
+            </li>
+        </ul>
+        <hr class="block md:hidden">
+    </div>
+    <div class="col-span-9 ">
+        <router-outlet></router-outlet>
+    </div>
+</div>

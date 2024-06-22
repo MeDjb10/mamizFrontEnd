@@ -94,6 +94,11 @@ import { UserDepotsDivComponent } from './components/dynamic/user/user-depots-di
 import { ListDepotComponent } from './components/dynamic/user/list-depot/list-depot.component';
 import { UserPostsDivComponent } from './components/dynamic/user/user-posts-div/user-posts-div.component';
 import { EditInfoComponent } from './components/dynamic/user/edit-info/edit-info.component';
+import { AboutUsComponent } from './components/static/about-us/about-us.component';
+import { DepotTermsComponent } from './components/static/depot-terms/depot-terms.component';
+import { GeneralInfoComponent } from './components/static/general-info/general-info.component';
+import { FAQComponent } from './components/static/faq/faq.component';
+import { PolitiqueConfiComponent } from './components/static/politique-confi/politique-confi.component';
 
 
 
@@ -164,6 +169,11 @@ registerLocaleData(localeFr, 'fr');
     ListDepotComponent,
     UserPostsDivComponent,
     EditInfoComponent,
+    AboutUsComponent,
+    DepotTermsComponent,
+    GeneralInfoComponent,
+    FAQComponent,
+    PolitiqueConfiComponent,
   ],
 
   imports: [
