@@ -25,7 +25,9 @@ import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-
+import { RippleModule } from 'primeng/ripple';
+import { StyleClassModule } from 'primeng/styleclass';
+import { PanelMenuModule } from 'primeng/panelmenu';
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -93,6 +95,7 @@ import { UserProfileComponent } from './components/dynamic/user/user-profile/use
 import { NewEventsCardComponent } from './components/dynamic/Events/new-events-card/new-events-card.component';
 import { UserDepotsDivComponent } from './components/dynamic/user/user-depots-div/user-depots-div.component';
 import { ListDepotComponent } from './components/dynamic/user/list-depot/list-depot.component';
+import { SidebarComponent } from './components/dynamic/dashboard/sidebar/sidebar.component';
 
 
 
@@ -162,6 +165,7 @@ registerLocaleData(localeFr, 'fr');
     NewEventsCardComponent,
     UserDepotsDivComponent,
     ListDepotComponent,
+    SidebarComponent,
   ],
 
   imports: [
@@ -187,10 +191,13 @@ registerLocaleData(localeFr, 'fr');
     PaginatorModule,
     BadgeModule,
     OverlayPanelModule,
-    TabViewModule
+    TabViewModule,
+    RippleModule,
+    StyleClassModule,
+    PanelMenuModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

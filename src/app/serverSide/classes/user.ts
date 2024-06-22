@@ -6,6 +6,7 @@ export interface User {
   nom: string;
   prenom: string;
   motPasse: string;
+  birthDate: string;
   email: string;
   profilePic: string;
   numTel: string;
