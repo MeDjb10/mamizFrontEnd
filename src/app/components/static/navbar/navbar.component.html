@@ -1,9 +1,10 @@
 <nav class="bg-lightpink border-gray-200 dark:bg-lightpink">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <div class="flex items-center space-x-4">
+      <p-button type="button" class="mr-2 block lg:hidden " (click)="sidebarVisible1 = true" icon="pi pi-bars"></p-button>
       <a href="" class="flex items-center">
         <img src="assets/logos/logo full.png" class="h-16 hidden lg:block" alt="Mamiz Logo" />
-        <img src="assets/logos/logo mini.png" class="h-10 block lg:hidden" alt="Mamiz Logo" />
+        <img src="assets/logos/logo full.png" class="h-10 block lg:hidden" alt="Mamiz Logo" />
       </a>
     </div>
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -13,11 +14,12 @@
           Se Connecter
         </button>
       </div>
-      <div *ngIf="logedIn" class="flex items-center">
+      <div *ngIf="logedIn" class="flex items-center ">
         <button
-          class="focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
+          class="hidden md:block focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
           type="button" routerLink="/home/userProfile">
           <img *ngIf="logedIn" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
+          
         </button>
         <div class="m-2 flex justify-content-center">
           <i class="pi pi-bell text-3xl" pBadge value="{{ nbNotifications }}" (click)="op.toggle($event)"></i>
@@ -50,7 +52,7 @@
               <div class="mt-4">
                 <button *ngIf="notifications.length > 0" (click)="allRead()"
                   class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                  Mark all as read
+                  Marquer tout comme lu
                 </button>
               </div>
             </div>
@@ -58,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+    <div class="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1" id="navbar-user">
       <ul
         class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg bg-lightpink md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-lightpink">
         <li>
@@ -94,3 +96,56 @@
     </div>
   </div>
 </nav>
+<p-sidebar [(visible)]="sidebarVisible1" position="left">
+  <div>
+    <div *ngIf="!logedIn">
+      <button class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
+        (click)="NavigateTo()">
+        Se Connecter
+      </button>
+    </div>
+    <div *ngIf="logedIn" class="flex items-center">
+      <button
+        class="focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
+        type="button" routerLink="/home/userProfile">
+        <img *ngIf="logedIn" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
+      </button>
+      <p class="font-bold tracking-tighter text-2xl">
+        Votre Profile
+      </p>
+    </div>
+  </div>
+  <hr>
+  <ul
+    class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-lightpink rounded-lg  lg:space-x-8 md:mt-0 md:border-0">
+    <li>
+      <a routerLink="/home/acceuil" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0"
+        aria-current="page">Home</a>
+    </li>
+    <li>
+      <a routerLink="/home/article" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Article</a>
+    </li>
+    <li>
+      <a routerLink="/home/atelier" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Atelier</a>
+    </li>
+    <li>
+      <a routerLink="/home/event" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Evenement</a>
+    </li>
+    <li>
+      <a routerLink="/home/depot" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Depot</a>
+    </li>
+    <li>
+      <a routerLink="/home/medcin" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Medecins</a>
+    </li>
+    <li>
+      <a routerLink="/home/forum" routerLinkActive="active-link"
+        class="block py-2 px-3 text-teal rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lightblue md:p-0">Forum</a>
+    </li>
+  </ul>
+</p-sidebar>

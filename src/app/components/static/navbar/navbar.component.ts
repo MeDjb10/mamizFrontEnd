@@ -17,6 +17,7 @@ export class NavbarComponent {
   logedIn = this.auth.isAuthenticated();
   nbNotifications: number = 0;
   notifications: any[] = [];
+  sidebarVisible1:boolean =false;
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   closeCallback(e: Event): void {
