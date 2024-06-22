@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../classes/user';
+import { Atelier } from '../classes/atelier';
 
 
 @Injectable({
@@ -19,9 +20,13 @@ export class UserService {
   getById(id: number): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
-  
+
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/email/${email}`);
+  }
+
+  getAteliersByUser(userId: number): Observable<Atelier[]> {
+    return this.http.get<Atelier[]>(`${this.baseUrl}/${userId}/ateliers`);
   }
 
   create(user: User): Observable<User> {

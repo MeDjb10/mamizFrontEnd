@@ -25,7 +25,9 @@ import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-
+import { RippleModule } from 'primeng/ripple';
+import { StyleClassModule } from 'primeng/styleclass';
+import { PanelMenuModule } from 'primeng/panelmenu';
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,9 +67,7 @@ import { ForumFilterComponent } from './components/dynamic/Forum/forum-filter/fo
 import { QstCardComponent } from './components/dynamic/home/forumFolder/qst-card/qst-card.component';
 import { ForumAricleCardComponent } from './components/dynamic/Forum/forum-aricle-card/forum-aricle-card.component';
 import { MedcinCardComponent } from './components/dynamic/Forum/medcin-card/medcin-card.component';
-
 import { AllDepotsComponent } from './components/dynamic/Depot/all-depots/all-depots.component';
-
 import { CreateDepotComponent } from './components/dynamic/Depot/create-depot/create-depot.component';
 import { DepotDetailsComponent } from './components/dynamic/Depot/depot-details/depot-details.component';
 import { CreateDepotCardComponent } from './components/dynamic/Depot/create-depot-card/create-depot-card.component';
@@ -99,6 +99,7 @@ import { DepotTermsComponent } from './components/static/depot-terms/depot-terms
 import { GeneralInfoComponent } from './components/static/general-info/general-info.component';
 import { FAQComponent } from './components/static/faq/faq.component';
 import { PolitiqueConfiComponent } from './components/static/politique-confi/politique-confi.component';
+import { SidebarComponent } from './components/dynamic/dashboard/sidebar/sidebar.component';
 
 
 
@@ -169,11 +170,6 @@ registerLocaleData(localeFr, 'fr');
     ListDepotComponent,
     UserPostsDivComponent,
     EditInfoComponent,
-    AboutUsComponent,
-    DepotTermsComponent,
-    GeneralInfoComponent,
-    FAQComponent,
-    PolitiqueConfiComponent,
   ],
 
   imports: [
@@ -199,10 +195,13 @@ registerLocaleData(localeFr, 'fr');
     PaginatorModule,
     BadgeModule,
     OverlayPanelModule,
-    TabViewModule
+    TabViewModule,
+    RippleModule,
+    StyleClassModule,
+    PanelMenuModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}
