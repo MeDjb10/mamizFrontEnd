@@ -1,42 +1,79 @@
-<div class="p-10 grid grid-cols-12 gap-3 bg-lightpink">
-    <div class="border-2 border-lightblue bg-white p-4 rounded-xl col-span-3 space-y-3 h-fit">
-        <img src="assets\useful stuff\user.png" alt="" class="h-32">
-        <p class="text-5xl font-bold tracking-tighter">
-            Mouhamed Taleb Mouelhi
-        </p>
-        <hr>
-        <p class="tracking-tight font-semibold">
-            numero Tel: 12345678
-        </p>
-        <p class="tracking-tight font-semibold">
-            birthday: 10/9/2003
-        </p>
-        <div
-            class="border-2 w-full text-center px-2 py-1 rounded-xl font-semibold text-xl transition-colors duration-200 border-lightblue bg-lightblue hover:shadow-lg">
-            Edit info <i class="fa-solid fa-pen fa-xs"></i>
-        </div>
-        <div (click)="showDialog()"
-            class="bg-white border border-darkpink w-full text-darkpink text-center px-2 rounded-xl font-semibold text-xl transition-colors duration-200 hover:text-white hover:bg-darkpink hover:shadow-lg ">
-            Deconnexion
-        </div>
-        <p-dialog header="Deconexion" [(visible)]="visible" [modal]="true"
-            [style]="{ width: 'auto', 'border-radius': '1rem' }">
+<div class="p-3 md:p-10 gap-3 bg-lightpink">
+    <div class="border-2 border-lightblue bg-white p-4 rounded-xl  space-y-3 h-fit">
+        <div class="flex justify-between gap-2">
+            <img src="assets\useful stuff\user.png" alt="" class="h-14 md:h-24 lg:h-32">
             <div>
-                <p class="text-lg font-bold">Voulez-vous vraiment vous déconnecter ?</p>
-                <div class="flex justify-evenly mt-5">
-                    <p (click)="logOut()"
-                        class="border-2 border-darkpink px-3 py-1 rounded-xl hover:bg-darkpink hover:text-white font-bold transition-colors duration-200">
-                        Oui</p>
-                    <p (click)="showDialog()"
-                        class="border-2 border-teal px-3 py-1 rounded-xl hover:bg-teal hover:text-white font-bold transition-colors duration-200">
-                        Non</p>
+                <p class="text-xl md:text-4xl lg:text-7xl font-bold tracking-tighter">
+                    {{ user.nom }} {{user.prenom}} 
+                </p>
+                <hr>
+                <div class="flex gap-6">
+                    <div>
+                        <p class="text-xs md:text-sm lg:text-base tracking-tight font-semibold">
+                            numero Tel: <span class="font-light">{{user.numTel}}</span>
+                        </p>
+                        <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
+                            birthday: <span class="font-light">{{user.birth_date | date: "dd/MM/YYYY "}} </span>
+                        </p>
+                    </div>
+                    <div *ngIf="isMedcin">
+                        <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
+                            Adresse: <span class="font-light">{{user.adresse}} </span>
+                        </p>
+                        <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
+                            Specialité: <span class="font-light">{{user.specialite}} </span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </p-dialog>
+
+            <div class=" flex-col justify-evenly hidden md:flex ">
+                <div (click)="toggleEditMode()"
+                    class="border-2 w-full text-center px-2 py-1 rounded-xl font-semibold text-xl transition-colors duration-200 border-lightblue bg-lightblue hover:shadow-lg">
+                    Edit info <i class="fa-solid fa-pen fa-xs"></i>
+                </div>
+                <div (click)="showDialog()"
+                    class="bg-white border border-darkpink w-full text-darkpink text-center px-2 rounded-xl font-semibold text-xl transition-colors duration-200 hover:text-white hover:bg-darkpink hover:shadow-lg ">
+                    Deconnexion
+                </div>
+            </div>
+
+        </div>
+        <div class="justify-evenly flex md:hidden gap-2">
+            <div (click)="toggleEditMode()"
+                class="border-2 w-full text-center px-2 py-1 rounded-xl font-semibold text-xs  md:text-xl transition-colors duration-200 border-lightblue bg-lightblue hover:shadow-lg">
+                Edit info <i class="fa-solid fa-pen fa-xs"></i>
+            </div>
+            <div (click)="showDialog()"
+                class="bg-white border border-darkpink w-full text-darkpink text-center px-2 py-1 rounded-xl font-semibold  text-xs md:text-xl transition-colors duration-200 hover:text-white hover:bg-darkpink hover:shadow-lg items-center justify-center">
+                Deconnexion
+            </div>
+        </div>
+        <div *ngIf="isEditMode" class="mt-4 space-y-2">
+            <hr>
+            <app-edit-info></app-edit-info>
+        </div>
     </div>
-    <div class="col-span-9 bg-red-600 grid grid-cols-8">
-        <div class="bg-white col-span-4 ">
+    <p-dialog header="Deconexion" [(visible)]="visible" [modal]="true"
+        [style]="{ width: 'auto', 'border-radius': '1rem' }">
+        <div>
+            <p class="text-lg font-bold">Voulez-vous vraiment vous déconnecter ?</p>
+            <div class="flex justify-evenly mt-5">
+                <p (click)="logOut()"
+                    class="border-2 border-darkpink px-3 py-1 rounded-xl hover:bg-darkpink hover:text-white font-bold transition-colors duration-200">
+                    Oui</p>
+                <p (click)="showDialog()"
+                    class="border-2 border-teal px-3 py-1 rounded-xl hover:bg-teal hover:text-white font-bold transition-colors duration-200">
+                    Non</p>
+            </div>
+        </div>
+    </p-dialog>
+    <div class=" grid md:grid-cols-8 mt-5 ">
+        <div class=" md:col-span-4 mb-4">
             <app-user-depots-div></app-user-depots-div>
+        </div>
+        <div class=" md:col-span-4 ">
+            <app-user-posts-div></app-user-posts-div>
         </div>
     </div>
 </div>

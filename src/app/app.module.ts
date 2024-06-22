@@ -88,11 +88,12 @@ import { ScrollDepotComponent } from './components/dynamic/Depot/scroll-depot/sc
 import { ListArticleComponent } from './components/dynamic/Article/list-article/list-article.component';
 import { ArticleTabsComponent } from './components/dynamic/Article/article-tabs/article-tabs.component';
 import { YourPostsComponent } from './components/dynamic/user/your-posts/your-posts.component';
-import { YourDepotsComponent } from './components/dynamic/user/your-depots/your-depots.component';
 import { UserProfileComponent } from './components/dynamic/user/user-profile/user-profile.component';
 import { NewEventsCardComponent } from './components/dynamic/Events/new-events-card/new-events-card.component';
 import { UserDepotsDivComponent } from './components/dynamic/user/user-depots-div/user-depots-div.component';
 import { ListDepotComponent } from './components/dynamic/user/list-depot/list-depot.component';
+import { UserPostsDivComponent } from './components/dynamic/user/user-posts-div/user-posts-div.component';
+import { EditInfoComponent } from './components/dynamic/user/edit-info/edit-info.component';
 
 
 
@@ -157,11 +158,12 @@ registerLocaleData(localeFr, 'fr');
     ListArticleComponent,
     ArticleTabsComponent,
     YourPostsComponent,
-    YourDepotsComponent,
     UserProfileComponent,
     NewEventsCardComponent,
     UserDepotsDivComponent,
     ListDepotComponent,
+    UserPostsDivComponent,
+    EditInfoComponent,
   ],
 
   imports: [
