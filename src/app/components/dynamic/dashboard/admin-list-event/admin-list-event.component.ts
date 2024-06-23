@@ -32,7 +32,7 @@ export class AdminListEventComponent {
 
 
   loadevents() {
-    this.eventService.loadAll().subscribe((data: any[]) => {
+    this.eventService.getAll().subscribe((data: any[]) => {
       this.events = data;
       this.filteredevents = data;
     });

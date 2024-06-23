@@ -14,12 +14,12 @@ export class AllEventsComponent {
   constructor(private eventService: EventService,private router:Router) {}
 
   ngOnInit(): void {
-    this.eventService.events$.subscribe((events) => {
+    this.eventService.getAll().subscribe((events) => {
       this.events = events;
       this.filteredEvents = events;
     });
-
-    this.eventService.loadAll();
+    console.log(this.events);
+    
   }
 
   onFilterChange(filter: any) {

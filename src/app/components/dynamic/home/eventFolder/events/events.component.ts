@@ -16,11 +16,11 @@ export class EventsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventService.events$.subscribe((events) => {
+    this.eventService.getAll().subscribe((events) => {
       this.events = events;
     });
-
-    this.eventService.loadAll();
+    console.log(this.events);
+  
   }
 
   navigateToDetails(id: any): void {

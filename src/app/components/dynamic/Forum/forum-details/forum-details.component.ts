@@ -23,6 +23,8 @@ export class ForumDetailsComponent {
     this.postService.getById(this.id).subscribe((data) => {
       this.post = data;
       this.traitement = this.post.traitement;
+      console.log(this.post);
+      
     });
   }
 
