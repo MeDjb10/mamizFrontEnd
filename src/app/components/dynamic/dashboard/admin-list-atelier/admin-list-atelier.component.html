@@ -1,0 +1,77 @@
+<div>
+    <p class="font-bold text-4xl text-center tracking-tight">
+        List d'Ateliers
+    </p>
+    <div class="flex justify-center gap-3 ">
+        <div class="relative w-96 my-3 ">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" id="simple-search"
+                class="bg-gray-50 border-2 border-lightblue text-gray-900 text-sm rounded-lg focus:ring-teal focus:border-lightblue block w-full ps-10 p-2.5"
+                placeholder="cherhcer par nom ou mot clé" (input)="onSearchChange($event)" />
+
+        </div>
+        <p
+            class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200">
+            <i class="fa-solid fa-plus"></i> Créer
+        </p>
+    </div>
+    <hr>
+    <div class="h-svh overflow-scroll ">
+        <div *ngIf="filteredAteliers.length === 0"
+            class="align-middle items-center flex justify-center font-bold text-xl">Pas d'ateliers trouvé.</div>
+        <div *ngFor="let article of filteredAteliers"
+            class="article-card flex justify-between items-center rounded-xl shadow-lg p-2">
+            <div class="my-1 bg-white rounded-xl flex gap-4 items-end">
+                <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-14 md:max-h-28">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="mt-auto">
+                        <h2 class="font-extrabold tracking-tight line-clamp-2">{{ article.title }}</h2>
+                        <p>
+                            {{ article.description }}
+                        </p>
+                        <p class="text-sm">
+                            prix: {{article.price}} dt <br>
+                            maxPlaces: {{article.maxPlaces}} <br>
+                        </p>
+                        <p class=" text-xs md:text-sm text-gray-400 tracking-tighter italic">
+                            {{article.place}} , {{article.date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p-dialog header="List Des Abonnes au atelier" [(visible)]="visible" [modal]="true"
+                [style]="{ width: 'auto', 'border-radius': '1rem' }">
+                <div *ngFor="let user of users" class="flex gap-3 rounded shadow-md mb-3">
+                    <img src="assets\useful stuff\user.png" alt="" class="h-7 md:h-14 justify-start rounded-full">
+                    <div class="text-left">
+                        <p class="font-bold tracking-tighter text-xs sm:text-sm md:text-base ">
+                            {{user.nom}} {{user.prenom}}
+                        </p>
+                        <div>
+                            <p><span class="font-bold">Email:</span> {{user.email}} </p>
+                            <p><span class="font-bold">Numero:</span> {{user.numTel}}</p>
+                        </div>
+                    </div>
+                </div>
+            </p-dialog>
+            <div>
+                <div class="flex gap-3">
+                    <p class="bg-blue-500 hover:bg-blue-600 w-fit p-2 rounded-lg text-white font-semibold">
+                        <i class="fa-solid fa-pen"></i> Modifier
+                    </p>
+                    <p (click)="delete(article.id)"
+                        class="bg-red-500 hover:bg-red-600 w-fit p-2 rounded-lg text-white font-semibold">
+                        <i class="fa-solid fa-trash-can"></i> Supprimer
+                    </p>
+                </div>
+                <p (click)="showDialog(article.id)"
+                    class=" bg-green-400 hover:bg-green-500 px-2 rounded-xl mt-2 text-white font-medium">
+                    list de Personnes abonnés <i class="fa-solid fa-user-check"></i>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

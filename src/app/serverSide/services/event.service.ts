@@ -15,13 +15,12 @@ export class EventService {
   public events$: Observable<Event[]> = this.eventsSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.loadAll();
+    
   }
-
-  loadAll(): void {
-    this.http
-      .get<Event[]>(this.baseUrl)
-      .subscribe((events) => this.eventsSubject.next(events));
+  loadAll(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl).pipe(
+      tap(events => this.eventsSubject.next(events))
+    );
   }
 
   getById(id: number): Observable<Event> {

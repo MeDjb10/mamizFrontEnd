@@ -23,6 +23,16 @@ import { AboutUsComponent } from './components/static/about-us/about-us.componen
 import { DepotTermsComponent } from './components/static/depot-terms/depot-terms.component';
 import { FAQComponent } from './components/static/faq/faq.component';
 import { PolitiqueConfiComponent } from './components/static/politique-confi/politique-confi.component';
+import { DashboardComponent } from './components/dynamic/dashboard/dashboard/dashboard.component';
+import { AdminListArticleComponent } from './components/dynamic/dashboard/admin-list-article/admin-list-article.component';
+import { AdminFormArticleComponent } from './components/dynamic/dashboard/admin-form-article/admin-form-article.component';
+import { AdminListDepotsComponent } from './components/dynamic/dashboard/admin-list-depots/admin-list-depots.component';
+import { AdminListEventComponent } from './components/dynamic/dashboard/admin-list-event/admin-list-event.component';
+import { AdminFormEventComponent } from './components/dynamic/dashboard/admin-form-event/admin-form-event.component';
+import { AdminListAtelierComponent } from './components/dynamic/dashboard/admin-list-atelier/admin-list-atelier.component';
+import { AdminFormAtelierComponent } from './components/dynamic/dashboard/admin-form-atelier/admin-form-atelier.component';
+import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
+import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
 
 
 const routes: Routes = [
@@ -51,13 +61,15 @@ const routes: Routes = [
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
       { path: 'userProfile', title: ' Votre compte', component: UserProfileComponent },
       { path: 'yourPosts', title: 'Vous Questions', component: YourPostsComponent },
-      { path: 'info', component: GeneralInfoComponent, children:[
-        { path: 'aboutUs', component: AboutUsComponent },
-        { path: 'DepotTerms', component: DepotTermsComponent },
-        { path: 'FAQ', component: FAQComponent },
-        { path: 'PolitiqueDeConfidentialité', component: PolitiqueConfiComponent },
-        { path: '', redirectTo: 'aboutUs', pathMatch: 'full' },
-      ] },
+      {
+        path: 'info', component: GeneralInfoComponent, children: [
+          { path: 'aboutUs', component: AboutUsComponent },
+          { path: 'DepotTerms', component: DepotTermsComponent },
+          { path: 'FAQ', component: FAQComponent },
+          { path: 'PolitiqueDeConfidentialité', component: PolitiqueConfiComponent },
+          { path: '', redirectTo: 'aboutUs', pathMatch: 'full' },
+        ]
+      },
 
       { path: '**', redirectTo: 'acceuil' },
     ],
@@ -70,6 +82,22 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent },
     ],
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'listArticle', component: AdminListArticleComponent },
+      { path: 'formArticle', component: AdminFormArticleComponent },
+      { path: 'listAtelier', component: AdminListAtelierComponent },
+      { path: 'formAtelier', component: AdminFormAtelierComponent },
+      { path: 'listEvents', component: AdminListEventComponent },
+      { path: 'formEvent', component: AdminFormEventComponent },
+      { path: 'listUsers', component: AdminListUsersComponent },
+      { path: 'listDepots', component: AdminListDepotsComponent },
+      { path: 'listPosts', component: AdminListPostsComponent },
+      { path: '', redirectTo: 'listArticle', pathMatch: 'full' },
+    ],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];
@@ -78,4 +106,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

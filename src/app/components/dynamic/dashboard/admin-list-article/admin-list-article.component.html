@@ -1,0 +1,58 @@
+<div>
+    <p class="font-bold text-3xl text-center tracking-tight">
+        List d'article
+    </p>
+    <div>
+        <form class="max-w-md mx-auto">
+            <div class="flex relative">
+              <label for="location-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your
+                Email</label>
+              <button id="dropdownHoverButton" (click)="toggleDropdown()"
+                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-cyan-100 focus:ring-2 focus:outline-none focus:ring-lightblue"
+                type="button">
+                Spec. <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div *ngIf="dropdownVisible" id="dropdownHover"
+                class="z-20 absolute bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 mt-12 h-60 ">
+                <ul class="py-2 text-sm text-gray-700">
+                  <li *ngFor="let spec of Themes">
+                    <button type="button" (click)="onSpecialtySelected(spec.name)"
+                      class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                      <div class="inline-flex items-center">
+                        {{spec.name}}
+                      </div>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="relative w-full">
+                <input type="search" id="location-search" (input)="onSearchChange($event)"
+                  class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-lightblue focus:border-lightblue"
+                  placeholder="Ecrivez un mot clé" required />
+                <button type="submit"
+                  class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-pink rounded-e-lg border border-gray-300 hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-lightblue">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+    </div>
+    <div>
+        <div *ngIf="filteredArticles.length === 0"
+            class="align-middle items-center flex justify-center font-bold text-xl">Pas d'articles trouvés.</div>
+        <div *ngFor="let article of filteredArticles" class="article-card">
+            <div class="my-1 bg-white rounded-xl p-2 flex gap-4 items-end">
+                <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-14 md:max-h-28">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="mt-auto">
+                        <p class="bg-teal w-fit text-xs md:text-base px-2 text-white">
+                            {{ article.category }}
+                        </p>
+                        <h2 class="font-extrabold tracking-tight md:text-2xl line-clamp-2">{{ article.title }}</h2>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

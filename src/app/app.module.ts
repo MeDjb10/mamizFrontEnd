@@ -100,6 +100,16 @@ import { GeneralInfoComponent } from './components/static/general-info/general-i
 import { FAQComponent } from './components/static/faq/faq.component';
 import { PolitiqueConfiComponent } from './components/static/politique-confi/politique-confi.component';
 import { SidebarComponent } from './components/dynamic/dashboard/sidebar/sidebar.component';
+import { DashboardComponent } from './components/dynamic/dashboard/dashboard/dashboard.component';
+import { AdminListArticleComponent } from './components/dynamic/dashboard/admin-list-article/admin-list-article.component';
+import { AdminFormArticleComponent } from './components/dynamic/dashboard/admin-form-article/admin-form-article.component';
+import { AdminListAtelierComponent } from './components/dynamic/dashboard/admin-list-atelier/admin-list-atelier.component';
+import { AdminFormAtelierComponent } from './components/dynamic/dashboard/admin-form-atelier/admin-form-atelier.component';
+import { AdminFormEventComponent } from './components/dynamic/dashboard/admin-form-event/admin-form-event.component';
+import { AdminListEventComponent } from './components/dynamic/dashboard/admin-list-event/admin-list-event.component';
+import { AdminListDepotsComponent } from './components/dynamic/dashboard/admin-list-depots/admin-list-depots.component';
+import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
+import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
 
 
 
@@ -176,6 +186,16 @@ registerLocaleData(localeFr, 'fr');
     UserPostsDivComponent,
     EditInfoComponent,
     SidebarComponent,
+    DashboardComponent,
+    AdminListArticleComponent,
+    AdminFormArticleComponent,
+    AdminListAtelierComponent,
+    AdminFormAtelierComponent,
+    AdminFormEventComponent,
+    AdminListEventComponent,
+    AdminListDepotsComponent,
+    AdminListPostsComponent,
+    AdminListUsersComponent,
   ],
 
   imports: [

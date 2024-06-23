@@ -1,0 +1,39 @@
+<div class="grid grid-cols-12 p-4">
+    <div class="col-span-2 h-auto p-4">
+        <ul class="font-bold text-sm md:text-lg space-y-2">
+            <li>
+                <a routerLink="listArticle" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Article
+                </a>
+            </li>
+            <li>
+                <a routerLink="listAtelier" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Atelier
+                </a>
+            </li>
+            <li>
+                <a routerLink="listEvents" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Événement
+                </a>
+            </li>
+            <li>
+                <a routerLink="listUsers" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Utilisateur
+                </a>
+            </li>
+            <li>
+                <a routerLink="listDepots" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Dépôt
+                </a>
+            </li>
+            <li>
+                <a routerLink="listPosts" routerLinkActive="active" class="block p-2 transition duration-200 ease-in-out rounded-lg hover:border hover:border-darkpink">
+                    - Question
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-span-10 border-2 border-lightblue p-2 rounded-xl h-auto">
+        <router-outlet></router-outlet>
+    </div>
+</div>
