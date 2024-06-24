@@ -33,9 +33,15 @@
                   class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-pink rounded-e-lg border border-gray-300 hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-lightblue">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
+                
               </div>
+               
             </div>
+            <button routerLink="/dashboard/formArticle" class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200  cursor-pointer">
+                    <i  class="fa-solid fa-plus"></i> Créer
+                </button>
           </form>
+           
     </div>
     <div>
         <div *ngIf="filteredArticles.length === 0"

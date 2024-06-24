@@ -5,7 +5,7 @@ import { EventService } from 'src/app/serverSide/services/event.service';
 @Component({
   selector: 'app-admin-list-event',
   templateUrl: './admin-list-event.component.html',
-  styleUrls: ['./admin-list-event.component.css']
+  styleUrls: ['./admin-list-event.component.css'],
 })
 export class AdminListEventComponent {
   events: any[] = [];
@@ -21,15 +21,20 @@ export class AdminListEventComponent {
   }
 
   delete(id: number): void {
-    this.eventService.delete(id).subscribe(
-      () => {
-        this.events = this.events.filter(event => event.id !== id);
-        this.filteredevents = this.filteredevents.filter(event => event.id !== id);
+    this.eventService.delete(id).subscribe({
+      next: () => {
+        alert('Event deleted successfully');
+        this.events = this.events.filter((event) => event.id !== id);
+        this.filteredevents = this.filteredevents.filter(
+          (event) => event.id !== id,
+        );
       },
-      error => console.error('Error deleting event:', error)
-    );
+      error: (error) => {
+        console.error('Error deleting event:', error);
+        alert('Failed to delete event');
+      },
+    });
   }
-
 
   loadevents() {
     this.eventService.getAll().subscribe((data: any[]) => {
@@ -38,15 +43,18 @@ export class AdminListEventComponent {
     });
   }
 
-  
   onSearchChange(event: Event) {
     const input = (event.target as HTMLInputElement).value.toLowerCase();
-    if(input===''){
-      this.filteredevents=this.events;
-    }else{
-    this.filteredevents = this.events.filter(data =>
-      (data.title ? data.title.toLowerCase().includes(input) : false) ||
-      (data.description ? data.description.toLowerCase().includes(input) : false)
-    );}
+    if (input === '') {
+      this.filteredevents = this.events;
+    } else {
+      this.filteredevents = this.events.filter(
+        (data) =>
+          (data.title ? data.title.toLowerCase().includes(input) : false) ||
+          (data.description
+            ? data.description.toLowerCase().includes(input)
+            : false),
+      );
+    }
   }
 }

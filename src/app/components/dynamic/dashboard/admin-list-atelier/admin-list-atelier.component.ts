@@ -5,7 +5,7 @@ import { AtelierService } from 'src/app/serverSide/services/atelier.service';
 @Component({
   selector: 'app-admin-list-atelier',
   templateUrl: './admin-list-atelier.component.html',
-  styleUrls: ['./admin-list-atelier.component.css']
+  styleUrls: ['./admin-list-atelier.component.css'],
 })
 export class AdminListAtelierComponent {
   ateliers: any[] = [];
@@ -16,26 +16,34 @@ export class AdminListAtelierComponent {
   constructor(
     private atelierService: AtelierService,
     private router: Router,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadAteliers();
   }
 
   delete(id: number) {
-    this.atelierService.delete(id).subscribe(
-      data => console.log(data)
-    );
+    this.atelierService.delete(id).subscribe({
+      next: () => {
+        alert('Atelier deleted successfully');
+        // Remove the deleted atelier from the list
+        this.ateliers = this.ateliers.filter((atelier) => atelier.id !== id);
+      },
+      error: (err) => {
+        console.error('Error deleting atelier', err);
+        alert('Failed to delete atelier');
+      },
+    });
   }
 
   showDialog(id: number) {
     this.visible = true;
     console.log(id);
 
-    this.atelierService.getSubscribers(id).subscribe(
-      data => this.users = data
-    ) ;
-    console.log(this.users)
+    this.atelierService
+      .getSubscribers(id)
+      .subscribe((data) => (this.users = data));
+    console.log(this.users);
   }
 
   loadAteliers() {
@@ -45,18 +53,18 @@ export class AdminListAtelierComponent {
     });
   }
 
-
   onSearchChange(event: Event) {
     const input = (event.target as HTMLInputElement).value.toLowerCase();
     if (input === '') {
       this.filteredAteliers = this.ateliers;
     } else {
-      this.filteredAteliers = this.ateliers.filter(data =>
-        (data.title ? data.title.toLowerCase().includes(input) : false) ||
-        (data.description ? data.description.toLowerCase().includes(input) : false)
+      this.filteredAteliers = this.ateliers.filter(
+        (data) =>
+          (data.title ? data.title.toLowerCase().includes(input) : false) ||
+          (data.description
+            ? data.description.toLowerCase().includes(input)
+            : false),
       );
     }
   }
-
-
 }
