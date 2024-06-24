@@ -32,10 +32,10 @@
                             {{ article.description }}
                         </p>
                         <p class="text-sm">
-                            prix: {{article.price}} dt <br>
-                            maxPlaces: {{article.maxPlaces}} <br>
+                           <span class="font-bold"> prix:</span> {{article.price}} dt <br>
+                           <span class="font-bold"> maxPlaces:</span>  {{article.maxPlaces}} <br>
                         </p>
-                        <p class=" text-xs md:text-sm text-gray-400 tracking-tighter italic">
+                        <p class=" text-xs md:text-sm text-gray-600 tracking-tighter italic">
                             {{article.place}} , {{article.date}}
                         </p>
                     </div>
@@ -44,7 +44,7 @@
             <p-dialog header="List Des Abonnes au atelier" [(visible)]="visible" [modal]="true"
                 [style]="{ width: 'auto', 'border-radius': '1rem' }">
                 <div *ngFor="let user of users" class="flex gap-3 rounded shadow-md mb-3">
-                    <img src="assets\useful stuff\user.png" alt="" class="h-7 md:h-14 justify-start rounded-full">
+                    <img src="assets\useful stuff\user.png" alt="" class="h-10 justify-start rounded-full">
                     <div class="text-left">
                         <p class="font-bold tracking-tighter text-xs sm:text-sm md:text-base ">
                             {{user.nom}} {{user.prenom}}

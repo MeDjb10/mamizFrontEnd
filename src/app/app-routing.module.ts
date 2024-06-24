@@ -95,6 +95,7 @@ const routes: Routes = [
       { path: 'listUsers', component: AdminListUsersComponent },
       { path: 'listDepots', component: AdminListDepotsComponent },
       { path: 'listPosts', component: AdminListPostsComponent },
+      { path: 'depot-details/:id', component: DepotDetailsComponent },
       { path: '', redirectTo: 'listArticle', pathMatch: 'full' },
     ],
   },

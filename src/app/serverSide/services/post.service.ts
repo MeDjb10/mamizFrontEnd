@@ -16,6 +16,11 @@ export class PostService {
     return this.http.get<Post[]>(`${this.baseUrl}/approved`);
   }
 
+  getAll(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}`);
+  }
+
+
   addPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.baseUrl, post);
   }

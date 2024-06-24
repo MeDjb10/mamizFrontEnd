@@ -1,1 +1,75 @@
-<p>admin-list-users works!</p>
+<div>
+    <p class="font-bold text-4xl text-center tracking-tight">
+        List d'ustilisateur
+    </p>
+    <div class="flex justify-center gap-3 ">
+        <div class="relative w-96 my-3 ">
+            <div class="relative w-96 my-3 ">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input type="text" id="simple-search"
+                    class="bg-gray-50 border-2 border-lightblue text-gray-900 text-sm rounded-lg focus:ring-teal focus:border-lightblue block w-full ps-10 p-2.5"
+                    placeholder="cherhcer par nom, prénom ou email" (input)="onSearchChange($event)" />
+                
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p-table [value]="filteredusers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="nom" style="width:25%"><p-sortIcon field="nom" />Nom </th>
+                <th pSortableColumn="email" style="width:25%"><p-sortIcon field="email" />Email</th>
+                <th style="width:15%">Numero</th>
+                <th style="width:15%">anniversaire</th>
+                <th style="width:25%">Role</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user >
+            <tr>
+                <td>{{ user.nom }} {{ user.prenom}}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.numTel }}</td>
+                <td>{{ user.birthDate }}</td>
+                <td class="flex justify-between gap-2">
+                    <p *ngIf="user.medcin" class="bg-green-500 text-white font-semibold tracking-tight px-2 rounded">
+                        Medecin
+                    </p>
+                    <p *ngIf="!user.medcin" class="bg-blue-500 text-white font-semibold tracking-tight px-2 rounded">
+                        User
+                    </p>
+                    <div class="flex gap-2">
+                        <i class="fa-solid fa-pen" (click)="onMedcinChange(user)"></i>
+                    <i class="fa-solid fa-trash" (click)="deleteUser(user)"></i>
+                    </div >
+                </td>
+            </tr>
+            <hr >
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Aucun utilisateur trouvé.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="Confirmation" [(visible)]="displayDialog" [modal]="true" [closable]="true" [responsive]="true">
+    <p class="text-center ">Êtes-vous sûr de vouloir changer le statut <span *ngIf="!selectedUser?.medcin" class="font-bold">en un medecin</span> <span *ngIf="selectedUser?.medcin" class="font-bold">en un user</span>  de cet utilisateur ?</p>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix flex justify-evenly mt-3">
+        <button type="button" pButton icon="pi pi-check" label="Yes" class="bg-green-500 text-white px-2" (click)="confirmChangeRole()"></button>
+        <button type="button" pButton icon="pi pi-times" label="No" class="bg-red-500 text-white px-2" (click)="cancelChangeRole()"></button>
+    </div>
+</p-dialog>
+
+<p-dialog header="Confirmation" [(visible)]="displayDialog2" [modal]="true" [closable]="true" [responsive]="true">
+    <p class="text-center ">Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix flex justify-evenly mt-3">
+        <button type="button" pButton icon="pi pi-check" label="Yes" class="bg-green-500 text-white px-2" (click)="confirmSup()"></button>
+        <button type="button" pButton icon="pi pi-times" label="No" class="bg-red-500 text-white px-2" (click)="cancelSup()"></button>
+    </div>
+</p-dialog>
