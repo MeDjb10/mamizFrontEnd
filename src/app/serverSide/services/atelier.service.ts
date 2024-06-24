@@ -25,6 +25,11 @@ export class AtelierService {
     return this.http.post<Atelier>(this.baseUrl, atelier);
   }
 
+  subscribeToAtelier(userId: number, atelierId: number): Observable<any> {
+    const url = `${this.baseUrl}/${userId}/subscribe/${atelierId}`;
+    return this.http.post<any>(url, null);
+  }
+
   update(id: number, atelier: Atelier): Observable<Atelier> {
     return this.http.put<Atelier>(`${this.baseUrl}/${id}`, atelier);
   }

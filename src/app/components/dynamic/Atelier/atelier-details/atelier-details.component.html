@@ -44,9 +44,15 @@
         <p>- Nombre de place: {{atelier?.maxPlaces}}</p>
         <p>- Prix: {{atelier?.price}}</p>
       </div>
-      <div class="text-center mt-6">
-        <a href="#"
+      <div *ngIf="loggedIn" class="text-center mt-6">
+        <a (click)="subscribe()"
           class="bg-pink text-white py-2 px-4 rounded-full font-bold hover:bg-white hover:text-pink hover:border border-pink transition-colors duration-200">Reservez</a>
+      </div>
+      <div *ngIf="!loggedIn" class="text-center mt-6">
+       <p>Login first</p>
+      </div>
+      <div *ngIf="atelierFull">
+        <p class="text-center text-sm mt-4">Atelier full</p>
       </div>
     </div>
     <div class="col-span-2 px-3">
