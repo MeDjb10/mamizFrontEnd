@@ -26,8 +26,10 @@ export class AdminListAtelierComponent {
     this.atelierService.delete(id).subscribe({
       next: () => {
         alert('Atelier deleted successfully');
-        // Remove the deleted atelier from the list
         this.ateliers = this.ateliers.filter((atelier) => atelier.id !== id);
+          this.filteredAteliers = this.filteredAteliers.filter(
+            (atelier) => atelier.id !== id,
+          );
       },
       error: (err) => {
         console.error('Error deleting atelier', err);
