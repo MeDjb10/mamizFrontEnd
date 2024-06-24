@@ -28,7 +28,7 @@ export class NavbarComponent {
 
   constructor(
     private router: Router,
-    private auth: AuthServiceService,
+    public auth: AuthServiceService,
     private userService: UserService,
     private notificationService: NotificationService,
   ) { }

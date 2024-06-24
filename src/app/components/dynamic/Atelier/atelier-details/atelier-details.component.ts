@@ -54,7 +54,8 @@ export class AtelierDetailsComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log(response); // Log the response for debugging
-          // Handle success here if needed, no need to parse JSON
+          // Handle success here if needed
+          alert(response.message); // Display the message to the user
         },
         error: (error) => {
           console.error(error);

@@ -5,18 +5,16 @@ import { PostService } from 'src/app/serverSide/services/post.service';
 @Component({
   selector: 'app-admin-list-posts',
   templateUrl: './admin-list-posts.component.html',
-  styleUrls: ['./admin-list-posts.component.css']
+  styleUrls: ['./admin-list-posts.component.css'],
 })
 export class AdminListPostsComponent {
   Posts: any[] = [];
   filteredPosts: any[] = [];
-  statuses: any[] = [];
+  statuses: { name: string; value: string }[] = [];
   visible: boolean = false;
   post: any = null;
 
-  constructor(
-    private ForumService: PostService,
-  ) {
+  constructor(private ForumService: PostService) {
     this.statuses = [
       { name: 'approved', value: 'approved' },
       { name: 'pending', value: 'pending' },
@@ -24,11 +22,9 @@ export class AdminListPostsComponent {
     ];
   }
 
-
   ngOnInit(): void {
     this.loadPosts();
   }
-
 
   getStatusClass(status: string): string {
     switch (status) {
@@ -44,23 +40,22 @@ export class AdminListPostsComponent {
   }
 
   loadPosts() {
-    this.ForumService.getAll().subscribe(data => {
+    this.ForumService.getAll().subscribe((data) => {
       this.Posts = data;
-      this.filteredPosts = data
-    }
-    );
+      this.filteredPosts = data;
+    });
   }
-
 
   onSearchChange(event: Event) {
     const input = (event.target as HTMLInputElement).value.toLowerCase();
     if (input === '') {
       this.filteredPosts = this.Posts;
     } else {
-      this.filteredPosts = this.Posts.filter(data =>
-        (data.nom ? data.nom.toLowerCase().includes(input) : false) ||
-        (data.prenom ? data.prenom.toLowerCase().includes(input) : false) ||
-        (data.email ? data.email.toLowerCase().includes(input) : false)
+      this.filteredPosts = this.Posts.filter(
+        (data) =>
+          (data.nom ? data.nom.toLowerCase().includes(input) : false) ||
+          (data.prenom ? data.prenom.toLowerCase().includes(input) : false) ||
+          (data.email ? data.email.toLowerCase().includes(input) : false),
       );
     }
   }
@@ -73,14 +68,13 @@ export class AdminListPostsComponent {
     console.log('Updating post:', updatedPost); // Log the updated post
 
     this.ForumService.update(post.id, updatedPost).subscribe({
-      next: (updated) => { 
+      next: (updated) => {
         post.status = status;
         console.log('Post updated successfully', updated); // Log success
-
       },
       error: (err) => {
         console.error('Error updating post status', err); // Log error
-      }
+      },
     });
   }
 }

@@ -8,17 +8,17 @@
       </a>
     </div>
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <div *ngIf="!logedIn">
+      <div *ngIf="!auth.isAuthenticated()">
         <button class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
           (click)="NavigateTo()">
           Se Connecter
         </button>
       </div>
-      <div *ngIf="logedIn" class="flex items-center ">
+      <div *ngIf="auth.isAuthenticated()" class="flex items-center ">
         <button
           class="hidden md:block focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
           type="button" routerLink="/home/userProfile">
-          <img *ngIf="logedIn" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
+          <img *ngIf="auth.isAuthenticated()" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
           
         </button>
         <div class="m-2 flex justify-content-center">
@@ -98,17 +98,17 @@
 </nav>
 <p-sidebar [(visible)]="sidebarVisible1" position="left">
   <div>
-    <div *ngIf="!logedIn">
+    <div *ngIf="!auth.isAuthenticated()">
       <button class="bg-yellow text-bg mr-4 px-6 py-2 rounded-full shadow-xl hover:px-8 hover:mr-2 duration-300"
         (click)="NavigateTo()">
         Se Connecter
       </button>
     </div>
-    <div *ngIf="logedIn" class="flex items-center">
+    <div *ngIf="auth.isAuthenticated()" class="flex items-center">
       <button
         class="focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-pink-200 dark:hover:bg-pink-300 focus:outline-none dark:focus:ring-pink-400"
         type="button" routerLink="/home/userProfile">
-        <img *ngIf="logedIn" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
+        <img *ngIf="auth.isAuthenticated()" [src]="'assets/logos/' + user?.profilePic" class="w-8 h-8 rounded-full" />
       </button>
       <p class="font-bold tracking-tighter text-2xl">
         Votre Profile
