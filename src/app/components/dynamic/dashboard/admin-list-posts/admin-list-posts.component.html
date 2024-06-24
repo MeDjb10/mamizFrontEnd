@@ -1,1 +1,70 @@
-<p>admin-list-posts works!</p>
+<div>
+    <p class="font-bold text-4xl text-center tracking-tight">List de Questions</p>
+    <div class="flex justify-center gap-3 ">
+        <div class="relative w-96 my-3">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" id="simple-search"
+                class="bg-gray-50 border-2 border-lightblue text-gray-900 text-sm rounded-lg focus:ring-teal focus:border-lightblue block w-full ps-10 p-2.5"
+                placeholder="cherhcer par nom, prénom ou email" (input)="onSearchChange($event)" />
+        </div>
+    </div>
+    <hr>
+    <p-table [value]="filteredPosts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '45rem' }" styleClass="p-datatable-striped"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="title" style="width:15%"><p-sortIcon field="title" />Titre </th>
+                <th pSortableColumn="question" style="width:25%"><p-sortIcon field="question" />Description</th>
+                <th pSortableColumn="detailTrait" style="width:25%"><p-sortIcon field="detailTrait" />Traitement desc.
+                </th>
+                <th pSortableColumn="theme" style="width:10%"><p-sortIcon field="theme" />Specialité</th>
+                <th pSortableColumn="postDate" style="width:10%"><p-sortIcon field="postDate" />Date</th>
+                <th style="width:15%">User</th>
+                <th style="width:25%">Status
+                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                placeholder="Any" [showClear]="true">
+                                <ng-template let-option pTemplate="item">
+                                    {{ option.name }}
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+            <tr>
+                <td>{{ post.title }} </td>
+                <td>{{ post.question }}</td>
+                <td>{{ post.detailTrait }} <p *ngIf="!post.detailTrait" class="text-gray-400 italic">(pas de text)</p>
+                </td>
+                <td>{{ post.theme }}</td>
+                <td>{{ post.postDate | date: 'hh:mm dd/MM/yyyy' }}</td>
+                <td>{{ post.user.nom }} {{ post.user.prenom }}</td>
+                <td class="flex items-center justify-between">
+                    <span [ngClass]="getStatusClass(post.status)">{{ post.status }}</span>
+                    <i class="fa-solid fa-pen cursor-pointer" *ngIf="post.status === 'pending'" (click)="showDialog(post)"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Aucun utilisateur trouvé.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-dialog header="Voulez-vous vraiment changer l'etat du question?" [(visible)]="visible" [modal]="true" [style]="{ width: 'auto', 'border-radius': '1rem' }">
+        <div class=" flex justify-evenly">
+            <button *ngIf="post?.status === 'pending'" (click)="updatePostStatus(post, 'approved')"
+            class="bg-green-500 text-white px-2 rounded"><i class="fa-solid fa-check"></i> Oui accepter la poste</button>
+        <button *ngIf="post?.status === 'pending'" (click)="updatePostStatus(post, 'rejected')"
+            class="bg-red-500 text-white px-2 rounded"><i class="fa-solid fa-x"></i> Non reffuser la post</button>
+        </div>
+    </p-dialog>
+</div>

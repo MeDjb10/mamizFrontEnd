@@ -28,6 +28,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RippleModule } from 'primeng/ripple';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { TableModule } from 'primeng/table';
+import { CheckboxModule } from 'primeng/checkbox';
+
 //othercomponents
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -225,6 +228,8 @@ registerLocaleData(localeFr, 'fr');
     RippleModule,
     StyleClassModule,
     PanelMenuModule,
+    CheckboxModule,
+    TableModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
   bootstrap: [AppComponent],
