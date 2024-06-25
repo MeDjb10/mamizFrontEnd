@@ -1,7 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/serverSide/classes/article';
 import { ArticleService } from 'src/app/serverSide/services/article.service';
 
+import { Location } from '@angular/common';
+import { ReactionType } from 'src/app/serverSide/enum/reaction-type';
+import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
+import { ReactionService } from 'src/app/serverSide/services/reaction.service';
 declare var FB: any;
 @Component({
   selector: 'app-article-details',
@@ -11,13 +16,25 @@ declare var FB: any;
 export class ArticleDetailsComponent implements OnInit {
   articles: Article[] = [];
   latestArticle: Article[] = [];
-
+  article:any;
+  currentReaction: ReactionType | null = null; 
+  userId:any;
+  articleid:any
   constructor(
     private el: ElementRef,
     private articleService: ArticleService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private auth:AuthServiceService,
+    private reactionService: ReactionService,
   ) { }
 
   ngOnInit(): void {
+    this.articleid = Number(this.route.snapshot.paramMap.get('id'));
+    this.articleService.getById(this.articleid).subscribe(data=> this.article=data);
+    this.userId = this.auth.getCurrentUserId();
+    console.log(this.userId);
+    
     this.articleService.getAll().subscribe((data) => {
       this.articles = data;
       this.latestArticle = this.getLatestArticle();
@@ -66,5 +83,46 @@ export class ArticleDetailsComponent implements OnInit {
     } else {
       element.classList.remove('sticky-bg');
     }
+  }
+
+  isArabic(text: string): boolean {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text);
+  }
+  goBack(): void {
+    this.location.back();
+  }
+
+  reactionTypeMap: { [key: string]: ReactionType } = {
+    'LIKE': ReactionType.LIKE,
+    'LOVE': ReactionType.LOVE,
+    'HAHA': ReactionType.HAHA,
+    'WOW': ReactionType.WOW,
+    'SAD': ReactionType.SAD
+  };
+
+
+  reactToArticle(type: string) {
+    if (!(type in this.reactionTypeMap)) {
+      console.error(`Invalid reaction type: ${type}`);
+      return;
+    }
+    const selectedReactionType = this.reactionTypeMap[type];
+
+    if (this.currentReaction !== null) {
+      this.reactionService.removeReaction(this.userId, this.articleid).subscribe(
+        () => {
+          console.log(`Removed previous reaction: ${this.currentReaction}`);
+          this.currentReaction = null;
+        },
+      );
+    }
+
+    this.reactionService.addReaction(this.userId, this.articleid, selectedReactionType).subscribe(
+      () => {
+        console.log(`Reacted with ${selectedReactionType}`);
+        this.currentReaction = selectedReactionType;
+      },
+    );
   }
 }

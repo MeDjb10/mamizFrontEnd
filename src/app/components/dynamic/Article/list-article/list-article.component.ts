@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
 import { ArticleService } from 'src/app/serverSide/services/article.service';
 
@@ -18,13 +19,15 @@ export class ListArticleComponent implements OnInit {
   searchKeyword: string = '';
 
   constructor(
-    private articeService: ArticleService,
+    private articleService: ArticleService,
+    private router:Router,
   ){}
 
-
   ngOnInit(): void {
-    this.articeService.getAll().subscribe((data) => {this.mockArticles=data})
-    this.loadArticles(this.category);
+    this.articleService.getAll().subscribe((data) => {
+      this.mockArticles = data;
+      this.loadArticles(this.category);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -38,7 +41,7 @@ export class ListArticleComponent implements OnInit {
     if (category === 'Tous les articles' || category === '') {
       this.articles = this.mockArticles; // Return all articles if category is empty
     } else {
-      this.articles = this.mockArticles.filter(article => article.category === category);
+      this.articles = this.mockArticles.filter(article => article.theme === category);
     }
     this.applyFilters();
   }
@@ -68,5 +71,14 @@ export class ListArticleComponent implements OnInit {
   onSearchChange(event: Event) {
     this.searchKeyword = (event.target as HTMLInputElement).value.toLowerCase();
     this.applyFilters();
+  }
+
+  isArabic(text: string): boolean {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text);
+  }
+
+  toDetails(id:number){
+    this.router.navigate(['home/article-details',id]);
   }
 }

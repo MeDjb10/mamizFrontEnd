@@ -69,9 +69,9 @@
     </p-table>
     <p-dialog header="Voulez-vous vraiment changer l'etat du question?" [(visible)]="visible" [modal]="true" [style]="{ width: 'auto', 'border-radius': '1rem' }">
         <div class=" flex justify-evenly">
-            <button *ngIf="post?.status === 'pending'" (click)="updatePostStatus(post, 'approved')"
+            <button *ngIf="post?.status === 'pending'" (click)="approvePost(post)"
             class="bg-green-500 text-white px-2 rounded"><i class="fa-solid fa-check"></i> Oui accepter la poste</button>
-        <button *ngIf="post?.status === 'pending'" (click)="updatePostStatus(post, 'rejected')"
+        <button *ngIf="post?.status === 'pending'" (click)="rejectPost(post)"
             class="bg-red-500 text-white px-2 rounded"><i class="fa-solid fa-x"></i> Non reffuser la post</button>
         </div>
     </p-dialog>

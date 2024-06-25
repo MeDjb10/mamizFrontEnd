@@ -16,12 +16,21 @@
     <p class="font-normal text-sm md:text-base text-black truncate">
       {{ question }}
     </p>
+    <div *ngIf="isMedcin">
+      <hr class="my-2 border-lightblue sm:mx-auto">
+      <p class="font-semibold">CES INFORMATIONS SONT CONFIDETIELLES dhaharly</p>
+      <li class="font-semibold">Traitement : <i *ngIf="post.traitement" class="fa-solid fa-check"></i> <i *ngIf="!post.traitement"
+          class="fa-solid fa-xmark"></i></li>
+      <li class="font-semibold" *ngIf="post.traitement">Detail Traitement: <span class="font-normal">{{post?.detailTrait}}</span></li>
+      <li class="font-semibold" *ngIf="post.taille">Taille: <span class="font-normal">{{post?.taille}}</span></li>
+      <li class="font-semibold" *ngIf="post.poid">Poids: <span class="font-normal">{{post?.poid}}</span></li>
+    </div>
   </div>
   <hr class="my-2 border-lightblue sm:mx-auto" />
   <!-- Response form visible only if the user is a doctor and has not yet responded -->
-   <div *ngIf="!responded">
-      <p>theres no comments yet</p>
-   </div>
+  <div *ngIf="!responded">
+    <p>Il n'ya pas de reponse</p>
+  </div>
   <div *ngIf="!responded && isMedcin" class="flex flex-row items-center justify-between">
     <form [formGroup]="reponse" (submit)="onSubmit()">
       <div class="">

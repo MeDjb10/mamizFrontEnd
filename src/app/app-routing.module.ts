@@ -33,6 +33,7 @@ import { AdminListAtelierComponent } from './components/dynamic/dashboard/admin-
 import { AdminFormAtelierComponent } from './components/dynamic/dashboard/admin-form-atelier/admin-form-atelier.component';
 import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
 import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
+import { ArticleDetailsComponent } from './components/dynamic/Article/article-details/article-details.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
       { path: 'acceuil', title: ' Acceuil', component: AcceuilComponent },
       { path: 'article', title: ' Articles', component: AllArticleComponent },
+      { path: 'article-details/:id', component: ArticleDetailsComponent },
       { path: 'atelier', title: ' Ateliers', component: AllAteliersComponent },
       { path: 'event', title: ' Evenement', component: AllEventsComponent },
       { path: 'forum', title: ' Forum', component: AllForumsComponent },

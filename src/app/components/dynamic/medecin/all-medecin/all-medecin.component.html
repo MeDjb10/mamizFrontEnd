@@ -5,27 +5,29 @@
         Consultez notre liste de médecins.
     </p>
     <div class="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-12 gap-4 mt-4">
-        <div class="col-span-3 min-h-[100px] rounded-xl hidden md:block">
+        <div class="col-span-3 min-h-[100px] rounded-xl hidden md:block ">
             <app-ask-question-div></app-ask-question-div>
             <app-forum-for-medecin></app-forum-for-medecin>
         </div>
         <div class="col-span-6 min-h-[100px] flex-col">
-            <div class="block md:hidden">
+            <div class="flex items-center justify-center md:hidden">
                 <app-ask-question-div></app-ask-question-div>
             </div>
             <div class="my-4">
-                <app-forum-filter
-                
-        (specialtySelected)="onSpecialtySelected($event)"
-        (searchChanged)="onSearchChanged($event)"
-                ></app-forum-filter>
-                <p class="hidden lg:block text-sm text-teal text-center italic"><i class="fa-solid fa-triangle-exclamation"></i>Survolez le docteur que vous souhaitez pour voir ses détails.</p>
-                <p class="block lg:hidden text-xs text-teal text-center italic"><i class="fa-solid fa-triangle-exclamation"></i>Tapez le docteur que vous souhaitez pour voir ses détails.</p>
-                <div class="">
+                <app-forum-filter (specialtySelected)="onSpecialtySelected($event)"
+                    (searchChanged)="onSearchChanged($event)"></app-forum-filter>
+                <p class="hidden lg:block text-sm text-teal text-center italic"><i
+                        class="fa-solid fa-triangle-exclamation"></i>Survolez le docteur que vous souhaitez pour voir
+                    ses détails.</p>
+                <p class="block lg:hidden text-xs text-teal text-center italic"><i
+                        class="fa-solid fa-triangle-exclamation"></i>Tapez le docteur que vous souhaitez pour voir ses
+                    détails.</p>
+                <div class=" flex justify-center">
                     <div class="grid grid-cols-2 gap-4 mt-4">
                         <ng-container *ngFor="let doc of filtredDoctors">
-                            <app-medecin-card [nom]="doc?.nom" [prenom]="doc?.prenom"
-                                [specialite]="doc?.specialite" [adresse]="doc?.adresse" [numTel]="doc?.numTel" [profilePic]="doc?.profilePic"></app-medecin-card>
+                            <app-medecin-card [nom]="doc?.nom" [prenom]="doc?.prenom" [specialite]="doc?.specialite"
+                                [adresse]="doc?.adresse" [numTel]="doc?.numTel"
+                                [profilePic]="doc?.profilePic"></app-medecin-card>
                         </ng-container>
                     </div>
                 </div>

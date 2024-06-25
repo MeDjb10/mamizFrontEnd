@@ -113,6 +113,7 @@ import { AdminListEventComponent } from './components/dynamic/dashboard/admin-li
 import { AdminListDepotsComponent } from './components/dynamic/dashboard/admin-list-depots/admin-list-depots.component';
 import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
 import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
+import { CapitalizeFirstPipe } from './capitalize-first.pipe';
 
 
 
@@ -199,6 +200,7 @@ registerLocaleData(localeFr, 'fr');
     AdminListDepotsComponent,
     AdminListPostsComponent,
     AdminListUsersComponent,
+    CapitalizeFirstPipe,
   ],
 
   imports: [

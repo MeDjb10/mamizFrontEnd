@@ -6,28 +6,30 @@
     Vous avez des questions concernant votre grossesse, votre bébé ou votre santé en général ?
   </p>
   <p>
-    Mamiz vous propose un espace pour poser vos questions et obtenir des réponses de la part de médecins qualifiés, en toute confidentialité.
+    Mamiz vous propose un espace pour poser vos questions et obtenir des réponses de la part de médecins qualifiés, en
+    toute confidentialité.
   </p>
   <div class="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-12 gap-4 mt-4">
     <div class="col-span-3 min-h-[100px] rounded-xl hidden md:block">
       <app-ask-question-div></app-ask-question-div>
 
-      <app-list-medcin ></app-list-medcin>
+      <app-list-medcin></app-list-medcin>
     </div>
     <div class="col-span-6 min-h-[100px] flex-col">
-      <div class="block md:hidden">
+      <div class="flex justify-center md:hidden">
         <app-ask-question-div></app-ask-question-div>
       </div>
       <div class="my-4">
-        <app-forum-filter
-        (specialtySelected)="onSpecialtySelected($event)"
-        (searchChanged)="onSearchChanged($event)"
-        ></app-forum-filter>
+        <app-forum-filter (specialtySelected)="onSpecialtySelected($event)"
+          (searchChanged)="onSearchChanged($event)"></app-forum-filter>
       </div>
-      <ng-container *ngFor="let post of filtredPosts">
-        <app-forums-card [title]="post?.title" [theme]="post?.theme" [question]="post?.question"
-          [responded]="post?.responded" [response]="post?.response" [postDate]="post?.postDate"[id]="post.id"></app-forums-card>
-      </ng-container>
+      <div class="sm:flex sm:justify-center sm:flex-col sm:items-center md:block">
+        <ng-container *ngFor="let post of filtredPosts">
+          <app-forums-card [title]="post?.title" [theme]="post?.theme" [question]="post?.question"
+            [responded]="post?.responded" [response]="post?.response" [postDate]="post?.postDate"
+            [id]="post.id"></app-forums-card>
+        </ng-container>
+      </div>
     </div>
     <div class="col-span-3 min-h-[100px] flex-col hidden lg:block">
       <p class="text-4xl font-bold tracking-tighter text-darkpink">
@@ -37,7 +39,8 @@
       <div
         class="p-3 space-y-3 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
         <ng-container *ngFor="let article of latestArticle | slice: 0 : 3">
-          <app-forum-aricle-card [title]="article?.title" [desc]="article?.description"></app-forum-aricle-card>
+          <app-forum-aricle-card [id]="article?.id" [title]="article?.title" [theme]="article?.theme"
+            [desc]="article?.description"></app-forum-aricle-card>
         </ng-container>
       </div>
     </div>

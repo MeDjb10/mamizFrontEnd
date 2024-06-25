@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Post } from 'src/app/serverSide/classes/post';
+import { AdminService } from 'src/app/serverSide/services/admin.service';
 import { PostService } from 'src/app/serverSide/services/post.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class AdminListPostsComponent {
   visible: boolean = false;
   post: any = null;
 
-  constructor(private ForumService: PostService) {
+  constructor(private ForumService: PostService,
+    private adminService: AdminService
+  ) {
     this.statuses = [
       { name: 'approved', value: 'approved' },
       { name: 'pending', value: 'pending' },
@@ -63,18 +66,20 @@ export class AdminListPostsComponent {
     this.post = post;
     this.visible = !this.visible;
   }
-  updatePostStatus(post: Post, status: string) {
-    const updatedPost = { ...post, status: status };
-    console.log('Updating post:', updatedPost); // Log the updated post
 
-    this.ForumService.update(post.id, updatedPost).subscribe({
-      next: (updated) => {
-        post.status = status;
-        console.log('Post updated successfully', updated); // Log success
-      },
-      error: (err) => {
-        console.error('Error updating post status', err); // Log error
-      },
-    });
+  approvePost(post: Post) {
+    this.adminService.approvePost(post.id).subscribe(data => {
+      post.status = data.status;
+      this.visible = !this.visible;
+    })
+  }
+
+  rejectPost(post: Post) {
+    this.adminService.rejectPost(post.id).subscribe(
+      data => {
+        post.status = data.status;
+        this.visible = !this.visible;
+      }
+    )
   }
 }

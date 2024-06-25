@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Depot } from 'src/app/serverSide/classes/depot';
 import { User } from 'src/app/serverSide/classes/user';
+import { AdminService } from 'src/app/serverSide/services/admin.service';
 import { DepotService } from 'src/app/serverSide/services/depot.service';
 import { UserService } from 'src/app/serverSide/services/user.service';
 
@@ -18,7 +19,10 @@ export class AdminListDepotsComponent {
   images: any[] = [];
   selectedDepot: any = null;
 
-  constructor(private depotService: DepotService) {
+  constructor(private depotService: DepotService
+    ,
+    private adminService: AdminService
+  ) {
     this.statuses = [
       { name: 'approved', value: 'approved' },
       { name: 'pending', value: 'pending' },
@@ -93,19 +97,21 @@ export class AdminListDepotsComponent {
     this.visible = true;
   }
 
-  updateDepotStatus(Depot: Depot, status: string) {
-    const updatedDepot = { ...Depot, status: status };
-    this.visible = !this.visible;
-    console.log('Updating Depot:', updatedDepot); // Log the updated Depot
+ 
 
-    this.depotService.update(Depot.id, updatedDepot).subscribe({
-      next: (updated) => {
-        Depot.status = status;
-        console.log('Depot updated successfully', updated); // Log success
-      },
-      error: (err) => {
-        console.error('Error updating Depot status', err); // Log error
-      },
-    });
+  approveDepot(depot: Depot) {
+    this.adminService.approveDepot(depot.id).subscribe(data => {
+      depot.status = data.status;
+      this.visible = !this.visible;
+    })
+  }
+
+  rejectDepot(depot: Depot) {
+    this.adminService.rejectDepot(depot.id).subscribe(
+      data => {
+        depot.status = data.status;
+        this.visible = !this.visible;
+      }
+    )
   }
 }

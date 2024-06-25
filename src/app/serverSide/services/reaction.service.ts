@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ReactionType } from '../classes/reaction-type';
+import { Observable, throwError } from 'rxjs';
+
+import { catchError, retryWhen, delay, take } from 'rxjs/operators';
+import { ReactionType } from '../enum/reaction-type';
 import { Reaction } from '../classes/reaction';
 
 
@@ -11,18 +13,31 @@ import { Reaction } from '../classes/reaction';
 export class ReactionService {
   private baseUrl = 'http://localhost:8080/api/reactions';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   addReaction(
     userId: number,
     articleId: number,
     type: ReactionType,
   ): Observable<Reaction> {
+    const body = {
+      userId: userId,
+      articleId: articleId,
+      type: type.toString() // Assuming type needs to be converted to string
+    };
     const params = new HttpParams()
       .set('userId', userId)
       .set('articleId', articleId)
       .set('type', type);
-    return this.http.post<Reaction>(this.baseUrl, null, { params });
+    return this.http.post<Reaction>(this.baseUrl, body, { params }).pipe(
+      retryWhen(errors =>
+        errors.pipe(
+          delay(1000), // Delay for 1 second before retrying
+          take(3), // Retry up to 3 times
+          catchError(err => throwError(err)) // Throw error if retries are exhausted
+        )
+      )
+    );
   }
 
   countReactionsByType(

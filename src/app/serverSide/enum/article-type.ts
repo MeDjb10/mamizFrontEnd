@@ -1,7 +1,7 @@
 export enum ArticleType {
   maman = 'maman',
-  bebe = 'bebe',
+  bébé = 'bébé',
   enfant = 'enfant',
-  grossess = 'grossess',
+  grossesse = 'grossesse',
   préconception = 'préconception',
 }

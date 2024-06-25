@@ -4,32 +4,32 @@
   </div>
   <input type="text" id="simple-search"
     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lightblue focus:border-lightblue block w-full ps-10 p-2.5"
-    placeholder="Ecrivez un mot clé" 
-    (input)="onSearchChange($event)"  
-  />
+    placeholder="Ecrivez un mot clé" (input)="onSearchChange($event)" />
 </div>
-<div *ngIf="displayedArticles.length === 0" class="align-middle items-center flex justify-center font-bold text-xl">Pas d'articles trouvés.</div>
+<div *ngIf="displayedArticles.length === 0" class="align-middle items-center flex justify-center font-bold text-xl">Pas
+  d'articles trouvés.</div>
 <div *ngFor="let article of displayedArticles" class="article-card">
-  <div class="my-1 bg-white rounded-xl p-2 flex gap-4 items-end">
-    <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-14 md:max-h-28">
-    <div class="flex flex-col justify-between h-full">
-      <div class="mt-auto">
-        <p class="bg-teal w-fit text-xs md:text-base px-2 text-white">
-          {{ article.category }}
-        </p>
-        <h2 class="font-extrabold tracking-tight md:text-2xl line-clamp-2">{{ article.title }}</h2>
-        <p class=" text-xs md:text-sm text-gray-400 tracking-tighter italic">
-          19 Septembrre 2023
-        </p>
+  <button (click)="toDetails(article.id)">
+    <div class="my-1 bg-white rounded-xl p-2 flex gap-4 items-end">
+      <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-14 md:max-h-28">
+      <div class="flex flex-col justify-between h-full">
+        <div class="mt-auto">
+          <p class="bg-teal w-fit text-xs md:text-base px-2 text-white font-bold">
+            {{ article.theme | capitalizeFirst }}
+          </p>
+          <h2 class="font-extrabold tracking-tight md:text-2xl line-clamp-2 "
+            [ngClass]="{'arabicfont':isArabic(article.title)}">{{ article.title }}</h2>
+          <p class=" text-xs md:text-sm text-gray-400 tracking-tighter text-left italic">
+            {{ article.date |date: 'dd MMMM yyyy' }}
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </button>
+
   <hr>
 </div>
 
 <!-- PrimeNG Paginator -->
-<p-paginator 
-  [rows]="articlesPerPage" 
-  [totalRecords]="filteredArticles.length"
-  (onPageChange)="changePage($event)">
+<p-paginator [rows]="articlesPerPage" [totalRecords]="filteredArticles.length" (onPageChange)="changePage($event)">
 </p-paginator>

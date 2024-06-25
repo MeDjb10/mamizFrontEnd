@@ -1,27 +1,29 @@
+<div class="flex justify-start">
+    <button (click)="goBack()"
+        class="bg-teal mt-2 ml-2 border border-white text-white rounded-3xl px-4 py-2 hover:bg-white hover:text-teal hover:border-teal hover:border transition-colors duration-200">
+        <i class="fa-solid fa-arrow-left"></i> Retourner
+    </button>
+</div>
 <div class="p-4 grid md:grid-cols-6">
 
     <div class="md:col-span-4">
         <p-scrollTop styleClass="custom-scrolltop bg-teal"></p-scrollTop>
 
-        <div class="flex flex-col md:m-5 lg:m-10 items-center">
-            <div>
-                <p class="text-sm font-bold tracking-tighter bg-teal w-fit px-2 text-white">
-                    Préconception
+        <div class="flex flex-col md:m-5 lg:m-10" [ngClass]="{'arabicfont items-end':isArabic(article.title)}">
+            <div [ngClass]="{' text-right':isArabic(article.title)}">
+                <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white">
+                    {{article.theme |capitalizeFirst }}
                 </p>
-                <p class="text-7xl font-bold tracking-tighter">
-                    L'importance de la Santé Mentale Avant la Grossesse
+                <p class="text-7xl font-bold tracking-tighter" [ngClass]="{'arabicfont text-right':isArabic(article.title)}">
+                    {{article.title | capitalizeFirst }}
                 </p>
                 <p class="text-gray-400 tracking-tighter">
-                    Par Admins, <span class="italic">19 Septembre 2024</span>
+                    Par Admins, <span class="italic">{{article.date | date:'dd MMMM yyyy'}}</span>
                 </p>
             </div>
-            <p class="tracking-tight font-bold text-xl text-gray-700">
-                La période précédant la grossesse est une phase cruciale où la santé mentale de la future mère joue un
-                rôle
-                essentiel. Aborder cette étape avec une santé mentale optimale peut non seulement favoriser le bien-être
-                maternel mais aussi influencer positivement le développement de l'enfant à naître. Dans cet article,
-                nous
-                explorerons trois aspects clés de l'importance de la santé mentale avant la grossesse.
+            <p class="tracking-tighter font-bold text-xl text-gray-700 mt-3" 
+                [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article.title)}">
+                {{article.description}}
             </p>
             <img src="assets\useful stuff\Studentinclassroom.jpeg" alt="" class="max-h-svh w-fit m-4">
 
@@ -136,31 +138,32 @@
 
         <!-- Reaction part -->
         <div class=" sticky-container">
-            <div
-                class="border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow md:mt-10 p-3 text-gray-600 bg-white">
+            <div *ngIf="userId!==null"
+            class="border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow md:mt-10 p-3 text-gray-600 bg-white">
                 <div class="flex justify-evenly">
-                    <div class="flex flex-col items-center hover:text-blue-600 transition-colors duration-200">
-                        <i class="fa-solid fa-lg lg:fa-xl my-3 fa-thumbs-up"></i>
-                        <p>Like</p>
-                    </div>
-                    <div class="flex flex-col items-center hover:text-red-600 transition-colors duration-200">
-                        <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-grin-hearts"></i>
-                        <p>Love</p>
-                    </div>
-                    <div class="flex flex-col items-center hover:text-yellow-300 transition-colors duration-200">
-                        <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-laugh-squint"></i>
-                        <p>Haha</p>
-                    </div>
-                    <div class="flex flex-col items-center hover:text-darkpink transition-colors duration-200">
-                        <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-surprise"></i>
-                        <p>Wow</p>
-                    </div>
-                    <div class="flex flex-col items-center hover:text-violet-600 transition-colors duration-200">
-                        <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-sad-cry"></i>
-                        <p>Sad</p>
-                    </div>
+                  <div class="flex flex-col items-center hover:text-blue-600 transition-colors duration-200" (click)="reactToArticle('LIKE')">
+                    <i class="fa-solid fa-lg lg:fa-xl my-3 fa-thumbs-up"></i>
+                    <p>Like</p>
+                  </div>
+                  <div class="flex flex-col items-center hover:text-red-600 transition-colors duration-200" (click)="reactToArticle('LOVE')">
+                    <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-grin-hearts"></i>
+                    <p>Love</p>
+                  </div>
+                  <div class="flex flex-col items-center hover:text-yellow-300 transition-colors duration-200" (click)="reactToArticle('HAHA')">
+                    <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-laugh-squint"></i>
+                    <p>Haha</p>
+                  </div>
+                  <div class="flex flex-col items-center hover:text-darkpink transition-colors duration-200" (click)="reactToArticle('WOW')">
+                    <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-surprise"></i>
+                    <p>Wow</p>
+                  </div>
+                  <div class="flex flex-col items-center hover:text-violet-600 transition-colors duration-200" (click)="reactToArticle('SAD')">
+                    <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-sad-cry"></i>
+                    <p>Sad</p>
+                  </div>
                 </div>
-            </div>
+              </div>
+              
 
             <!-- sharing on facebook -->
             <div (click)="shareOnFacebook()"
@@ -177,7 +180,7 @@
             <div
                 class="p-3 gap-x-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
                 <ng-container *ngFor="let article of latestArticle | slice: 0 : 3" class="mb-3">
-                    <app-forum-aricle-card [title]="article?.title"
+                    <app-forum-aricle-card [title]="article?.title" [theme]="article?.theme" [id]="article?.id"
                         [desc]="article?.description"></app-forum-aricle-card>
                 </ng-container>
             </div>
