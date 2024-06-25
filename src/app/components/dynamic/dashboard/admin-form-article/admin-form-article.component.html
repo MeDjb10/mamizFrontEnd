@@ -1,51 +1,46 @@
-<div class="max-w-4xl mx-auto mt-8 p-4 bg-white shadow-md rounded-lg">
-  <h2 class="text-2xl font-bold mb-4">Add New Article</h2>
+<div class="max-w-2xl mx-auto bg-white p-8 shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Add Article</h2>
   <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-      <input id="title" type="text" formControlName="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      <label class="block text-gray-700">Title</label>
+      <input formControlName="title" type="text" class="w-full mt-2 p-2 border rounded">
     </div>
     <div class="mb-4">
-      <label for="theme" class="block text-sm font-medium text-gray-700">Theme</label>
-      <select id="theme" formControlName="theme" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+      <label class="block text-gray-700">Theme</label>
+      <select formControlName="theme" class="w-full mt-2 p-2 border rounded">
         <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
       </select>
     </div>
     <div class="mb-4">
-      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-      <textarea id="description" formControlName="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+      <label class="block text-gray-700">Description</label>
+      <textarea formControlName="description" class="w-full mt-2 p-2 border rounded"></textarea>
     </div>
     <div class="mb-4">
-      <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-      <input id="date" type="datetime-local" formControlName="date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      <label class="block text-gray-700">Date</label>
+      <input formControlName="date" type="datetime-local" class="w-full mt-2 p-2 border rounded">
     </div>
     <div class="mb-4">
-      <label for="mainPic" class="block text-sm font-medium text-gray-700">Main Picture</label>
-      <input id="mainPic" type="text" formControlName="mainPic" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm mb-2" />
-      <input type="file" (change)="onMainPicSelected($event)" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      <label class="block text-gray-700">Main Picture</label>
+      <input type="file" (change)="onMainPicSelected($event)" class="w-full mt-2 p-2 border rounded">
     </div>
-    <div formArrayName="chapters">
-      <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i" class="mb-4 border p-4 rounded-lg">
-        <div class="flex justify-between items-center">
-          <h3 class="text-lg font-bold">Chapter {{ i + 1 }}</h3>
-          <button type="button" (click)="removeChapter(i)" class="text-red-500">Delete</button>
-        </div>
-        <div class="mb-2">
-          <label for="chapterTitle" class="block text-sm font-medium text-gray-700">Chapter Title</label>
-          <input id="chapterTitle" type="text" formControlName="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
-        </div>
-        <div class="mb-2">
-          <label for="chapterDescription" class="block text-sm font-medium text-gray-700">Chapter Description</label>
-          <textarea id="chapterDescription" formControlName="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
-        </div>
-        <div class="mb-2">
-          <label for="chapterPhoto" class="block text-sm font-medium text-gray-700">Chapter Photo</label>
-          <input id="chapterPhoto" type="text" formControlName="photo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm mb-2" />
-          <input type="file" (change)="onChapterPhotoSelected($event, i)" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
-        </div>
+    <div formArrayName="chapters" *ngFor="let chapter of chapters.controls; let i=index">
+      <div [formGroupName]="i" class="mb-4 border p-4 rounded">
+        <h3 class="text-xl font-semibold mb-2">Chapter {{ i + 1 }}</h3>
+        <label class="block text-gray-700">Title</label>
+        <input formControlName="title" type="text" class="w-full mt-2 p-2 border rounded">
+        <label class="block text-gray-700 mt-4">Description</label>
+        <textarea formControlName="description" class="w-full mt-2 p-2 border rounded"></textarea>
+        <label class="block text-gray-700 mt-4">Order</label>
+        <input formControlName="chapterOrder" type="number" class="w-full mt-2 p-2 border rounded" [value]="i">
+        <label class="block text-gray-700 mt-4">Photo</label>
+        <input type="file" (change)="onChapterPhotoSelected($event, i)" class="w-full mt-2 p-2 border rounded">
+        <button type="button" (click)="removeChapter(i)" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Remove Chapter</button>
       </div>
     </div>
-    <button type="button" (click)="addChapter()" class="mt-4 mb-4 bg-blue-500 text-white px-4 py-2 rounded-md">Add Chapter</button>
-    <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+    <button type="button" (click)="addChapter()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Add Chapter</button>
+    <div class="flex justify-between mt-6">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Add Article</button>
+      <button type="button" (click)="onReset()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700">Reset</button>
+    </div>
   </form>
 </div>

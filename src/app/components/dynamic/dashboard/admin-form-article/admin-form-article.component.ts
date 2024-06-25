@@ -24,7 +24,7 @@ export class AdminFormArticleComponent {
       theme: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
-      mainPic: ['', Validators.required],
+      mainPic: [''],
       chapters: this.fb.array([]),
     });
   }
@@ -39,9 +39,10 @@ export class AdminFormArticleComponent {
 
   addChapter(): void {
     const chapterForm = this.fb.group({
-      title: ['', Validators.required],
+      title: [''],
       description: ['', Validators.required],
-      photo: ['', Validators.required],
+      photo: [''],
+      chapterOrder: [this.chapters.length],
     });
     this.chapters.push(chapterForm);
   }
@@ -65,6 +66,7 @@ export class AdminFormArticleComponent {
       this.chapters.at(index).patchValue({ photo: file.name });
     }
   }
+
   formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -74,15 +76,12 @@ export class AdminFormArticleComponent {
     const seconds = String(date.getSeconds()).padStart(2, '0');
     const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
     const timezoneOffset = -date.getTimezoneOffset();
-    
 
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
 
   onSubmit(): void {
     if (this.articleForm.valid) {
-      
-     
       const dateControl = this.articleForm.get('date');
       if (dateControl) {
         const date = new Date(dateControl.value);
@@ -91,7 +90,8 @@ export class AdminFormArticleComponent {
       }
 
       const articleData = this.articleForm.value;
-       console.log(articleData);
+      console.log(articleData);
+
       this.articleService.create(articleData).subscribe({
         next: (response) => {
           console.log('Article created', response);
@@ -113,4 +113,8 @@ export class AdminFormArticleComponent {
       });
     }
   }
-} 
+
+  onReset(): void {
+    this.articleForm.reset();
+  }
+}
