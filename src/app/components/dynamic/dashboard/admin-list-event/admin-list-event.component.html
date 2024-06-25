@@ -12,7 +12,7 @@
                 placeholder="cherhcer par nom ou mot clé" (input)="onSearchChange($event)" />
             
         </div>
-        <button routerLink="/dashboard/formEvent" class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200 cursor-pointer">
+        <button routerLink="/dashboard/create/event" class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200 cursor-pointer">
             <i class="fa-solid fa-plus"></i> Créer
         </button>
     </div>
@@ -41,9 +41,9 @@
                 </div>
             </div>
             <div class="flex gap-2">
-                <p class="bg-blue-500 hover:bg-blue-600 w-fit p-2 rounded-lg text-white font-semibold">
+                <button [routerLink]="'/dashboard/update/event/' + article.id" class="bg-blue-500 hover:bg-blue-600 w-fit p-2 rounded-lg text-white font-semibold">
                     <i class="fa-solid fa-pen"></i> Modifier
-                </p>
+                </button>
                 <p (click)="delete(article.id)"
                     class="bg-red-500 hover:bg-red-600 w-fit p-2 rounded-lg text-white font-semibold">
                     <i class="fa-solid fa-trash-can"></i> Supprimer

@@ -1,37 +1,45 @@
-<div class="max-w-2xl mx-auto bg-white p-8 shadow-md">
-  <h2 class="text-2xl font-bold mb-6">Add Atelier</h2>
-  <form [formGroup]="atelierForm" (ngSubmit)="onSubmit()">
+<!-- admin-form-event-atelier.component.html -->
+<div class="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label class="block text-gray-700">Title</label>
-      <input formControlName="title" type="text" class="w-full mt-2 p-2 border rounded">
+      <label class="block text-sm font-medium text-gray-700">Title</label>
+      <input type="text" formControlName="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
     </div>
+
     <div class="mb-4">
-      <label class="block text-gray-700">Description</label>
-      <textarea formControlName="description" class="w-full mt-2 p-2 border rounded"></textarea>
+      <label class="block text-sm font-medium text-gray-700">Description</label>
+      <textarea formControlName="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
     </div>
+
     <div class="mb-4">
-      <label class="block text-gray-700">Date</label>
-      <input formControlName="date" type="datetime-local" class="w-full mt-2 p-2 border rounded">
+      <label class="block text-sm font-medium text-gray-700">Photo</label>
+      <input type="file" (change)="onPhotoSelected($event)" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
     </div>
+
     <div class="mb-4">
-      <label class="block text-gray-700">Place</label>
-      <input formControlName="place" type="text" class="w-full mt-2 p-2 border rounded">
+      <label class="block text-sm font-medium text-gray-700">Date</label>
+      <input type="datetime-local" formControlName="date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
     </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Price</label>
-      <input formControlName="price" type="number" step="0.01" class="w-full mt-2 p-2 border rounded">
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Max Places</label>
-      <input formControlName="maxPlaces" type="number" class="w-full mt-2 p-2 border rounded">
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Photo</label>
-      <input type="file" (change)="onPhotoSelected($event)" class="w-full mt-2 p-2 border rounded">
-    </div>
-    <div class="flex justify-between">
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Add Atelier</button>
-      <button type="button" (click)="onReset()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700">Reset</button>
-    </div>
+
+    <ng-container *ngIf="isAtelier">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Place</label>
+        <input type="text" formControlName="place" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Price</label>
+        <input type="number" formControlName="price" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Max Places</label>
+        <input type="number" formControlName="maxPlaces" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+    </ng-container>
+
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md">
+      {{ isUpdate ? 'Update' : 'Create' }}
+    </button>
   </form>
 </div>
