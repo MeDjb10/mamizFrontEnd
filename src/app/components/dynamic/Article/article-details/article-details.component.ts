@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { ReactionType } from 'src/app/serverSide/enum/reaction-type';
 import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 import { ReactionService } from 'src/app/serverSide/services/reaction.service';
+import { Chapter } from 'src/app/serverSide/classes/chapter';
 declare var FB: any;
 @Component({
   selector: 'app-article-details',
@@ -16,25 +17,36 @@ declare var FB: any;
 export class ArticleDetailsComponent implements OnInit {
   articles: Article[] = [];
   latestArticle: Article[] = [];
-  article:any;
-  currentReaction: ReactionType | null = null; 
-  userId:any;
-  articleid:any
+  article: any;
+  currentReaction: ReactionType | null = null;
+  userId: any;
+  articleid: any;
+
+  categories = [
+    { name: 'Tous les articles', value: '', color: '#007F73' },
+    { name: 'Maman', value: 'maman', color: '#FF9EAA'},
+    { name: 'Bébé', value: 'bébé', color: '#5BBCFF' },
+    { name: 'Enfant', value: 'enfant', color: '#91DDCF'},
+    { name: 'Grossesse', value: 'grossesse', color: '#667BC6' },
+    { name: 'Préconception', value: 'préconception', color: '#FF0000' }
+  ];
+
+
   constructor(
     private el: ElementRef,
     private articleService: ArticleService,
     private route: ActivatedRoute,
     private location: Location,
-    private auth:AuthServiceService,
+    private auth: AuthServiceService,
     private reactionService: ReactionService,
   ) { }
 
   ngOnInit(): void {
     this.articleid = Number(this.route.snapshot.paramMap.get('id'));
-    this.articleService.getById(this.articleid).subscribe(data=> this.article=data);
+    this.articleService.getById(this.articleid).subscribe(data => { 
+      this.article = data});
     this.userId = this.auth.getCurrentUserId();
-    console.log(this.userId);
-    
+
     this.articleService.getAll().subscribe((data) => {
       this.articles = data;
       this.latestArticle = this.getLatestArticle();
@@ -66,7 +78,7 @@ export class ArticleDetailsComponent implements OnInit {
     FB.ui({
       method: 'share',
       href: window.location.href, // Share the current page URL
-    }, function(response: any) {
+    }, function (response: any) {
       if (response) {
         console.log('Article shared successfully:', response);
       } else {
@@ -124,5 +136,10 @@ export class ArticleDetailsComponent implements OnInit {
         this.currentReaction = selectedReactionType;
       },
     );
+  }
+
+  getThemeColor(theme: string): string {
+    const category = this.categories.find(cat => cat.value === theme);
+    return category ? category.color : '#007F73'; // Default color
   }
 }

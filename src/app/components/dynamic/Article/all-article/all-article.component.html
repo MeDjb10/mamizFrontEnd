@@ -3,68 +3,80 @@
 
     <div class="lg:mx-10 mb-10">
         <div class="grid md:grid-cols-2 gap-4">
-            <div class="relative shadow-lg rounded-lg overflow-hidden w-full h-96 c1">
+            <div class="relative shadow-lg rounded-lg overflow-hidden w-full h-96 c1" (click)="toDetails(articles[0].id)">
                 <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"
                     class="w-full h-96 object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
                 <div class="absolute bottom-4 left-4 gap-3">
-                    <div>
-                        <p class="text-white font-bold  bg-teal w-fit px-2 text-xs md:text-base">
-                            Grossesse
+                    <div >
+                        <p class="text-white font-bold  w-fit px-2 text-xs md:text-base" 
+                        [ngStyle]="{ 'background-color': getThemeColor(articles[0].theme) }"
+                        >
+                            {{articles[0].theme | capitalizeFirst }}
                         </p>
-                        <h1 class="text-white font-bold tracking-tighter text-3xl ">
-                            Les Étapes Cruciales de la Grossesse
+                        <h1 class="text-white font-bold tracking-tighter text-3xl " [ngClass]="{'arabicfont tracking-normal':isArabic(articles[0].title)}">
+                            {{articles[0].title }}
                         </h1>
                         <p class="text-gray-300 text-sm">
-                            by Admin, <span class="italic font-thin">06 Septembre 2024</span>
+                            by Admin, <span class="italic font-thin">
+                            {{articles[0].date}}
+                            </span>
                         </p>
                     </div>
                 </div>
 
             </div>
             <div class=" grid-rows-2 space-y-4">
-                <div class=" h-48 relative shadow-lg rounded-lg overflow-hidden w-full">
+                <div class=" h-48 relative shadow-lg rounded-lg overflow-hidden w-full" (click)="toDetails(articles[1].id)">
                     <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"
                         class="w-full h-48 object-cover" />
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
                     <div class="absolute bottom-4 left-4 gap-3">
                         <div>
-                            <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base">
-                                Grossesse
+                            <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base"
+                            [ngStyle]="{ 'background-color': getThemeColor(articles[1].theme) }">
+                                {{articles[1].theme | capitalizeFirst }}
+
                             </p>
-                            <h1 class="text-white font-bold tracking-tighter text-3xl ">
-                                Alimentation et Bien-être Pendant la Grossesse 
+                            <h1 class="text-white font-bold tracking-tighter text-3xl "  [ngClass]="{'arabicfont tracking-normal':isArabic(articles[1].title)}">
+                                {{articles[1].title}}
                             </h1>
                         </div>
                     </div>
                 </div>
-                <div class=" h-44 grid grid-cols-2 gap-4">
-                    <div class="  relative shadow-lg rounded-lg overflow-hidden w-full">
+                <div class=" h-44 grid grid-cols-2 gap-4" >
+                    <div class="  relative shadow-lg rounded-lg overflow-hidden w-full" (click)="toDetails(articles[2].id)">
                         <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"
                             class="w-full h-48 object-cover" />
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
                         <div class="absolute bottom-4 left-4 gap-3">
                             <div>
-                                <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base">
-                                    Grossesse
+                                <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base"
+                                [ngStyle]="{ 'background-color': getThemeColor(articles[2].theme) }">
+                                    {{articles[2].theme | capitalizeFirst }}
+
                                 </p>
-                                <h1 class="text-white font-bold tracking-tighter text-xl ">
-                                    Préparer l'Arrivée de Bébé
+                                <h1 class="text-white font-bold tracking-tighter text-xl "  [ngClass]="{'arabicfont tracking-normal':isArabic(articles[2].title)}">
+                                    {{articles[2].title}}
+
                                 </h1>
                             </div>
                         </div>
                     </div>
-                    <div class="  relative shadow-lg rounded-lg overflow-hidden w-full">
+                    <div class="  relative shadow-lg rounded-lg overflow-hidden w-full" (click)="toDetails(articles[3].id)">
                         <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"
                             class="w-full h-48 object-cover" />
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
                         <div class="absolute bottom-4 left-4 gap-3">
                             <div>
-                                <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base">
-                                    Grossesse
+                                <p class="text-white font-bold  bg-darkpink w-fit px-2 text-xs md:text-base"
+                                [ngStyle]="{ 'background-color': getThemeColor(articles[3].theme) }">
+                                    {{articles[3].theme | capitalizeFirst }}
+
                                 </p>
-                                <h1 class="text-white font-bold tracking-tighter text-xl ">
-                                    La Grossesse : Un Voyage Extraordinaire
+                                <h1 class="text-white font-bold tracking-tight text-xl " [ngClass]="{'arabicfont tracking-normal':isArabic(articles[3].title)}">
+                                    {{articles[3].title}}
+
                                 </h1>
                             </div>
                         </div>

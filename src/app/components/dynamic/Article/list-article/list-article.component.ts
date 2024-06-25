@@ -18,6 +18,15 @@ export class ListArticleComponent implements OnInit {
   articlesPerPage: number = 4;
   searchKeyword: string = '';
 
+  categories = [
+    { name: 'Tous les articles', value: '', color: '#007F73' },
+    { name: 'Maman', value: 'maman', color: '#FF9EAA'},
+    { name: 'Bébé', value: 'bébé', color: '#5BBCFF' },
+    { name: 'Enfant', value: 'enfant', color: '#91DDCF'},
+    { name: 'Grossesse', value: 'grossesse', color: '#667BC6' },
+    { name: 'Préconception', value: 'préconception', color: '#FF0000' }
+  ];
+
   constructor(
     private articleService: ArticleService,
     private router:Router,
@@ -80,5 +89,10 @@ export class ListArticleComponent implements OnInit {
 
   toDetails(id:number){
     this.router.navigate(['home/article-details',id]);
+  }
+
+  getThemeColor(theme: string): string {
+    const category = this.categories.find(cat => cat.value === theme);
+    return category ? category.color : '#007F73'; // Default color
   }
 }
