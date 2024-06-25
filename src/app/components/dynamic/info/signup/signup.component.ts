@@ -46,10 +46,12 @@ export class SignupComponent {
     const user = { ...this.signupForm.value };
     delete user.confirmMotPasse;
 
+    console.log('User to create', user);
+    
     this.userService.create(user).subscribe({
       next: (response) => {
         console.log('User created successfully', response);
-        this.router.navigate(['/']); // Navigate to the home page or login page after signup
+        this.router.navigate(['/form/login']); // Navigate to the home page or login page after signup
       },
       error: (error) => {
         console.error('Error creating user', error);
