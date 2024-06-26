@@ -52,7 +52,6 @@ export class ArticleDetailsComponent implements OnInit {
       this.latestArticle = this.getLatestArticle();
     });
     this.loadFacebookSDK();
-
   }
 
   getLatestArticle(): Article[] {

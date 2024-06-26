@@ -1,64 +1,144 @@
 <div>
-    <p class="font-bold text-3xl text-center tracking-tight">
-        List d'article
-    </p>
-    <div>
-        <form class="max-w-md mx-auto">
-            <div class="flex relative">
-              <label for="location-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your
-                Email</label>
-              <button id="dropdownHoverButton" (click)="toggleDropdown()"
-                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-cyan-100 focus:ring-2 focus:outline-none focus:ring-lightblue"
-                type="button">
-                Spec. <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div *ngIf="dropdownVisible" id="dropdownHover"
-                class="z-20 absolute bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 mt-12 h-60 ">
-                <ul class="py-2 text-sm text-gray-700">
-                  <li *ngFor="let spec of Themes">
-                    <button type="button" (click)="onSpecialtySelected(spec.name)"
-                      class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                      <div class="inline-flex items-center">
-                        {{spec.name}}
-                      </div>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              <div class="relative w-full">
-                <input type="search" id="location-search" (input)="onSearchChange($event)"
-                  class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-lightblue focus:border-lightblue"
-                  placeholder="Ecrivez un mot clé" required />
-                <button type="submit"
-                  class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-pink rounded-e-lg border border-gray-300 hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-lightblue">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                
-              </div>
-               
+  <p class="font-bold text-3xl text-center tracking-tight">
+    List d'article
+  </p>
+  <div>
+    <form class="max-w-md mx-auto">
+
+      <div class="relative w-full">
+        <input type="search" id="location-search" (input)="onSearchChange($event)"
+          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-lightblue focus:border-lightblue"
+          placeholder="Ecrivez un mot clé" required />
+        <button type="submit"
+          class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-pink rounded-e-lg border border-gray-300 hover:bg-darkpink focus:ring-4 focus:outline-none focus:ring-lightblue">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+      </div>
+
+
+      <button routerLink="/dashboard/formArticle"
+        class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200  cursor-pointer">
+        <i class="fa-solid fa-plus"></i> Créer
+      </button>
+    </form>
+
+  </div>
+  <div>
+    <p-table [value]="filteredArticles" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '45rem' }" styleClass="p-datatable-striped"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 25, 50]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%">
+            Image
+          </th>
+          <th pSortableColumn="title" style="width: 25%">
+            <p-sortIcon field="title" />Titre
+          </th>
+          <th pSortableColumn="date" style="width: 10%">
+            <p-sortIcon field="date" />date
+          </th>
+          <th style="width: 15%">Theme
+            <p-columnFilter field="theme" matchMode="equals" [showMenu]="false">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Theme"
+                  [showClear]="true" optionLabel="name" optionValue="value">
+                </p-dropdown>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th style="width: 25%">
+
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-article>
+        <tr>
+          <td>{{ article.mainPic }}</td>
+          <td>{{ article.title }}</td>
+          <td>{{ article.date | date: "hh:mm dd/MM/yyyy" }}</td>
+          <td>
+            <p class="text-white font-bold  w-fit px-2 text-xs md:text-base"
+              [ngStyle]="{ 'background-color': getThemeColor(article.theme) }">{{ article.theme | capitalizeFirst }}</p>
+          </td>
+          <td class="flex gap-2 items-center  justify-between">
+
+            <p class="bg-gray-400 w-fit px-2 rounded text-white hover:bg-slate-600" (click)="showDetails(article)">
+              Details <i class="fa-solid fa-arrow-right"></i>
+            </p>
+            <div class="flex gap-3">
+              <p class="bg-blue-500 w-fit px-2 rounded text-white hover:bg-blue-600">
+                <i class="fa-solid fa-pen"></i>
+              </p>
+              <p class="bg-red-500 w-fit px-2 rounded text-white hover:bg-red-600" (click)="showDelete(article.id)">
+                <i class="fa-solid fa-trash"></i>
+              </p>
             </div>
-            <button routerLink="/dashboard/formArticle" class="font-bold  my-3 text-teal hover:text-white border-2 border-teal bg-white hover:bg-teal w-fit rounded-lg p-2 transition-colors duration-200  cursor-pointer">
-                    <i  class="fa-solid fa-plus"></i> Créer
-                </button>
-          </form>
-           
-    </div>
-    <div>
-        <div *ngIf="filteredArticles.length === 0"
-            class="align-middle items-center flex justify-center font-bold text-xl">Pas d'articles trouvés.</div>
-        <div *ngFor="let article of filteredArticles" class="article-card">
-            <div class="my-1 bg-white rounded-xl p-2 flex gap-4 items-end">
-                <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-14 md:max-h-28">
-                <div class="flex flex-col justify-between h-full">
-                    <div class="mt-auto">
-                        <p class="bg-teal w-fit text-xs md:text-base px-2 text-white">
-                            {{ article.category }}
-                        </p>
-                        <h2 class="font-extrabold tracking-tight md:text-2xl line-clamp-2">{{ article.title }}</h2>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        </div>
-    </div>
+          </td>
+        </tr>
+        <hr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">Aucun utilisateur trouvé.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
+
+<p-dialog header="Voulez-vous vraiment supprimer l'article?" [(visible)]="visible1" [modal]="true"
+  [style]="{ width: 'auto', 'border-radius': '1rem' }">
+  <div class=" flex justify-evenly">
+    <button (click)="deleteArticle()" class="bg-green-500 text-white px-2 rounded"><i class="fa-solid fa-check"></i> Oui
+      supprimer l'article</button>
+    <button (click)="annuler()" class="bg-red-500 text-white px-2 rounded"><i class="fa-solid fa-x"></i> Non
+      annuler</button>
+  </div>
+</p-dialog>
+<p-dialog header="Details de l'article" [(visible)]="visible2" [modal]="true"
+  [style]="{ width: 'auto', 'border-radius': '1rem' }">
+  <div class="md:col-span-4">
+    <p-scrollTop styleClass="custom-scrolltop bg-teal"></p-scrollTop>
+
+    <div class="flex flex-col md:m-5 lg:m-10" [ngClass]="{'arabicfont items-end': isArabic(articleDetail?.title ?? '')}">
+      <div [ngClass]="{' text-right': isArabic(articleDetail?.title ?? '')}">
+        <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white"
+          [ngStyle]="{ 'background-color': getThemeColor(articleDetail?.theme ?? '') }">
+          {{ articleDetail?.theme  }}
+        </p>
+        <p class="text-7xl font-bold tracking-tighter"
+          [ngClass]="{'arabicfont text-right': isArabic(articleDetail?.title ?? '')}">
+          {{ articleDetail?.title   }}
+        </p>
+        <p class="text-gray-400 tracking-tighter mt-3">
+          Par Admins, <span class="italic">{{ articleDetail?.date | date: 'dd MMMM yyyy' }}</span>
+        </p>
+      </div>
+      <p class="tracking-tighter font-bold text-xl text-gray-700 mt-3"
+        [ngClass]="{'arabicfont tracking-normal text-right': isArabic(articleDetail?.title ?? '')}">
+        {{ articleDetail?.description }}
+      </p>
+      <img src="assets/useful stuff/Studentinclassroom.jpeg" alt="" class="max-h-svh w-fit m-4">
+
+      <!-- chapters houni -->
+      <ng-container *ngFor="let chap of articleDetail?.chapters">
+        <div class="chapter-container ">
+          <hr class="w-full border-lightblue my-6" *ngIf="chap.title">
+          <div class=" space-y-4 m-4">
+            <p class="text-5xl font-bold tracking-tighter "
+              [ngClass]="{'arabicfont tracking-normal text-right': isArabic(articleDetail?.title ?? '')}">
+              {{ chap.title | capitalizeFirst }}
+            </p>
+            <p class="text-xl tracking-tight text-justify indent-2 text-gray-700"
+              [ngClass]="{'arabicfont tracking-normal indent-0 text-end': isArabic(articleDetail?.title ?? '')}">
+              {{ chap.description }}
+            </p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</p-dialog>

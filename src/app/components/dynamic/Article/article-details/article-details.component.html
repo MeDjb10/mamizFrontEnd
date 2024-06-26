@@ -69,27 +69,34 @@
                 class="border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow md:mt-10 p-3 text-gray-600 bg-white">
                 <div class="flex justify-evenly">
                     <div class="flex flex-col items-center hover:text-blue-600 transition-colors duration-200"
+                    [ngClass]="{'text-blue-600': currentReaction === 'LIKE'}"
                         (click)="reactToArticle('LIKE')">
                         <i class="fa-solid fa-lg lg:fa-xl my-3 fa-thumbs-up"></i>
                         <p>Like</p>
                     </div>
                     <div class="flex flex-col items-center hover:text-red-600 transition-colors duration-200"
-                        (click)="reactToArticle('LOVE')">
+                    [ngClass]="{'text-red-600': currentReaction === 'LOVE'}"
+
+                    (click)="reactToArticle('LOVE')">
                         <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-grin-hearts"></i>
                         <p>Love</p>
                     </div>
                     <div class="flex flex-col items-center hover:text-yellow-300 transition-colors duration-200"
-                        (click)="reactToArticle('HAHA')">
+                    [ngClass]="{'text-yellow-300': currentReaction === 'HAHA'}"
+
+                    (click)="reactToArticle('HAHA')">
                         <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-laugh-squint"></i>
                         <p>Haha</p>
                     </div>
                     <div class="flex flex-col items-center hover:text-darkpink transition-colors duration-200"
-                        (click)="reactToArticle('WOW')">
+                    [ngClass]="{'text-darkpink': currentReaction === 'WOW'}"
+                    (click)="reactToArticle('WOW')">
                         <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-surprise"></i>
                         <p>Wow</p>
                     </div>
                     <div class="flex flex-col items-center hover:text-violet-600 transition-colors duration-200"
-                        (click)="reactToArticle('SAD')">
+                    [ngClass]="{'text-violet-600': currentReaction === 'SAD'}"
+                    (click)="reactToArticle('SAD')">
                         <i class="fa-solid fa-lg lg:fa-xl my-3 fa-face-sad-cry"></i>
                         <p>Sad</p>
                     </div>
