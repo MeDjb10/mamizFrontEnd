@@ -61,16 +61,29 @@ const routes: Routes = [
         ],
       },
       { path: 'medcin', title: ' Medcin', component: AllMedecinComponent },
-      { path: 'userProfile', title: ' Votre compte', component: UserProfileComponent },
-      { path: 'yourPosts', title: 'Vous Questions', component: YourPostsComponent },
       {
-        path: 'info', component: GeneralInfoComponent, children: [
+        path: 'userProfile',
+        title: ' Votre compte',
+        component: UserProfileComponent,
+      },
+      {
+        path: 'yourPosts',
+        title: 'Vous Questions',
+        component: YourPostsComponent,
+      },
+      {
+        path: 'info',
+        component: GeneralInfoComponent,
+        children: [
           { path: 'aboutUs', component: AboutUsComponent },
           { path: 'DepotTerms', component: DepotTermsComponent },
           { path: 'FAQ', component: FAQComponent },
-          { path: 'PolitiqueDeConfidentialité', component: PolitiqueConfiComponent },
+          {
+            path: 'PolitiqueDeConfidentialité',
+            component: PolitiqueConfiComponent,
+          },
           { path: '', redirectTo: 'aboutUs', pathMatch: 'full' },
-        ]
+        ],
       },
 
       { path: '**', redirectTo: 'acceuil' },
@@ -91,14 +104,17 @@ const routes: Routes = [
       { path: 'listArticle', component: AdminListArticleComponent },
       { path: 'formArticle', component: AdminFormArticleComponent },
       { path: 'listAtelier', component: AdminListAtelierComponent },
-      { path: 'formAtelier', component: AdminFormAtelierComponent },
       { path: 'listEvents', component: AdminListEventComponent },
-      { path: 'formEvent', component: AdminFormEventComponent },
       { path: 'listUsers', component: AdminListUsersComponent },
       { path: 'listDepots', component: AdminListDepotsComponent },
       { path: 'listPosts', component: AdminListPostsComponent },
       { path: 'depot-details/:id', component: DepotDetailsComponent },
       { path: '', redirectTo: 'listArticle', pathMatch: 'full' },
+      { path: 'create/:type', component: AdminFormAtelierComponent },
+      {
+        path: 'update/:type/:id',
+        component: AdminFormAtelierComponent,
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
