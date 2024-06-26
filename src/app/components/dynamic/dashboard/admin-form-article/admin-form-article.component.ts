@@ -20,14 +20,19 @@ export class AdminFormArticleComponent {
     private articleService: ArticleService,
   ) {
     this.articleForm = this.fb.group({
-      title: ['', Validators.required],
-      theme: ['', Validators.required],
-      description: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      theme: [ArticleType.enfant, Validators.required],
+      description: ['', [Validators.required, Validators.maxLength(16777215)]],
       date: ['', Validators.required],
-      mainPic: [''],
+      mainPic: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9 ^éèàù]+.(jpg|jpeg|png)")]],
       chapters: this.fb.array([]),
     });
   }
+  get title() { return this.articleForm.get('title'); }
+  get theme() { return this.articleForm.get('theme'); }
+  get description() { return this.articleForm.get('description'); }
+  get date() { return this.articleForm.get('date'); }
+  get mainPic() { return this.articleForm.get('mainPic'); }
 
   ngOnInit(): void {
     this.addChapter(); // Initialize with one chapter
@@ -39,9 +44,9 @@ export class AdminFormArticleComponent {
 
   addChapter(): void {
     const chapterForm = this.fb.group({
-      title: [''],
-      description: ['', Validators.required],
-      photo: [''],
+      title: ['' ,[ Validators.minLength(5)]],
+      description: ['', [Validators.required, Validators.maxLength(16777215)]],
+      photo: ['',Validators.pattern("[a-zA-Z0-9 ^éèàù]+.(jpg|jpeg|png)")],
       chapterOrder: [this.chapters.length],
     });
     this.chapters.push(chapterForm);

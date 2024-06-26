@@ -9,36 +9,36 @@
     <div class="md:col-span-4">
         <p-scrollTop styleClass="custom-scrolltop bg-teal"></p-scrollTop>
 
-        <div class="flex flex-col md:m-5 lg:m-10" [ngClass]="{'arabicfont items-end':isArabic(article.title)}">
-            <div [ngClass]="{' text-right':isArabic(article.title)}">
-                <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white" [ngStyle]="{ 'background-color': getThemeColor(article.theme) }">
-                    {{article.theme |capitalizeFirst }}
+        <div class="flex flex-col md:m-5 lg:m-10" [ngClass]="{'arabicfont items-end':isArabic(article?.title)}">
+            <div [ngClass]="{' text-right':isArabic(article?.title)}">
+                <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white" [ngStyle]="{ 'background-color': getThemeColor(article?.theme) }">
+                    {{article?.theme |capitalizeFirst }}
                 </p>
                 <p class="text-7xl font-bold tracking-tighter"
-                    [ngClass]="{'arabicfont text-right':isArabic(article.title)}">
-                    {{article.title | capitalizeFirst }}
+                    [ngClass]="{'arabicfont text-right':isArabic(article?.title)}">
+                    {{article?.title | capitalizeFirst }}
                 </p>
                 <p class="text-gray-400 tracking-tighter mt-3">
-                    Par Admins, <span class="italic">{{article.date | date:'dd MMMM yyyy'}}</span>
+                    Par Admins, <span class="italic">{{article?.date | date:'dd MMMM yyyy'}}</span>
                 </p>
             </div>
             <p class="tracking-tighter font-bold text-xl text-gray-700 mt-3"
-                [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article.title)}">
-                {{article.description}}
+                [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article?.title)}">
+                {{article?.description}}
             </p>
             <img src="assets\useful stuff\Studentinclassroom.jpeg" alt="" class="max-h-svh w-fit m-4">
 
             
             <!-- chapters houni -->
-            <ng-container *ngFor="let chap of article.chapters">
+            <ng-container *ngFor="let chap of article?.chapters">
                 <div class="chapter-container ">
                     <hr class="w-full border-lightblue my-6" *ngIf="chap.title">
                     <div class=" space-y-4 m-4" >
-                        <p class="text-5xl font-bold tracking-tighter "  [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article.title)}">
-                            {{chap.title | capitalizeFirst }} 
+                        <p class="text-5xl font-bold tracking-tighter "  [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article?.title)}">
+                            {{chap?.title | capitalizeFirst }} 
                         </p>
-                        <p class="text-xl tracking-tight text-justify indent-2 text-gray-700"  [ngClass]="{'arabicfont tracking-normal indent-0 text-end':isArabic(article.title)}">
-                            {{chap.description}}
+                        <p class="text-xl tracking-tight text-justify indent-2 text-gray-700"  [ngClass]="{'arabicfont tracking-normal indent-0 text-end':isArabic(article?.title)}">
+                            {{chap?.description}}
                         </p>
                     </div>
                     
@@ -57,7 +57,7 @@
             <div
                 class="p-3 gap-x-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
                 <ng-container *ngFor="let article of latestArticle | slice: 0 : 3" class="mb-3">
-                    <app-forum-aricle-card [title]="article?.title"
+                    <app-forum-aricle-card [title]="article?.title"  [id]="article?.id" [theme]="article?.theme"
                         [desc]="article?.description"></app-forum-aricle-card>
                 </ng-container>
             </div>
@@ -117,12 +117,12 @@
                 Continuer à lire
             </p>
             <div
-                class="p-3 gap-x-4 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
-                <ng-container *ngFor="let article of latestArticle | slice: 0 : 3" class="mb-3">
-                    <app-forum-aricle-card [title]="article?.title" [theme]="article?.theme" [id]="article?.id"
-                        [desc]="article?.description"></app-forum-aricle-card>
-                </ng-container>
-            </div>
+            class="p-3 space-y-3 bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
+            <ng-container *ngFor="let article of latestArticle | slice: 0 : 3">
+              <app-forum-aricle-card [id]="article?.id" [title]="article?.title" [theme]="article?.theme"
+                [desc]="article?.description"></app-forum-aricle-card>
+            </ng-container>
+          </div>
         </div>
     </div>
 </div>

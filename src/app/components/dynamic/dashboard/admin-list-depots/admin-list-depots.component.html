@@ -121,7 +121,7 @@
       </div>
 
     </div>
-    <p class="text-xl text-center">
+    <p class="text-xl text-center" *ngIf="selectedDepot?.status === 'pending'">
       Voulez vous accepter l'annonce?
     </p>
     <div class="flex justify-evenly mt-3">

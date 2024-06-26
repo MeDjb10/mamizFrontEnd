@@ -1,4 +1,4 @@
-<div (click)="id ? toDetails(id) : null"
+<div (click)="articleId && toDetails(articleId) "
 class="relative bg-white shadow-lg rounded-lg overflow-hidden max-w-md min-w-sm c1 flex mb-3"
 [ngClass]="{' items-end':isArabic(title)}">
   <img src="../../../../../assets/useful stuff/Studentinclassroom.jpeg" alt="Atelier Image"

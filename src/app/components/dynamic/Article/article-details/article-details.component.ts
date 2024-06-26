@@ -8,6 +8,9 @@ import { ReactionType } from 'src/app/serverSide/enum/reaction-type';
 import { AuthServiceService } from 'src/app/serverSide/auth/auth-service.service';
 import { ReactionService } from 'src/app/serverSide/services/reaction.service';
 import { Chapter } from 'src/app/serverSide/classes/chapter';
+import { LogarithmicScale } from 'chart.js';
+import { LoginComponent } from '../../info/login/login.component';
+import { switchMap } from 'rxjs';
 declare var FB: any;
 @Component({
   selector: 'app-article-details',
@@ -33,6 +36,7 @@ export class ArticleDetailsComponent implements OnInit {
 
 
   constructor(
+    private router:Router,
     private el: ElementRef,
     private articleService: ArticleService,
     private route: ActivatedRoute,
@@ -43,8 +47,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleid = Number(this.route.snapshot.paramMap.get('id'));
-    this.articleService.getById(this.articleid).subscribe(data => { 
-      this.article = data});
+   
     this.userId = this.auth.getCurrentUserId();
 
     this.articleService.getAll().subscribe((data) => {
@@ -52,6 +55,17 @@ export class ArticleDetailsComponent implements OnInit {
       this.latestArticle = this.getLatestArticle();
     });
     this.loadFacebookSDK();
+
+    this.route.paramMap
+    .pipe(
+      switchMap((params) => {
+        const id = Number(params.get('id'));
+        return this.articleService.getById(id);
+      })
+    )
+    .subscribe((data) => {
+      this.article = data;
+    });
   }
 
   getLatestArticle(): Article[] {
@@ -140,5 +154,10 @@ export class ArticleDetailsComponent implements OnInit {
   getThemeColor(theme: string): string {
     const category = this.categories.find(cat => cat.value === theme);
     return category ? category.color : '#007F73'; // Default color
+  }
+  toDetails(id:number){
+    console.log(id);
+    
+    this.router.navigate(['home/article-details',id]  );
   }
 }

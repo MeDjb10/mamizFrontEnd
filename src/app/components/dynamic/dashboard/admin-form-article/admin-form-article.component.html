@@ -4,36 +4,64 @@
     <div class="mb-4">
       <label class="block text-gray-700">Titre</label>
       <input formControlName="title" type="text" class="w-full mt-2 p-2 border rounded">
+      <p >
+        <span *ngIf="title?.errors?.['required'] && title?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> Le titre est requis.</span>
+        <span *ngIf="title?.errors?.['minlength']" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> Le titre doit comporter au moins 5 caractères.</span>
+      </p>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700">Theme</label>
       <select formControlName="theme" class="w-full mt-2 p-2 border rounded">
         <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
       </select>
+      <p >
+        <span *ngIf="theme?.errors?.['required'] && theme?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> Le theme est requis.</span>
+      </p>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700">Description</label>
       <textarea formControlName="description" class="w-full mt-2 p-2 border rounded"></textarea>
+      <p>
+        <span *ngIf="description?.errors?.['required'] && description?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> La description est requise.</span>
+        <span *ngIf="description?.errors?.['maxlength']" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> La description est  trop longue.</span>
+      </p>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700">Date</label>
       <input formControlName="date" type="datetime-local" class="w-full mt-2 p-2 border rounded">
+      <p >
+        <span *ngIf="date?.errors?.['required'] && date?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> La date est requise.</span>
+      </p>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700">Main Picture</label>
       <input type="file" (change)="onMainPicSelected($event)" class="w-full mt-2 p-2 border rounded">
+      <p>
+        <span *ngIf="mainPic?.errors?.['required'] && mainPic?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> L'image principale est requise.</span>
+        <span *ngIf="mainPic?.invalid" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> Il faut inserer un image de type  jpg, jpeg ou png.</span>
+      </p>
     </div>
     <div formArrayName="chapters" *ngFor="let chapter of chapters.controls; let i=index">
       <div [formGroupName]="i" class="mb-4 border p-4 rounded">
         <h3 class="text-xl font-semibold mb-2">Chapitre {{ i + 1 }}</h3>
         <label class="block text-gray-700">Titre</label>
         <input formControlName="title" type="text" class="w-full mt-2 p-2 border rounded">
+        <p>
+          <span *ngIf="chapter.get('title')?.invalid" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> Le titre doit comporter au moins 5 caractères.</span>
+        </p>
         <label class="block text-gray-700 mt-4">Description</label>
         <textarea formControlName="description" class="w-full mt-2 p-2 border rounded"></textarea>
+        <p>
+          <span *ngIf="chapter.get('description')?.errors?.['required'] && chapter.get('description')?.touched" class="text-darkpink"> <i class="fa-solid fa-circle-exclamation"></i> La description est requise.</span>
+          <span *ngIf="chapter.get('description')?.errors?.['maxlength']" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> La description est  trop longue.</span>
+        </p>
         <label class="block text-gray-700 mt-4">Order</label>
         <input formControlName="chapterOrder" type="number" class="w-full mt-2 p-2 border rounded" [value]="i">
         <label class="block text-gray-700 mt-4">Photo</label>
         <input type="file" (change)="onChapterPhotoSelected($event, i)" class="w-full mt-2 p-2 border rounded">
+        <p>
+          <span *ngIf="chapter.get('photo')?.invalid" class="text-yellow-300"><i class="fa-solid fa-triangle-exclamation"></i> Il faut inserer un image de type  jpg, jpeg ou png.</span>
+        </p>
         <button type="button" (click)="removeChapter(i)" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer Chapitre</button>
       </div>
     </div>

@@ -4,24 +4,24 @@
             <img src="assets\useful stuff\user.png" alt="" class="h-14 md:h-24 lg:h-32">
             <div>
                 <p class="text-xl md:text-4xl lg:text-7xl font-bold tracking-tighter">
-                    {{ user.nom }} {{user.prenom}} 
+                    {{ user?.nom }} {{user?.prenom}} 
                 </p>
                 <hr>
                 <div class="flex gap-6">
                     <div>
                         <p class="text-xs md:text-sm lg:text-base tracking-tight font-semibold">
-                            numero Tel: <span class="font-light">{{user.numTel}}</span>
+                            numero Tel: <span class="font-light">{{user?.numTel}}</span>
                         </p>
                         <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
-                            birthday: <span class="font-light">{{user.birth_date | date: "dd/MM/YYYY "}} </span>
+                            birthday: <span class="font-light">{{user?.birthDate | date: "dd/MM/YYYY "}} </span>
                         </p>
                     </div>
                     <div *ngIf="isMedcin">
                         <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
-                            Adresse: <span class="font-light">{{user.adresse}} </span>
+                            Adresse: <span class="font-light">{{user?.adresse}} </span>
                         </p>
                         <p class="text-xs md:text-sm  lg:text-base tracking-tight font-semibold">
-                            Specialité: <span class="font-light">{{user.specialite}} </span>
+                            Specialité: <span class="font-light">{{user?.specialite}} </span>
                         </p>
                     </div>
                 </div>

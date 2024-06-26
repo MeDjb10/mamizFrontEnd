@@ -25,13 +25,13 @@ export class AdminFormAtelierComponent {
     private router: Router,
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      photo: [''],
+      title: ['',[Validators.required, Validators.minLength(5)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+      photo: ['',[Validators.required, Validators.pattern("[a-zA-Z0-9 ^éèàù]+.(jpg|jpeg|png)")]],
       date: ['', Validators.required],
-      place: [''],
-      price: [0],
-      maxPlaces: [0],
+      place: ['',[Validators.required, Validators.minLength(5)]],
+      price: [0,Validators.required],
+      maxPlaces: [0,Validators.required],
     });
   }
 
