@@ -3,17 +3,17 @@
     <div class="imgCont">
       <a href="#">
         <img
-          class="rounded-md h-auto md:max-w-2xl transition-all duration-300 cursor-pointer"
+          class="rounded-md h-96 md:max-w-2xl transition-all duration-300 cursor-pointer"
           src="assets\useful stuff\Studentinclassroom.jpeg"
           alt="image description"
         />
       </a>
     </div>
-    <figcaption class="absolute px-4 text-lg text-white bottom-6 font-bold">
-      <div class="bg-lightblue text-black h-auto w-fit px-2 mb-2">
-        <p>{{theme}}</p>
+    <figcaption class="pt-2 bg-white absolute w-full text-lg text-white bottom-6 font-bold">
+      <div class="bg-lightblue text-black h-auto w-fit px-2 mb-2"  [ngStyle]="{ 'background-color': getThemeColor(theme || '') }">
+        <p>{{theme || '' | capitalizeFirst}}</p>
       </div>
-      <p class="title">
+      <p class="title text-black text-2xl tracking-tighter w-full">
         {{title}}
       </p>
     </figcaption>

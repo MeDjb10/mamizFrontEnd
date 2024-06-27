@@ -4,15 +4,14 @@
         <img
           class="rounded-md h-auto w-full transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
           src="assets/useful stuff/Studentinclassroom.jpeg"
-          alt="image description"
-        />
+          alt="image description"/>
       </a>
     </div>
     <div class="flex flex-col justify-between h-24 font-bold ">
-      <div class="bg-pink h-auto w-fit px-2 mb-2">
-        <p>{{theme}}</p>
+      <div class="text-white h-auto w-fit px-2 mb-2" [ngStyle]="{ 'background-color': getThemeColor(theme || '') }">
+        <p>{{theme || '' | capitalizeFirst}}</p>
       </div>
-      <p class="truncate">
+      <p class="text-xl w-96">
         {{title}}
       </p>
     </div>

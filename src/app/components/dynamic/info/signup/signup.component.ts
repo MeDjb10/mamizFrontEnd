@@ -11,6 +11,7 @@ import { UserService } from 'src/app/serverSide/services/user.service';
 export class SignupComponent {
   signupForm: FormGroup;
   passwordsMismatch: boolean = false;
+  formSubmitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -18,10 +19,10 @@ export class SignupComponent {
     private router: Router,
   ) {
     this.signupForm = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
+      nom: ['',[Validators.required, Validators.minLength(3)]],
+      prenom: ['',[Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      numTel: ['', Validators.required],
+      numTel: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
       gender: ['homme', Validators.required],
       birthDate: ['', Validators.required],
       motPasse: ['', [Validators.required, Validators.minLength(6)]],
@@ -29,9 +30,11 @@ export class SignupComponent {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
+    this.formSubmitted = true;
+
     if (this.signupForm.invalid) {
       return;
     }
@@ -47,7 +50,7 @@ export class SignupComponent {
     delete user.confirmMotPasse;
 
     console.log('User to create', user);
-    
+
     this.userService.create(user).subscribe({
       next: (response) => {
         console.log('User created successfully', response);
@@ -59,7 +62,7 @@ export class SignupComponent {
     });
   }
 
-  NavigateTo(){
+  NavigateTo() {
     this.router.navigate(['form/login']);
   }
 }

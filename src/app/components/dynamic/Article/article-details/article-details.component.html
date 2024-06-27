@@ -34,7 +34,7 @@
                 <div class="chapter-container ">
                     <hr class="w-full border-lightblue my-6" *ngIf="chap.title">
                     <div class=" space-y-4 m-4" >
-                        <p class="text-5xl font-bold tracking-tighter "  [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article?.title)}">
+                        <p class="text-5xl font-bold tracking-tighter"  [ngClass]="{'arabicfont tracking-normal text-right':isArabic(article?.title)}">
                             {{chap?.title | capitalizeFirst }} 
                         </p>
                         <p class="text-xl tracking-tight text-justify indent-2 text-gray-700"  [ngClass]="{'arabicfont tracking-normal indent-0 text-end':isArabic(article?.title)}">
