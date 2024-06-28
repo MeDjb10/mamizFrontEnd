@@ -1,29 +1,50 @@
 <form [formGroup]="generalInfoForm" (ngSubmit)="onSubmitGeneralInfo()">
-    <div class="grid md:grid-cols-4 gap-4 mt-3">
+    <div class="grid md:grid-cols-3 gap-4 mt-3">
       <div class="relative">
         <input type="text" id="nom" formControlName="nom" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
         <label for="nom" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
           Nom
         </label>
+        <p *ngIf=" generalInfoForm.get('nom')?.errors" class="text-yellow-300  text-sm mt-1">
+          <span *ngIf=" formSubmitted && generalInfoForm.get('nom')?.errors?.['required']"><i
+              class="fa-solid fa-circle-exclamation"></i> Le nom est requis.</span>
+          <span *ngIf="generalInfoForm.get('nom')?.touched && generalInfoForm.get('nom')?.errors?.['minlength'] ||formSubmitted && generalInfoForm.get('nom')?.errors?.['minlength']">
+            <i class="fa-solid fa-triangle-exclamation"></i> Le nom doit avoir au moins 3 caractères.</span>
+        </p>
       </div>
       <div class="relative">
         <input type="text" id="prenom" formControlName="prenom" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
         <label for="prenom" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
           Prénom
         </label>
+        <p *ngIf="generalInfoForm.get('prenom')?.errors" class="text-sm text-yellow-300 mt-1">
+          <span *ngIf="formSubmitted && generalInfoForm.get('prenom')?.errors?.['required'] "><i class="fa-solid fa-circle-exclamation"></i> Le prénom est requis.</span>
+          <span *ngIf="formSubmitted && generalInfoForm.get('prenom')?.errors?.['minlength'] ||generalInfoForm.get('prenom')?.touched && generalInfoForm.get('prenom')?.errors?.['minlength']"><i class="fa-solid fa-triangle-exclamation"></i> Le prénom doit avoir au moins 3 caractères.</span>
+        </p>
       </div>
       <div class="relative">
         <input type="number" id="numeroDeTelephone" formControlName="numTel" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
         <label for="numeroDeTelephone" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
           votre Numero
         </label>
+        <p *ngIf="generalInfoForm.get('numTel')?.errors" class="text-yellow-300  text-sm mt-1">
+          <span *ngIf="formSubmitted && generalInfoForm.get('numTel')?.errors?.['required']"><i class="fa-solid fa-circle-exclamation"></i> Le numéro de téléphone est requis.</span>
+          <span *ngIf="formSubmitted && generalInfoForm.get('numTel')?.errors?.['minlength'] || generalInfoForm.get('numTel')?.touched && generalInfoForm.get('numTel')?.errors?.['minlength']"><i class="fa-solid fa-triangle-exclamation"></i> Le numéro de téléphone doit avoir 8 caractères.</span>
+          <span *ngIf="formSubmitted && generalInfoForm.get('numTel')?.errors?.['maxlength'] || generalInfoForm.get('numTel')?.touched && generalInfoForm.get('numTel')?.errors?.['maxlength']"><i class="fa-solid fa-triangle-exclamation"></i> Le numéro de téléphone ne doit pas dépasser 8 caractères.</span>
+        </p>
       </div>
-      <div class="relative">
+      <!-- <div class="relative">
         <input type="text" id="email" formControlName="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
         <label for="email" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
           Email
         </label>
-      </div>
+        <p *ngIf=" generalInfoForm.get('email')?.errors" class="text-yellow-300  text-sm mt-1">
+          <span *ngIf="formSubmitted &&  generalInfoForm.get('email')?.errors?.['required']"><i
+              class="fa-solid fa-circle-exclamation"></i> L'email est requis.</span>
+          <span *ngIf="generalInfoForm.get('email')?.touched && generalInfoForm.get('email')?.errors?.['email']"><i
+              class="fa-solid fa-triangle-exclamation"></i> Email invalide.</span>
+        </p>
+      </div> -->
     </div>
     <div *ngIf="isMedcin" class="">
       <hr class="my-3 border-lightblue">
@@ -35,18 +56,23 @@
             Adresse
           </label>
         </div>
-        <div class="relative">
-          <input type="text" id="specialite" formControlName="specialite" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
-          <label for="specialite" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            Specialité
-          </label>
+        <div class="">
+          <div>
+          <select id="specialite" formControlName="specialite" required aria-placeholder="specialite"
+            class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-teal focus:border-teal sm:text-sm border-gray-300">
+            <option *ngFor="let specialty of specialties" [value]="specialty.name">{{ specialty.name }}</option>
+          </select>
+          </div>
+          <p *ngIf="generalInfoForm.get('specialite')?.errors && formSubmitted" class="text-yellow-300 text-sm mt-1">
+            <span><i class="fa-solid fa-circle-exclamation"></i> La spécialité est requise.</span>
+          </p>
         </div>
       </div>
     </div>
     <button type="submit" class="bg-lightblue px-3 py-1 rounded-lg hover:shadow-lg transition-shadow duration-150 font-bold items-center justify-center" [disabled]="!generalInfoForm.dirty">Submit <i class="fa-solid fa-arrow-right"></i></button>
   </form>
   
-  <form [formGroup]="passwordForm" >
+  <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" >
     <div>
       <hr class="my-3 border-lightblue">
       <p class="my-1 font-bold text-xl tracking-tighter">Changer mot de passe</p>
@@ -56,14 +82,17 @@
           <label for="oldPassword" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
             Mot de passe Ancienne
           </label>
+          <span *ngIf="oldpassTest" class="text-yellow-300 text-sm mt-1"><i class="fa-solid fa-triangle-exclamation"></i> L'ancien mot de passe ne correspond pas</span>
         </div>
         <div class="relative col-span-2">
           <input type="password" id="newPassword" formControlName="newPassword" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-lightblue peer focus:border-2" />
           <label for="newPassword" class="absolute text-sm text-gray-500 focus:text-lightblue duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-lightblborder-lightblue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
             Nouvelle Mot de passe
           </label>
+          <span *ngIf="newpassTest" class="text-yellow-300 text-sm mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Le nouveau mot de passe doit être différent de l'ancien mot de passe</span>
+
         </div>
-        <button type="submit" class="bg-pink text-white px-3 py-1 rounded-lg hover:shadow-lg transition-shadow duration-150 font-bold items-end justify-center" [disabled]="!passwordForm.dirty">Changer <i class="fa-solid fa-arrow-right"></i></button>
+        <button type="submit" class="bg-pink text-white px-3 py-1 rounded-lg hover:shadow-lg transition-shadow duration-150 font-bold items-end justify-center" [disabled]="!passwordForm.dirty" >Changer <i class="fa-solid fa-arrow-right"></i></button>
       </div>
     </div>
   </form>

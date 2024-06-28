@@ -41,7 +41,7 @@
             <div
                 class="p-3  bg-white border-2 hover:border-teal border-lightblue transition-colors duration-200 rounded-xl shadow">
                 <ng-container *ngFor="let article of latestArticle | slice: 0 : 3">
-                    <app-forum-aricle-card [title]="article?.title"
+                    <app-forum-aricle-card [title]="article?.title" [theme]="article?.theme"
                         [desc]="article?.description"></app-forum-aricle-card>
                 </ng-container>
             </div>

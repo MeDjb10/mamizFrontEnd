@@ -6,8 +6,8 @@ class="relative bg-white shadow-lg rounded-lg overflow-hidden max-w-md min-w-sm 
   <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80"></div>
   <div class="absolute bottom-4 left-4 right-4 gap-3" [ngClass]="{'flex text-right items-end':isArabic(title)}">
     <div>
-      <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white">
-        {{theme}}
+      <p class=" font-bold tracking-tight bg-teal w-fit px-2 text-white"  [ngStyle]="{ 'background-color': getThemeColor(theme ||'') }">
+        {{theme||'' |capitalizeFirst}}
       </p>
       <h1 class="text-white font-bold tracking-tighter text-3xl" [ngClass]="{'arabicfont tracking-normal text-right':isArabic(title)}">
         {{title}}

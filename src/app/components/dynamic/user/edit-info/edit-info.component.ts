@@ -16,7 +16,45 @@ export class EditInfoComponent implements OnInit {
   logedIn = this.auth.isAuthenticated();
   generalInfoForm: FormGroup;
   passwordForm: FormGroup;
-
+  formSubmitted = false;
+  oldpassTest:boolean=false;
+  newpassTest:boolean=false;
+  specialties = [
+    { name: 'Allergologie' },
+    { name: 'Anatomie' },
+    { name: 'Anesthésie' },
+    { name: 'Cardiologie' },
+    { name: 'Chirurgie' },
+    { name: 'Dermatologie' },
+    { name: 'Endocrinologie' },
+    { name: 'Gastro-entérologie' },
+    { name: 'Gériatrie' },
+    { name: 'Gynécologie' },
+    { name: 'Hématologie' },
+    { name: 'Immunologie' },
+    { name: 'Infectiologie' },
+    { name: 'Médecine interne' },
+    { name: 'Médecine légale' },
+    { name: 'Médecine nucléaire' },
+    { name: 'Médecine physique et de réadaptation' },
+    { name: 'Néouser'},
+    { name: 'Néphrologie' },
+    { name: 'Neurologie' },
+    { name: 'Obstétrique' },
+    { name: 'Odontologie' },
+    { name: 'Oncologie' },
+    { name: 'Ophtalmologie' },
+    { name: 'Orthopédie' },
+    { name: 'Oto-rhino-laryngologie (ORL)' },
+    { name: 'Pédiatrie' },
+    { name: 'Pneumologie' },
+    { name: 'Psychiatrie' },
+    { name: 'Radiologie' },
+    { name: 'Rhumatologie' },
+    { name: 'Urologie' },
+    { name: 'Vétérinaire' },
+    { name: 'Médecin général' },
+  ];
   constructor(
     private auth: AuthServiceService,
     private userService: UserService,
@@ -24,12 +62,12 @@ export class EditInfoComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.generalInfoForm = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      numTel: ['', Validators.required],
+      nom: ['',[Validators.required, Validators.minLength(3)]],
+      prenom: ['',[Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
+      numTel: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
       adresse: [''],
-      specialite: ['']
+      specialite: [this.user?.specialite,Validators.required]
     });
 
     this.passwordForm = this.fb.group({
@@ -58,29 +96,82 @@ export class EditInfoComponent implements OnInit {
       nom: data.nom,
       prenom: data.prenom,
       numTel: data.numTel,
-      email: data.email,
       adresse: data.adresse,
       specialite: data.specialite
     });
   }
 
   onSubmitGeneralInfo(): void {
+    this.formSubmitted = true;
+  
+    const updatedUser = {
+      ...this.user,
+      nom: this.generalInfoForm.get('nom')?.value,
+      prenom: this.generalInfoForm.get('prenom')?.value,
+      numTel: this.generalInfoForm.get('numTel')?.value,
+      adresse: this.generalInfoForm.get('adresse')?.value,
+      specialite: this.generalInfoForm.get('specialite')?.value
+    };
+  
     if (this.generalInfoForm.valid) {
       if (this.isMedcin) {
-        this.medcinService.update(this.user.id, this.generalInfoForm.value).subscribe(() => console.log("oui")
-        )
+        this.medcinService.update(this.user.id, updatedUser).subscribe(() => {
+          console.log("Medcin info updated");
+        }, error => {
+          console.error("Error updating medcin info", error);
+        });
+      } else {
+        const { adresse, specialite, ...userInfo } = updatedUser;
+        userInfo.id = this.user.id;  // Add the id to the userInfo object
+        this.userService.updateUser(userInfo).subscribe(() => {
+          console.log("User info updated");
+        }, error => {
+          console.error("Error updating user info", error);
+        });
       }
     }
   }
-
-  // onChangePassword(): void {
-  //   if (this.passwordForm.valid) {
-  //     const { oldPassword, newPassword } = this.passwordForm.value;
-  //     const userId = this.auth.getCurrentUserId();
-  //     this.userService.updatePassword(userId, newPassword).subscribe(() => {
-  //       console.log('Password updated successfully');
-  //     });
-  //   }
-  // }
+  changePassword() {
+    if (this.user && this.passwordForm.valid) {
+      const { oldPassword, newPassword } = this.passwordForm.value;
+      if (oldPassword === this.user.motPasse) {
+        if (oldPassword !== newPassword) {
+          const updatedUser = {
+            ...this.user,
+            motPasse: newPassword,
+          };
+  
+          if (this.user.medcin) {
+            this.medcinService.update(this.user.id, updatedUser).subscribe({
+              next: () => {
+                alert('Mot de passe mis à jour avec succès');
+              },
+              error: (err) => {
+                alert('Erreur lors de la mise à jour du mot de passe');
+                console.error('Erreur lors de la mise à jour du mot de passe du médecin', err);
+              },
+            });
+          } else {
+            this.userService.updateUser(updatedUser).subscribe({
+              next: () => {
+                alert('Mot de passe mis à jour avec succès');
+              },
+              error: (err) => {
+                alert('Erreur lors de la mise à jour du mot de passe');
+                console.error('Erreur lors de la mise à jour du mot de passe utilisateur', err);
+              },
+            });
+          }
+        } else {
+          this.newpassTest=!this.newpassTest
+          console.error('New password must be different from the old password');
+        }
+      } else {
+        this.oldpassTest=!this.oldpassTest;
+        console.error('Old password does not match');
+      }
+    }
+  }
+  
 
 }

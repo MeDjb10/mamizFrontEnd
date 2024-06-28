@@ -13,6 +13,9 @@ export class UserProfileComponent implements OnInit {
   visible: boolean = false;
   isEditMode = false;
   user: any;
+  atelier:any[]=[];
+  filteredAtelier:any[]=[];
+  searchTerm: string = '';
   private readonly USER_ID_KEY = 'user_id';
   logedIn = this.auth.isAuthenticated();
   isMedcin!: boolean;
@@ -36,6 +39,7 @@ export class UserProfileComponent implements OnInit {
         this.user = data;
       })
     }
+    this.userService.getAteliersByUser(Number(userId)).subscribe((data)=> {this.atelier=data;this.filteredAtelier=data})
   }
 
   showDialog() {
@@ -50,5 +54,24 @@ export class UserProfileComponent implements OnInit {
     this.auth.logout();
     this.logedIn = this.auth.isAuthenticated();
     this.router.navigate(['/home']);
+  }
+  navigateToDetails(id: string): void {
+    this.router.navigate(['home/atelier-details', id]);
+  }
+  onSearchChange(event: any) {
+    this.searchTerm = event.target.value.trim().toLowerCase();
+    this.filterAteliers();
+  }
+  
+  // Filter ateliers based on search term
+  filterAteliers() {
+    if (!this.searchTerm) {
+      this.filteredAtelier = this.atelier; // Show all ateliers if search term is empty
+    } else {
+      this.filteredAtelier = this.atelier.filter((atelier) => {
+        return atelier.title.toLowerCase().includes(this.searchTerm) ||
+               atelier.description.toLowerCase().includes(this.searchTerm);
+      });
+    }
   }
 }
