@@ -86,6 +86,7 @@ export class AdminFormArticleComponent {
   }
 
   onSubmit(): void {
+    
     if (this.articleForm.valid) {
       const dateControl = this.articleForm.get('date');
       if (dateControl) {

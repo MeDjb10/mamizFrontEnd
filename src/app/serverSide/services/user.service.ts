@@ -17,6 +17,13 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl);
   }
 
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/login`, {
+      email,
+      password,
+    });
+  }
+
   getById(id: number): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
   }

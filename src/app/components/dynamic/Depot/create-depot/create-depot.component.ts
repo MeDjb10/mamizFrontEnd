@@ -22,7 +22,7 @@ export class CreateDepotComponent {
     private messageService: MessageService,
     private depotService: DepotService,
     private userService: UserService,
-    private auth:AuthServiceService
+    private auth: AuthServiceService,
   ) {
     this.depot = this.fb.group({
       name: ['', Validators.required],
@@ -33,13 +33,12 @@ export class CreateDepotComponent {
   }
 
   ngOnInit(): void {
-    const userId = this.auth.getCurrentUserId();
-    if (userId) {
-      this.userService.getById(Number(userId)).subscribe((user) => {
+    const userEmail = this.auth.getCurrentUserEmail();
+    if (userEmail) {
+      this.userService.getUserByEmail(userEmail).subscribe((user) => {
         this.user = user;
       });
     }
-    
   }
   onSubmit() {
     if (this.depot.valid) {
@@ -76,8 +75,6 @@ export class CreateDepotComponent {
         },
       });
     }
-
-   
   }
 
   onUpload(event: any) {
@@ -86,6 +83,19 @@ export class CreateDepotComponent {
     }
     console.log(this.uploadedFiles);
 
+    this.messageService.add({
+      severity: 'info',
+      summary: 'File Uploaded',
+      detail: '',
+    });
+  }
+
+  myUploader(event:any) {
+    console.log('onUpload() START');
+    for (let file of event.files) {
+      console.log('FILE TO BE UPLOADED: ', file);
+      this.uploadedFiles.push(file);
+    }
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',

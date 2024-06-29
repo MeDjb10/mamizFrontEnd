@@ -114,7 +114,8 @@ import { AdminListDepotsComponent } from './components/dynamic/dashboard/admin-l
 import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
 import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
 import { CapitalizeFirstPipe } from './capitalize-first.pipe';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './serverSide/interceptor/jwt-interceptor';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -233,7 +234,11 @@ registerLocaleData(localeFr, 'fr');
     CheckboxModule,
     TableModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr' }, [MessageService]],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr' },
+    [MessageService],
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })

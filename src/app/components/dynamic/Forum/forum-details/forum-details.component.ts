@@ -28,6 +28,10 @@ export class ForumDetailsComponent {
     });
   }
 
+  //TODO:need to fix the post.response(after i made changes to the post model and changing it to postDTO , it doesnt have the reponse , so i need to find a way to get the response for that post)
+
+  
+
   get rsDate(): string {
     return this.post?.response?.responseDate
       ? `${this.post?.response?.responseDate} `

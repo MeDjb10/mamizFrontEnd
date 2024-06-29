@@ -34,6 +34,7 @@ import { AdminFormAtelierComponent } from './components/dynamic/dashboard/admin-
 import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
 import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
 import { ArticleDetailsComponent } from './components/dynamic/Article/article-details/article-details.component';
+import { roleGuard } from './serverSide/guard/role.guard';
 
 
 const routes: Routes = [
@@ -100,6 +101,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+     canActivate: [roleGuard], data: { expectedRole: 'ROLE_ADMIN' },
     children: [
       { path: 'listArticle', component: AdminListArticleComponent },
       { path: 'formArticle', component: AdminFormArticleComponent },

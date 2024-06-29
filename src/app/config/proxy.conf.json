@@ -1,0 +1,7 @@
+{
+  "/api/upload.php": {
+    "target": "https://www.primefaces.org/cdn",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
