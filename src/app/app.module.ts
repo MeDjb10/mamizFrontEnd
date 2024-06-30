@@ -114,6 +114,7 @@ import { AdminListDepotsComponent } from './components/dynamic/dashboard/admin-l
 import { AdminListPostsComponent } from './components/dynamic/dashboard/admin-list-posts/admin-list-posts.component';
 import { AdminListUsersComponent } from './components/dynamic/dashboard/admin-list-users/admin-list-users.component';
 import { CapitalizeFirstPipe } from './capitalize-first.pipe';
+import { CollabsComponent } from './components/dynamic/home/collabs/collabs.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './serverSide/interceptor/jwt-interceptor';
 
@@ -202,6 +203,7 @@ registerLocaleData(localeFr, 'fr');
     AdminListPostsComponent,
     AdminListUsersComponent,
     CapitalizeFirstPipe,
+    CollabsComponent,
   ],
 
   imports: [
