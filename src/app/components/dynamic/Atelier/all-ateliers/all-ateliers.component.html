@@ -11,7 +11,7 @@
       <app-filter-atelier (filterChange)="onFilterChange($event)"></app-filter-atelier>
       <div class="mb-12 grid gap-y-4 gap-x-4 lg:grid-cols-2 md:w-11/12">
         <ng-container *ngFor="let atelier of filteredAteliers">
-          <app-events-card [title]="atelier?.title" [date]="atelier?.date" [price]="atelier?.price" [desc]="atelier?.description"
+          <app-events-card [title]="atelier?.title" [date]="atelier?.date" [price]="atelier?.price" [desc]="atelier?.description" [photoURL]="atelier?.photoURL"
             (click)="navigateToDetails(atelier.id)">
           </app-events-card>
         </ng-container>

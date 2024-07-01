@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AtelierService } from 'src/app/serverSide/services/atelier.service';
 import { EventService } from 'src/app/serverSide/services/event.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-admin-form-atelier',
@@ -15,6 +16,8 @@ export class AdminFormAtelierComponent {
   isUpdate = false;
   isAtelier = false;
   id!: number;
+  selectedFile!: File;
+  atelierPhoto: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -23,15 +26,29 @@ export class AdminFormAtelierComponent {
     private atelierService: AtelierService,
     private route: ActivatedRoute,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
-      title: ['',[Validators.required, Validators.minLength(5)]],
-      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
-      photo: ['',[Validators.required, Validators.pattern("[a-zA-Z0-9 ^éèàù]+.(jpg|jpeg|png)")]],
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(255),
+        ],
+      ],
+      photo: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-zA-Z0-9 ^éèàù]+.(jpg|jpeg|png)'),
+        ],
+      ],
       date: ['', Validators.required],
-      place: ['',[Validators.required, Validators.minLength(5)]],
-      price: [0,Validators.required],
-      maxPlaces: [0,Validators.required],
+      place: ['', [Validators.required, Validators.minLength(5)]],
+      price: [0, Validators.required],
+      maxPlaces: [0, Validators.required],
     });
   }
 
@@ -48,8 +65,9 @@ export class AdminFormAtelierComponent {
 
   loadData(): void {
     if (this.isAtelier) {
-      this.atelierService.getById(this.id).subscribe((data) => {
+      this.atelierService.getAtelierById(this.id).subscribe((data) => {
         this.form.patchValue(data);
+        this.atelierPhoto = data.photoURL;
       });
     } else {
       this.eventService.getById(this.id).subscribe((data) => {
@@ -63,6 +81,7 @@ export class AdminFormAtelierComponent {
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
       this.form.patchValue({ photo: file.name });
+      this.selectedFile = file;
     }
   }
 
@@ -74,8 +93,6 @@ export class AdminFormAtelierComponent {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
     const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
-   
-
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
 
@@ -88,36 +105,61 @@ export class AdminFormAtelierComponent {
         this.form.patchValue({ date: formattedDate });
       }
 
-      const data = this.form.value;
+      const atelierDTO = this.form.value;
+      const file: File | null = this.selectedFile || null;
+
       if (this.isAtelier) {
         if (this.isUpdate) {
-          this.atelierService.update(this.id, data).subscribe({
-            next: () => this.router.navigate(['/dashboard/listAtelier']),
-            error: (error) =>
-              this.handleError('Failed to update atelier', error),
-          });
+          this.updateAtelier(this.id, JSON.stringify(atelierDTO), file);
         } else {
-          this.atelierService.create(data).subscribe({
-            next: () => this.router.navigate(['/dashboard/listAtelier']),
-            error: (error) =>
-              this.handleError('Failed to create atelier', error),
-          });
+          this.atelierService
+            .createAtelier(file, JSON.stringify(atelierDTO))
+            .subscribe({
+              next: () => this.router.navigate(['/dashboard/listAtelier']),
+              error: (error) =>
+                this.handleError('Failed to create atelier', error),
+            });
         }
       } else {
         if (this.isUpdate) {
-          this.eventService.update(this.id, data).subscribe({
+          this.eventService.update(this.id, atelierDTO).subscribe({
             next: () => this.router.navigate(['/dashboard/listEvents']),
             error: (error) => this.handleError('Failed to update event', error),
           });
         } else {
-          this.eventService.create(data).subscribe({
+          this.eventService.create(atelierDTO).subscribe({
             next: () => this.router.navigate(['/dashboard/listEvents']),
             error: (error) => this.handleError('Failed to create event', error),
           });
         }
       }
     }
-    
+  }
+
+  updateAtelier(id: number, updatedAtelier: any, file: File) {
+    this.atelierService.getAtelierById(id).subscribe((atelier) => {
+      this.atelierPhoto = '';
+      this.changeDetectorRef.detectChanges();
+
+      const formData = new FormData();
+      formData.append('id', id.toString());
+      formData.append('atelierDTO', JSON.stringify(updatedAtelier));
+      if (file) {
+        formData.append('file', file, file.name);
+      }
+
+      this.atelierService.updateAtelier(id,file, JSON.stringify(formData)).subscribe(
+        (updatedAtelierResponse) => {
+          this.atelierPhoto = updatedAtelierResponse.photoURL;
+          this.router.navigate(['/dashboard/listAtelier']);
+        },
+        (error) => {
+          console.error('Error updating atelier:', error);
+          this.atelierPhoto = atelier.photoURL;
+          this.handleError('Failed to update atelier', error);
+        },
+      );
+    });
   }
 
   handleSuccess(message: string): void {
@@ -126,7 +168,6 @@ export class AdminFormAtelierComponent {
       summary: 'Success',
       detail: message,
     });
-    
   }
 
   handleError(message: string, error: any): void {

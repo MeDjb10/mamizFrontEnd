@@ -27,7 +27,7 @@ export class AtelierDetailsComponent implements OnInit {
     const atelierId = Number(this.route.snapshot.paramMap.get('id'));
 
     // Fetch atelier details by id
-    this.atelierService.getById(atelierId).subscribe((data) => {
+    this.atelierService.getAtelierById(atelierId).subscribe((data) => {
       this.atelier = data;
     });
 
@@ -55,7 +55,7 @@ export class AtelierDetailsComponent implements OnInit {
         next: (response) => {
           console.log(response); // Log the response for debugging
           // Handle success here if needed
-          alert(response.message); // Display the message to the user
+          alert("you subscribed"); // Display the message to the user
         },
         error: (error) => {
           console.error(error);

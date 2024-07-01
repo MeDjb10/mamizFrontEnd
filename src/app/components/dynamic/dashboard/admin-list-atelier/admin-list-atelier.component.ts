@@ -23,7 +23,7 @@ export class AdminListAtelierComponent {
   }
 
   delete(id: number) {
-    this.atelierService.delete(id).subscribe({
+    this.atelierService.deleteAtelier(id).subscribe({
       next: () => {
         alert('Atelier deleted successfully');
         this.ateliers = this.ateliers.filter((atelier) => atelier.id !== id);
@@ -49,7 +49,7 @@ export class AdminListAtelierComponent {
   }
 
   loadAteliers() {
-    this.atelierService.getAll().subscribe((data) => {
+    this.atelierService.getAllAteliers().subscribe((data) => {
       this.ateliers = data;
       this.filteredAteliers = data;
     });

@@ -9,5 +9,5 @@ export interface Atelier {
   place: string;
   price: number;
   maxPlaces: number;
-  users?: User[];
+  photoURL: string;
 }

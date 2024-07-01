@@ -12,6 +12,7 @@ export class EventsCardComponent {
   @Input() desc?: string;
   @Input() date?: string;
   @Input() price?: number;
+  @Input() photoURL?: string;
 
 
   constructor(private router:Router){}

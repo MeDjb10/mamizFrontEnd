@@ -21,7 +21,7 @@ export class AllAteliersComponent {
   }
 
   loadAteliers() {
-    this.atelierService.getAll().subscribe((data) => {
+    this.atelierService.getAllAteliers().subscribe((data) => {
       this.ateliers = data;
       this.filteredAteliers = data; // Initialize filteredAteliers with all ateliers
     });

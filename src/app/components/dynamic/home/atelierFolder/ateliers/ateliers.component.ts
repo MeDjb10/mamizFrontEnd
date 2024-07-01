@@ -17,7 +17,7 @@ export class AteliersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.atelierService.getAll().subscribe((data: any[]) => {
+    this.atelierService.getAllAteliers().subscribe((data: any[]) => {
       // Adjust the type as needed
       this.ateliers = data;
     });
